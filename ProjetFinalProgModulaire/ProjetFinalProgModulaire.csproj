@@ -42,11 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="COMBAT.cs" />
+    <Compile Include="ELEMENTS.cs" />
+    <Compile Include="OBJET.cs" />
     <Compile Include="PERSONNAGES.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SORTS.cs" />
+    <Compile Include="SORT.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
