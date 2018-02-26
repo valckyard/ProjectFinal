@@ -31,7 +31,7 @@ namespace ProjetFinalProgModulaire
         public int PtsVitesse { get; set; }
 
         //Options d'attaque
-        public List<SORTS> ListeSorts {get;set;}
+        public List<SORT> ListeSorts {get;set;}
         public string ObjectTenu { get; set; }
 
 
@@ -62,14 +62,14 @@ namespace ProjetFinalProgModulaire
 
 
             //Equipement
-            ListeSorts =  new List<SORTS>();
+            ListeSorts =  new List<SORT>();
             ObjectTenu = null;
 }
 
         // Constructeur Vide
         public PERSONNAGES()
         {
-            ListeSorts = new List<SORTS>();
+            ListeSorts = new List<SORT>();
         }
     }
 }
