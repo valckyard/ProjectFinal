@@ -10,7 +10,7 @@ namespace ProjetFinalProgModulaire
     {
         static void Main(string[] args)
         {
-            Console.WriteLine();
+            Allo
         }
     }
 }
