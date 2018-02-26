@@ -1,4 +1,4 @@
-﻿namespace ProjetFinalProgModulaire
+﻿namespace Game.Library
 {
     public enum ELEMENTS
     {

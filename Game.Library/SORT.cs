@@ -1,7 +1,4 @@
-﻿using System.CodeDom;
-using System.Linq.Expressions;
-
-namespace ProjetFinalProgModulaire
+﻿namespace Game.Library
 {
     public class SORT
     {
