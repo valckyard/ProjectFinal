@@ -6,37 +6,51 @@ using System.Threading.Tasks;
 
 namespace ProjetFinalProgModulaire
 {
-    struct PERSONNAGES
+    public class PERSONNAGES
     {
-        public int niveau;
-        public string race;
-        public string nom;
-        public int ptsVieActuel;
-        public int ptsVieMax;
-        public int ptsAttaque;
-        public int magie;
-        public int ptsDefense;
-        public int ptsVitesse;
-        public int ptsExperience;
-        public int seuilExperience;
-        public int List<SORTS> listeSorts;
-        public string objetTenu;
-        public int ptsExperienceFourni;
-        
-        public Personnages(int _niveau, string _race, string _nom, int _ptsVieActuel, int _ptsVieMax, int _ptsAttaque, int _magie, int _ptsDefense, int _ptsVitesse, int _ptsExperience, int _seuilExperience, int List<SORTS> _listeSorts, string _objetTenu, int _ptsExperienceFourni)
+        public int Niveau { get; set; }
+        public string Race { get; set; }
+        public string Nom { get; set; }
+        public int PtsVieActuel { get; set; }
+        public int PtsVieMax { get; set; }
+        public int PtsAttaque { get; set; }
+        public int Magie { get; set; }
+        public int PtsDefense { get; set; }
+        public int PtsVitesse { get; set; }
+        public int PtsExperience { get; set; }
+        public int SeuilExperience { get; set; }
+        public List<SORTS> ListeSorts {get;set;}
+        public string ObjectTenu { get; set; }
+
+        public string ObjetTenu { get; set; }
+        public int PtsExperienceFourni { get; set; }
+
+        public PERSONNAGES(int niveau, string race, string nom, int ptsVieActuel, int ptsVieMax, int ptsAttaque,
+            int magie, int ptsDefense, int ptsVitesse, int ptsExperience, int seuilExperience,
+            List<SORTS> listesorts, string objetTenu)
         {
-            niveau = _niveau;
-            race = _race;
-            nom = _nom;
-            ptsVieActuel = _ptsVieActuel;
-            ptsVieMax = _ptsVieMax;
-            ptsAttaque = _ptsAttaque;
-            magie = _magie;
-            ptsDefense = _ptsDefense;
-            ptsVitesse = _ptsVitesse;
-            ptsExperience = _ptsExperience;
-            seuilExperience = _seuilExperience
-            List<SORTS> listeSorts = List <SORTS> _listeSorts;
-            ng objetTenu;
-            ptsExperienceFourni;
+            Niveau = niveau;
+            Race = race;
+            Nom = nom;
+            PtsVieActuel = ptsVieActuel;
+            PtsVieMax = ptsVieMax;
+            PtsAttaque = ptsAttaque;
+            Magie = magie;
+            PtsDefense = ptsDefense;
+            PtsVitesse = ptsVitesse;
+            PtsExperience = ptsExperience;
+            SeuilExperience = seuilExperience;
+            List<SORTS> listeSorts =  listesorts;
+            ObjectTenu = objetTenu;
+            PtsExperienceFourni = 0;
         }
+    }
+
+    public class SORTS
+    {
+        public SORTS()
+        {
+        }
+    }
+}
+    
