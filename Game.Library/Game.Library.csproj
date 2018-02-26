@@ -45,12 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ELEMENTS.cs" />
+    <Compile Include="Ennemi.cs" />
+    <Compile Include="Enums\Classe.cs" />
+    <Compile Include="Enums\ELEMENTS.cs" />
+    <Compile Include="JeuProjet.cs" />
     <Compile Include="OBJET.cs" />
     <Compile Include="Personnages.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\Race.cs" />
     <Compile Include="SORT.cs" />
+    <Compile Include="Enums\TypeEnnemi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

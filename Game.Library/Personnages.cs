@@ -5,7 +5,8 @@ namespace Game.Library
     public class PERSONNAGES
     {
         //Characteristiques
-        public string Race { get; set; }
+        public Race Race { get; set; }
+        public Classe Classe { get; set; }
         public string Nom { get; set; }
 
         //Experience
@@ -27,16 +28,17 @@ namespace Game.Library
         public int PtsVitesse { get; set; }
 
         //Options d'attaque
-        public List<SORT> ListeSorts {get;set;}
+        public List<SORT> ListeSorts { get; set; }
         public string ObjectTenu { get; set; }
 
 
-        public PERSONNAGES(string race, string nom, int ptsVieMax,int pointsMagieMax, int ptsAttaque,
+        public PERSONNAGES(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
             int puissanceMagique, int ptsDefense, int ptsVitesse)
         {
             //Characteristiques
             Race = race;
             Nom = nom;
+            Classe = classe;
 
             //Experience
             Niveau = 0;
@@ -58,9 +60,9 @@ namespace Game.Library
 
 
             //Equipement
-            ListeSorts =  new List<SORT>();
+            ListeSorts = new List<SORT>();
             ObjectTenu = null;
-}
+        }
 
         // Constructeur Vide
         public PERSONNAGES()
@@ -69,4 +71,3 @@ namespace Game.Library
         }
     }
 }
-    
