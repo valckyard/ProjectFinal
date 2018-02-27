@@ -1,4 +1,6 @@
-﻿namespace Game.Library
+﻿using Game.Library;
+
+namespace ProjetFinalProgModulaire
 {
     public class JeuProjet
     {
@@ -9,7 +11,10 @@
         {
 
             var player = CreationPersonnage();
-
+            var listeObjets = LoadingContent.LoadingItems();
+            var listeSorts = LoadingContent.LoadingSpells();
+            
+            
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
