@@ -11,7 +11,7 @@ namespace ProjetFinalProgModulaire
     {
         static void Main(string[] args)
         {
-         var jeu = new JeuProjet();
+            var jeu = new JeuProjet();
             jeu.Init();
          
         }
