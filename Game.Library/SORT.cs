@@ -1,6 +1,8 @@
-﻿namespace Game.Library
+﻿using Game.Library.Enums;
+
+namespace Game.Library
 {
-    public class SORT
+    public class Sort
     {
 
         public string NomSort { get; set; }
@@ -8,7 +10,7 @@
         public int Puissance { get; set; }
         public int CoutMp { get; set; }
 
-        public SORT(string nomSort, Elements typeElement, int puissance, int coutMp)
+        public Sort(string nomSort, Elements typeElement, int puissance, int coutMp)
         {
             NomSort = nomSort;
             TypeElement = typeElement;
@@ -16,7 +18,7 @@
             CoutMp = coutMp;
         }
 
-        public SORT()
+        public Sort()
         {
         }
     }

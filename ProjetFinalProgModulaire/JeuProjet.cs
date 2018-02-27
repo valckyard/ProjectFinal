@@ -26,9 +26,9 @@ namespace ProjetFinalProgModulaire
 
         }
 
-        private PERSONNAGES CreationPersonnage()
+        private static Personnages CreationPersonnage()
         {
-            PERSONNAGES player = new PERSONNAGES();
+            var player = new Personnages();
             //demander infos
 
             return player;
