@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -48,6 +50,7 @@
     <Compile Include="Ennemi.cs" />
     <Compile Include="Enums\Classe.cs" />
     <Compile Include="Enums\ELEMENTS.cs" />
+    <Compile Include="MethodeCombat.cs" />
     <Compile Include="Noeud.cs" />
     <Compile Include="OBJET.cs" />
     <Compile Include="Personnages.cs" />
