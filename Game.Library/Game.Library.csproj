@@ -48,7 +48,6 @@
     <Compile Include="Ennemi.cs" />
     <Compile Include="Enums\Classe.cs" />
     <Compile Include="Enums\ELEMENTS.cs" />
-    <Compile Include="JeuProjet.cs" />
     <Compile Include="OBJET.cs" />
     <Compile Include="Personnages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

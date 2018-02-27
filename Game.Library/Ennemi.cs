@@ -9,5 +9,19 @@
         public int Vitesse { get; set; }
 
         public Ennemi(){}
+
+        public Ennemi(TypeEnnemi typeEnnemi, Elements typElements, int puissance, int defense, int vitesse)
+        {
+            TypeEnnemi = typeEnnemi;
+            TypElements = typElements;
+            Puissance = puissance;
+            Defense = defense;
+            Vitesse = vitesse;
+        }
+    }
+
+    public class Noeud
+    {
+
     }
 }

@@ -7,6 +7,7 @@
 
         public void Init()
         {
+
             var player = CreationPersonnage();
 
             //Histoire modules

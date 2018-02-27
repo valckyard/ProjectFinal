@@ -9,6 +9,13 @@
         public OBJET()
         {
         }
+
+        public OBJET(string nomObjet, Elements typeElement, int puissance)
+        {
+            NomObjet = nomObjet;
+            TypeElement = typeElement;
+            Puissance = puissance;
+        }
     }
 }
 

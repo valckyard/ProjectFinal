@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Media;
 
 namespace Game.Library
 {
@@ -22,14 +23,17 @@ namespace Game.Library
         public int PointsMagieMax { get; set; }
         public int PointsMagieActuel { get; set; }
 
-        public int PtsAttaque { get; set; }
-        public int PuissanceMagique { get; set; }
-        public int PtsDefense { get; set; }
-        public int PtsVitesse { get; set; }
+        public double PtsAttaque { get; set; }
+        public double PuissanceMagique { get; set; }
+        public double PtsDefense { get; set; }
+        public double PtsVitesse { get; set; }
 
         //Options d'attaque
         public List<SORT> ListeSorts { get; set; }
-        public string ObjectTenu { get; set; }
+        public OBJET ObjectTenu { get; set; }
+
+        //inventaire
+        public List<OBJET> Inventaire { get; set; }
 
 
         public PERSONNAGES(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
@@ -68,6 +72,30 @@ namespace Game.Library
         public PERSONNAGES()
         {
             ListeSorts = new List<SORT>();
+        }
+
+        public void UpdatePlayer()
+        {
+            if (PtsExperience >= SeuilExperience)
+            {
+                PtsExperience -= SeuilExperience;
+                SeuilExperience = SeuilExperience * 1.5;
+                ++Niveau;
+                StatsOnLevel();
+                
+                // spell add
+            }
+        }
+
+        public void StatsOnLevel()
+        {
+            PuissanceMagique = PuissanceMagique * 1.1616;
+            PtsAttaque = PtsAttaque * 1.1616;
+            PtsVieMax = (int) (PtsVieMax * 1.1616);
+            //ajoute les pts gagne en bonus health
+            PtsVieActuel += (int)(PtsVieMax * 0.1616);
+            PtsDefense = PtsDefense * 1.1616;
+            PtsVitesse = PtsVitesse * 1.1616;
         }
     }
 }
