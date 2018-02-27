@@ -13,6 +13,7 @@ namespace ProjetFinalProgModulaire
         {
          var jeu = new JeuProjet();
             jeu.Init();
+            //test
         }
     }
 }
