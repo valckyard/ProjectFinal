@@ -1,4 +1,6 @@
-﻿namespace Game.Library
+﻿using Game.Library.Enums;
+
+namespace Game.Library
 {
     public class Ennemi
     {

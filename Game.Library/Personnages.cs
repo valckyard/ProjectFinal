@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Media;
+using Game.Library.Enums;
 
 namespace Game.Library
 {
-    public class PERSONNAGES
+    public class Personnages
     {
         //Characteristiques
         public Race Race { get; set; }
@@ -29,14 +30,14 @@ namespace Game.Library
         public double PtsVitesse { get; set; }
 
         //Options d'attaque
-        public List<SORT> ListeSorts { get; set; }
-        public OBJET ObjectTenu { get; set; }
+        public List<Sort> ListeSorts { get; set; }
+        public Objet ObjectTenu { get; set; }
 
         //inventaire
-        public List<OBJET> Inventaire { get; set; }
+        public List<Objet> Inventaire { get; set; }
 
 
-        public PERSONNAGES(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
+        public Personnages(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
             int puissanceMagique, int ptsDefense, int ptsVitesse)
         {
             //Characteristiques
@@ -64,17 +65,17 @@ namespace Game.Library
 
 
             //Equipement
-            ListeSorts = new List<SORT>();
+            ListeSorts = new List<Sort>();
             ObjectTenu = null;
         }
 
         // Constructeur Vide
-        public PERSONNAGES()
+        public Personnages()
         {
-            ListeSorts = new List<SORT>();
+            ListeSorts = new List<Sort>();
         }
 
-        public void UpdatePlayer()
+        public void CheckLevelPlayer()
         {
             if (PtsExperience >= SeuilExperience)
             {
@@ -94,8 +95,11 @@ namespace Game.Library
             PtsVieMax = (int) (PtsVieMax * 1.1616);
             //ajoute les pts gagne en bonus health
             PtsVieActuel += (int)(PtsVieMax * 0.1616);
+            PointsMagieMax = (int) (PointsMagieMax * 1.1616);
+            PointsMagieActuel += (int)(PointsMagieMax * 0.1616);
             PtsDefense = PtsDefense * 1.1616;
             PtsVitesse = PtsVitesse * 1.1616;
         }
+
     }
 }

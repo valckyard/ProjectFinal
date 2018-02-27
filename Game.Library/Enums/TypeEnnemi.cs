@@ -1,4 +1,4 @@
-﻿namespace Game.Library
+﻿namespace Game.Library.Enums
 {
     public enum TypeEnnemi
     {
