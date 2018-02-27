@@ -8,6 +8,14 @@
         public int Puissance { get; set; }
         public int CoutMp { get; set; }
 
+        public SORT(string nomSort, Elements typeElement, int puissance, int coutMp)
+        {
+            NomSort = nomSort;
+            TypeElement = typeElement;
+            Puissance = puissance;
+            CoutMp = coutMp;
+        }
+
         public SORT()
         {
         }
