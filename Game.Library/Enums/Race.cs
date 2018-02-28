@@ -2,10 +2,10 @@
 {
     public enum Race
     {
-        Etudiant,
-        BienEtre,
-        Travailleur,
-        Directeur
+        Humain,
+        Nain,
+        Elfe,
+        Programmateur
     }
 }
     

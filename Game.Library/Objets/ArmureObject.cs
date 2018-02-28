@@ -5,17 +5,17 @@ namespace Game.Library.Objets
     public class ArmureObject
     {
         public string NomObjet { get; set; }
-        public ElementType TypeElementType { get; set; }
+        public ElementType TypeElement { get; set; }
         public int Defense { get; set; }
 
         public ArmureObject()
         {
         }
 
-        public ArmureObject(string nomObjet, ElementType typeElementType, int defense)
+        public ArmureObject(string nomObjet, ElementType typeElement, int defense)
         {
             NomObjet = nomObjet;
-            TypeElementType = typeElementType;
+            TypeElement = typeElement;
             Defense = defense;
         }
     }

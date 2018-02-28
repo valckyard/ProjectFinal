@@ -33,7 +33,8 @@ namespace Game.Library.TypePersonnage
 
         //Options d'attaque
         public List<Sort> ListeSorts { get; set; }
-        public ArmeObject ObjectTenu { get; set; }
+        public ArmeObject Arme { get; set; }
+        public ArmureObject Armure { get; set; }
 
         //inventaire
         public List<ObjectInventaire> Inventaire { get; set; }
@@ -68,7 +69,7 @@ namespace Game.Library.TypePersonnage
 
             //Equipement
             ListeSorts = new List<Sort>();
-            ObjectTenu = null;
+            Arme = null;
         }
 
         // Constructeur Vide
@@ -120,28 +121,26 @@ namespace Game.Library.TypePersonnage
 
         public void Frapper(ref Ennemi baddie)
         {
-            Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
+            Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
 
             //Calc
-            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, baddie.TypElementType);
-            int dmg = 1; //CalculateDmgObjet(Puissance,Objectenu);
+            double dmg = DammageCalculator(baddie, ConditionAttaque.Attaque); 
             //Calc
 
-            Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
-            baddie.PtsVie -= dmg;
+            Console.WriteLine($"{baddie.Name} prends {(int)dmg} de dommage dans la geule!");
+            baddie.PtsVie -= (int)dmg;
         }
 
         public void FrapperPersonnage(ref Personnages perso)
         {
-            Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {perso.Nom} le {perso.Race}");
+            Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
 
             //Calc
-            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, ElementType.Physique);
-            int dmg = 1; //CalculateDmgObjet(Puissance,ObjectTenu);
+            double dmg = DammageCalculatorPerso(perso, ConditionAttaque.Attaque);
             //Calc
 
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
-            perso.PtsVieActuel -= dmg;
+            perso.PtsVieActuel -= (int)dmg;
         }
 
         public void RecevoirFrappe(Ennemi baddie)
@@ -162,8 +161,8 @@ namespace Game.Library.TypePersonnage
             Console.WriteLine($"{perso.Nom} frappe {Nom} le {Race}");
 
             //Calc
-            double dmgmultiplier = MethodeCombat.Dommage(perso.ObjectTenu.TypeElementType, ElementType.Physique);
-            int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.ObjectTenu);
+            double dmgmultiplier = MethodeCombat.Dommage(perso.Arme.TypeElement, ElementType.Physique);
+            int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.Arme);
             //Calc
 
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
@@ -233,14 +232,14 @@ namespace Game.Library.TypePersonnage
         public void CharacterCreation()
         {
             var rand = new Random();
-            Race = Race.BienEtre; // decision
+            Race = Race.Nain; // decision
             Classe = Classe.Magicien; // desision
 
 
 
             switch (Race)
             {
-                case Race.BienEtre:
+                case Race.Nain:
                     PuissanceMagique = rand.Next();
                     PtsAttaque = rand.Next();
                     PtsVieMax = rand.Next();
@@ -253,13 +252,13 @@ namespace Game.Library.TypePersonnage
                     PtsExperience = 0;
                     SeuilExperience = 200;
 
-                    ObjectTenu = null;
+                    Arme = null;
                     ListeSorts = new List<Sort>();
                     Inventaire = new List<ObjectInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
-                case Race.Directeur:
+                case Race.Programmateur:
                     PuissanceMagique = rand.Next();
                     PtsAttaque = rand.Next();
                     PtsVieMax = rand.Next();
@@ -272,13 +271,13 @@ namespace Game.Library.TypePersonnage
                     PtsExperience = 0;
                     SeuilExperience = 200;
 
-                    ObjectTenu = null;
+                    Arme = null;
                     ListeSorts = new List<Sort>();
                     Inventaire = new List<ObjectInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
-                case Race.Etudiant:
+                case Race.Humain:
                     PuissanceMagique = rand.Next();
                     PtsAttaque = rand.Next();
                     PtsVieMax = rand.Next();
@@ -291,13 +290,13 @@ namespace Game.Library.TypePersonnage
                     PtsExperience = 0;
                     SeuilExperience = 200;
 
-                    ObjectTenu = null;
+                    Arme = null;
                     ListeSorts = new List<Sort>();
                     Inventaire = new List<ObjectInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
-                case Race.Travailleur:
+                case Race.Elfe:
                     PuissanceMagique = rand.Next();
                     PtsAttaque = rand.Next();
                     PtsVieMax = rand.Next();
@@ -310,18 +309,14 @@ namespace Game.Library.TypePersonnage
                     PtsExperience = 0;
                     SeuilExperience = 200;
 
-                    ObjectTenu = null;
+                    Arme = null;
                     ListeSorts = new List<Sort>();
                     Inventaire = new List<ObjectInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
             }
-
-
-
-
-
+            
         }
 
         public void ModifClasse()
@@ -337,6 +332,53 @@ namespace Game.Library.TypePersonnage
                 case Classe.Pretre:
                     break;
             }
+        }
+
+        public double DammageCalculator(Ennemi ennemi, ConditionAttaque condition)
+        {
+            var rand = new Random();
+            double Dmg = 0;
+            double chance = (rand.Next(-30, 31) / 100);
+            switch (condition)
+            {
+                case ConditionAttaque.Attaque:
+
+                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypElementType);
+                    Dmg = ((PtsAttaque + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
+                    Dmg = Dmg + (Dmg * chance);
+                    return Dmg;
+
+                case ConditionAttaque.Defense:
+                    double mulDMGDef = MethodeCombat.Dommage(ennemi.TypElementType, Arme.TypeElement);
+                    Dmg = (ennemi.Puissance - (PtsDefense + Armure.Defense)) * mulDMGDef;
+                    Dmg = Dmg + (Dmg * chance);
+                    return Dmg;
+            }
+            return 0;
+        }
+
+        public double DammageCalculatorPerso(Personnages personnageE, ConditionAttaque condition)
+        {
+            var rand = new Random();
+            double Dmg = 0;
+            double chance = (rand.Next(-30, 31) / 100);
+
+            switch (condition)
+            {
+                case ConditionAttaque.Attaque:
+
+                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
+                    Dmg = ((PtsAttaque + Arme.Puissance) - personnageE.PtsDefense + personnageE.Armure.Defense) * mulDMGAtt;
+                    Dmg = Dmg + (Dmg * chance);
+                    return Dmg;
+
+                case ConditionAttaque.Defense:
+                    double mulDMGDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
+                    Dmg = (personnageE.PtsAttaque - (PtsDefense + Armure.Defense)) * mulDMGDef;
+                    Dmg = Dmg + (Dmg * chance);
+                    return Dmg;
+            }
+            return 0;
         }
 
 

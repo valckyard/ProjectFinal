@@ -1,4 +1,7 @@
-﻿using Game.Library.Enums;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using Game.Library.Enums;
+using Game.Library.TypePersonnage;
 
 namespace Game.Library.Methodes
 {
@@ -81,6 +84,7 @@ namespace Game.Library.Methodes
 
             return 1;
         }
+
         
 
 
