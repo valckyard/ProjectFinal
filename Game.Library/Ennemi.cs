@@ -14,7 +14,7 @@ namespace Game.Library
 
         public Ennemi(){}
 
-        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, Element typElement, int puissance, int defense, int vitesse)
+        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, Elements typElement, int puissance, int defense, int vitesse)
         {
             Name = name;
             PtsVie = hp;
