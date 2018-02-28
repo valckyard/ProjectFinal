@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Library;
 using Game.Library.Objets;
 using Game.Library.TypePersonnage;
@@ -21,7 +22,22 @@ namespace ProjetFinalProgModulaire
         {
             LoadAllContent();
             Player = CreationPersonnage();
-           
+            Console.WriteLine(Player.Nom);
+            Console.WriteLine(Player.Classe);
+            Console.WriteLine(Player.Arme.NomObjet);
+            Console.WriteLine(Player.Armure.NomObjet);
+            Console.WriteLine(Player.Niveau);
+            Console.WriteLine(Player.PointsMagieActuel);
+            Console.WriteLine(Player.PointsMagieMax);
+            Console.WriteLine(Player.PtsAttaque);
+            Console.WriteLine(Player.PtsDefense);
+            Console.WriteLine(Player.PtsExperience);
+            Console.WriteLine(Player.PtsVieActuel);
+            Console.WriteLine(Player.PtsVitesse);
+            Console.WriteLine(Player.PuissanceMagique);
+            Console.WriteLine(Player.SeuilExperience);
+            Console.WriteLine(Player.ValeurPtsExperiences);
+     
 
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
@@ -45,6 +61,24 @@ namespace ProjetFinalProgModulaire
         {
             Player = new Personnages();
             //demander infos
+            Player.CharacterCreation();
+            foreach (var arme in ListeArmes)
+            {
+                if (arme.NomObjet == "Mains Nues")
+                {
+                    Player.Arme = arme;
+                    break;
+                }
+            }
+
+            foreach (var armure in ListeArmures)
+            {
+                if (armure.NomObjet == "Vetements")
+                {
+                    Player.Armure = armure;
+                    break;
+                }
+            }
 
             return Player;
         }
