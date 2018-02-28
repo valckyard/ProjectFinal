@@ -4,7 +4,6 @@
     {
         Barbare,
         Magicien,
-        Pretre,
         Guerrier
     }
 }
