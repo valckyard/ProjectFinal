@@ -22,9 +22,7 @@ namespace ProjetFinalProgModulaire
         {
             LoadAllContent();
             Player = CreationPersonnage();
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
+
             Console.WriteLine(Player.Nom);
             Console.WriteLine(Player.Classe);
             Console.WriteLine(Player.Arme.NomObjet);
@@ -42,10 +40,6 @@ namespace ProjetFinalProgModulaire
             Console.WriteLine(Player.ValeurPtsExperiences);
      
 
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
