@@ -24,6 +24,7 @@ namespace Game.Library
                     {
                         return 1;
                     }
+
                 case Elements.Etheral:
 
                     return 1;
@@ -86,6 +87,8 @@ namespace Game.Library
                  default:
                     break;
             }
+
+            return 1;
         }
         
 
