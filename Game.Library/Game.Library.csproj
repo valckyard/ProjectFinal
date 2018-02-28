@@ -58,6 +58,7 @@
     <Compile Include="Methodes\MethodeCombat.cs" />
     <Compile Include="Methodes\Noeud.cs" />
     <Compile Include="Objets\ArmeObject.cs" />
+    <Compile Include="TypePersonnage\PersonnagePartielCombat.cs" />
     <Compile Include="TypePersonnage\Personnages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Race.cs" />
