@@ -4,8 +4,7 @@
     {
         Humain,
         Nain,
-        Elfe,
-        Programmateur
+        Elfe
     }
 }
     
