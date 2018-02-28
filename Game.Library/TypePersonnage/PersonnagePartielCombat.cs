@@ -11,7 +11,6 @@ namespace Game.Library.TypePersonnage
    public partial class Personnages
     {
 
-
         public bool LancerSort(ref Ennemi baddie)
         {
             var sort = ChoixSort();
