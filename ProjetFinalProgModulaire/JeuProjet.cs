@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using Game.Library;
+using Game.Library.Objets;
+using Game.Library.TypePersonnage;
+using ProjetFinalProgModulaire;
 
 namespace ProjetFinalProgModulaire
 {
     public class JeuProjet
     {
-        public static List<Objet> ListeObjets;
+        public static List<ArmeObject> ListeArmes;
         public static List<Sort> ListeSorts;
+        public static List<ArmureObject> ListeArmures;
+        public static List<ConsumableObject> ListeConsumables;
         public static Personnages Player;
 
         public JeuProjet()
@@ -14,12 +19,10 @@ namespace ProjetFinalProgModulaire
 
         public void Init()
         {
-
+            LoadAllContent();
             Player = CreationPersonnage();
-            ListeObjets = LoadingContent.LoadingItems();
-            ListeSorts = LoadingContent.LoadingSpells();
-            
-            
+           
+
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
@@ -28,15 +31,22 @@ namespace ProjetFinalProgModulaire
 
 
             //loop
+        }
 
+        private static void LoadAllContent()
+        {
+            ListeArmes = LoadingContent.LoadingArmes();
+            ListeSorts = LoadingContent.LoadingSpells();
+            ListeArmures = LoadingContent.LoadingArmures();
+            ListeConsumables = LoadingContent.LoadingConsumableObjects();
         }
 
         private static Personnages CreationPersonnage()
         {
-            var player = new Personnages();
+            Player = new Personnages();
             //demander infos
 
-            return player;
+            return Player;
         }
 
     }
