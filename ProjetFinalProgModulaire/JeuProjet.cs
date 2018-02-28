@@ -23,19 +23,20 @@ namespace ProjetFinalProgModulaire
             LoadAllContent();
             Player = CreationPersonnage();
 
-            Console.WriteLine(Player.Nom);
+            Console.WriteLine("Nom "+Player.Nom);
             Console.WriteLine(Player.Classe);
+            Console.WriteLine(Player.Race);
             Console.WriteLine(Player.Arme.NomObjet);
             Console.WriteLine(Player.Armure.NomObjet);
-            Console.WriteLine(Player.Niveau);
-            Console.WriteLine(Player.PointsMagieActuel);
-            Console.WriteLine(Player.PointsMagieMax);
-            Console.WriteLine(Player.PtsAttaque);
-            Console.WriteLine(Player.PtsDefense);
-            Console.WriteLine(Player.PtsExperience);
-            Console.WriteLine(Player.PtsVieActuel);
-            Console.WriteLine(Player.PtsVitesse);
-            Console.WriteLine(Player.PuissanceMagique);
+            Console.WriteLine("Niv "+Player.Niveau);
+            Console.WriteLine("MP "+Player.PointsMagieActuel);
+            Console.WriteLine("MPMax " +Player.PointsMagieMax);
+            Console.WriteLine("Att "+Player.PtsAttaque);
+            Console.WriteLine("Def "+Player.PtsDefense);
+            Console.WriteLine("EXP " +Player.PtsExperience);
+            Console.WriteLine("HP "+Player.PtsVieActuel);
+            Console.WriteLine("Vit "+Player.PtsVitesse);
+            Console.WriteLine("PM "+Player.PuissanceMagique);
             Console.WriteLine(Player.SeuilExperience);
             Console.WriteLine(Player.ValeurPtsExperiences);
      
