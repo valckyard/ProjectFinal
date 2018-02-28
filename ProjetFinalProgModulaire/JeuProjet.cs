@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Library;
 using Game.Library.Objets;
 using Game.Library.TypePersonnage;
@@ -22,7 +23,7 @@ namespace ProjetFinalProgModulaire
             LoadAllContent();
             Player = CreationPersonnage();
            
-
+           Console.WriteLine(Player.ToString());
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |

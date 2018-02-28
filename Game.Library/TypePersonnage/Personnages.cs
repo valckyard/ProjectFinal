@@ -139,11 +139,5 @@ namespace Game.Library.TypePersonnage
             return sortchoisi;
         }
 
-
-        
-
-
-
-
     }
 }
