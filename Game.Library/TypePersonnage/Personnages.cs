@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
-using System.Media;
 using Game.Library.Enums;
-using Game.Library;
+using Game.Library.Methodes;
+using Game.Library.Objets;
 
-namespace Game.Library
+namespace Game.Library.TypePersonnage
 {
     public class Personnages
     {
@@ -35,10 +33,10 @@ namespace Game.Library
 
         //Options d'attaque
         public List<Sort> ListeSorts { get; set; }
-        public Objet ObjectTenu { get; set; }
+        public ArmeObject ObjectTenu { get; set; }
 
         //inventaire
-        public List<Objet> Inventaire { get; set; }
+        public List<ArmeObject> Inventaire { get; set; }
 
 
         public Personnages(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
@@ -84,9 +82,9 @@ namespace Game.Library
             var sort = ChoixSort();
             if (PointsMagieActuel >= sort.CoutMp)
             {
-                if (sort.TypeElement != Elements.Lumiere)
+                if (sort.TypeElementType != ElementType.Lumiere)
                 {
-                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElement, baddie.TypElement);
+                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElementType, baddie.TypElementType);
                     PointsMagieActuel -= sort.CoutMp;
                     Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
                     int dmg = 1; //CalculateDmgMagique(PuissanceMagique, sort, Ennemi);
@@ -95,7 +93,7 @@ namespace Game.Library
                     //check death
                     return true;
                 }
-                else // Elements.Lumiere
+                else // ElementType.Lumiere
                 {
                     PointsMagieActuel -= sort.CoutMp;
                     Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
@@ -119,7 +117,7 @@ namespace Game.Library
         public void Frapper(ref Ennemi baddie)
         {
             Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
-            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElement, baddie.TypElement);
+            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, baddie.TypElementType);
             int dmg = 1; //CalculateDmgObjet(Puissance,Objectenu);
             Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
             baddie.PtsVie -= dmg;
@@ -128,7 +126,7 @@ namespace Game.Library
         public void FrapperPersonnage(ref Personnages perso)
         {
             Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {perso.Nom} le {perso.Race}");
-            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElement, Elements.Physique);
+            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(Puissance,ObjectTenu);
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
             perso.PtsVieActuel -= dmg;
@@ -137,7 +135,7 @@ namespace Game.Library
         public void RecevoirFrappe(Ennemi baddie)
         {
             Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
-            double dmgmultiplier = MethodeCombat.Dommage(baddie.TypElement, Elements.Physique);
+            double dmgmultiplier = MethodeCombat.Dommage(baddie.TypElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(baddie.Puissance);
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
             PtsVieActuel -= dmg;
@@ -146,7 +144,7 @@ namespace Game.Library
         public void RecevoirFrappePersonnage(Personnages perso)
         {
             Console.WriteLine($"{perso.Nom} frappe {Nom} le {Race}");
-            double dmgmultiplier = MethodeCombat.Dommage(perso.ObjectTenu.TypeElement, Elements.Physique);
+            double dmgmultiplier = MethodeCombat.Dommage(perso.ObjectTenu.TypeElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.ObjectTenu);
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
             PtsVieActuel -= dmg;
@@ -187,7 +185,7 @@ namespace Game.Library
             foreach (var s in ListeSorts)
             {
                 spellbook.Add(x, s);
-                Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElement}");
+                Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElementType}");
                 x++;
             }
 

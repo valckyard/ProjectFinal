@@ -1,6 +1,6 @@
 ﻿namespace Game.Library.Enums
 {
-    public enum Elements
+    public enum ElementType
     {
         Feu,
         Eau,
@@ -10,7 +10,6 @@
         Physique,
         Lumiere
     }
-
 
 }
     
