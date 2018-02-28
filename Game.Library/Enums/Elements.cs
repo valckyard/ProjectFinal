@@ -7,8 +7,8 @@
         Terre,
         Air,
         Etheral,
-        Physique
-
+        Physique,
+        Lumiere
     }
 
 

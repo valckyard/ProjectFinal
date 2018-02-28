@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.Media;
 using Game.Library.Enums;
+using Game.Library;
 
 namespace Game.Library
 {
@@ -83,19 +84,72 @@ namespace Game.Library
             var sort = ChoixSort();
             if (PointsMagieActuel >= sort.CoutMp)
             {
-                PointsMagieActuel -= sort.CoutMp;
-                Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
-                int dmg = 1; //CalculateDmgMagique(PuissanceMagique, sort, Ennemi);
-                Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
-                baddie.PtsVie -= dmg;
-                //check death
-                return true;
+                if (sort.TypeElement != Elements.Lumiere)
+                {
+                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElement, baddie.TypElement);
+                    PointsMagieActuel -= sort.CoutMp;
+                    Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
+                    int dmg = 1; //CalculateDmgMagique(PuissanceMagique, sort, Ennemi);
+                    Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
+                    baddie.PtsVie -= dmg;
+                    //check death
+                    return true;
+                }
+                else // Elements.Lumiere
+                {
+                    PointsMagieActuel -= sort.CoutMp;
+                    Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
+                    int heal = (int)PuissanceMagique * sort.Puissance;
+                    PtsVieActuel += heal;
+                    if (PtsVieActuel > PtsVieMax)
+                    {
+                        PtsVieActuel = PtsVieMax;
+                    }
+                    Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                    return true;
+                }
             }
             else
             {
-                Console.WriteLine($"Vous ne pouvez pas lancer ce sort il coute {sort.CoutMp} MP et vous n'avez que {PointsMagieActuel} MP");
+                Console.WriteLine($"Vous ne pouvez pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et vous n'avez que {PointsMagieActuel} MP");
                 return false;
             }
+        }
+
+        public void Frapper(ref Ennemi baddie)
+        {
+            Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
+            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElement, baddie.TypElement);
+            int dmg = 1; //CalculateDmgObjet(Puissance,Objectenu);
+            Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
+            baddie.PtsVie -= dmg;
+        }
+
+        public void FrapperPersonnage(ref Personnages perso)
+        {
+            Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {perso.Nom} le {perso.Race}");
+            double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElement, Elements.Physique);
+            int dmg = 1; //CalculateDmgObjet(Puissance,ObjectTenu);
+            Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
+            perso.PtsVieActuel -= dmg;
+        }
+
+        public void RecevoirFrappe(Ennemi baddie)
+        {
+            Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
+            double dmgmultiplier = MethodeCombat.Dommage(baddie.TypElement, Elements.Physique);
+            int dmg = 1; //CalculateDmgObjet(baddie.Puissance);
+            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
+            PtsVieActuel -= dmg;
+        }
+
+        public void RecevoirFrappePersonnage(Personnages perso)
+        {
+            Console.WriteLine($"{perso.Nom} frappe {Nom} le {Race}");
+            double dmgmultiplier = MethodeCombat.Dommage(perso.ObjectTenu.TypeElement, Elements.Physique);
+            int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.ObjectTenu);
+            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
+            PtsVieActuel -= dmg;
         }
 
 
