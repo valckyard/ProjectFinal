@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Objets\ArmureObject.cs" />
     <Compile Include="Objets\ConsumableObject.cs" />
+    <Compile Include="Objets\ObjectInventaire.cs" />
     <Compile Include="TypePersonnage\Ennemi.cs" />
     <Compile Include="Enums\Classe.cs" />
     <Compile Include="Enums\ConsumableType.cs" />

@@ -36,7 +36,7 @@ namespace Game.Library.TypePersonnage
         public ArmeObject ObjectTenu { get; set; }
 
         //inventaire
-        public List<ArmeObject> Inventaire { get; set; }
+        public List<ObjectInventaire> Inventaire { get; set; }
 
 
         public Personnages(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
@@ -84,10 +84,14 @@ namespace Game.Library.TypePersonnage
             {
                 if (sort.TypeElementType != ElementType.Lumiere)
                 {
-                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElementType, baddie.TypElementType);
                     PointsMagieActuel -= sort.CoutMp;
                     Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
+                    
+                    //Calc
                     int dmg = 1; //CalculateDmgMagique(PuissanceMagique, sort, Ennemi);
+                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElementType, baddie.TypElementType); // integrer calc
+                    //Calc
+
                     Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
                     baddie.PtsVie -= dmg;
                     //check death
@@ -117,8 +121,12 @@ namespace Game.Library.TypePersonnage
         public void Frapper(ref Ennemi baddie)
         {
             Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
+
+            //Calc
             double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, baddie.TypElementType);
             int dmg = 1; //CalculateDmgObjet(Puissance,Objectenu);
+            //Calc
+
             Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
             baddie.PtsVie -= dmg;
         }
@@ -126,8 +134,12 @@ namespace Game.Library.TypePersonnage
         public void FrapperPersonnage(ref Personnages perso)
         {
             Console.WriteLine($"{Nom} frappe avec {ObjectTenu.NomObjet}  {perso.Nom} le {perso.Race}");
+
+            //Calc
             double dmgmultiplier = MethodeCombat.Dommage(ObjectTenu.TypeElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(Puissance,ObjectTenu);
+            //Calc
+
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
             perso.PtsVieActuel -= dmg;
         }
@@ -135,8 +147,12 @@ namespace Game.Library.TypePersonnage
         public void RecevoirFrappe(Ennemi baddie)
         {
             Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
+
+            //Calc
             double dmgmultiplier = MethodeCombat.Dommage(baddie.TypElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(baddie.Puissance);
+            //Calc
+
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
             PtsVieActuel -= dmg;
         }
@@ -144,8 +160,12 @@ namespace Game.Library.TypePersonnage
         public void RecevoirFrappePersonnage(Personnages perso)
         {
             Console.WriteLine($"{perso.Nom} frappe {Nom} le {Race}");
+
+            //Calc
             double dmgmultiplier = MethodeCombat.Dommage(perso.ObjectTenu.TypeElementType, ElementType.Physique);
             int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.ObjectTenu);
+            //Calc
+
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
             PtsVieActuel -= dmg;
         }
@@ -169,6 +189,7 @@ namespace Game.Library.TypePersonnage
             PuissanceMagique = PuissanceMagique * 1.1616;
             PtsAttaque = PtsAttaque * 1.1616;
             PtsVieMax = (int)(PtsVieMax * 1.1616);
+           
             //ajoute les pts gagne en bonus health
             PtsVieActuel += (int)(PtsVieMax * 0.1616);
             PointsMagieMax = (int)(PointsMagieMax * 1.1616);
@@ -208,6 +229,115 @@ namespace Game.Library.TypePersonnage
             return sortchoisi;
         }
 
+
+        public void CharacterCreation()
+        {
+            var rand = new Random();
+            Race = Race.BienEtre; // decision
+            Classe = Classe.Magicien; // desision
+
+
+
+            switch (Race)
+            {
+                case Race.BienEtre:
+                    PuissanceMagique = rand.Next();
+                    PtsAttaque = rand.Next();
+                    PtsVieMax = rand.Next();
+                    PtsVieActuel = PtsVieMax;
+                    PointsMagieMax = rand.Next();
+                    PointsMagieActuel = PointsMagieMax;
+                    PtsVitesse = rand.Next();
+                    PtsDefense = rand.Next();
+                    Niveau = 0;
+                    PtsExperience = 0;
+                    SeuilExperience = 200;
+
+                    ObjectTenu = null;
+                    ListeSorts = new List<Sort>();
+                    Inventaire = new List<ObjectInventaire>();
+                    //Multiplier / DividerClass
+                    ModifClasse();
+                    break;
+                case Race.Directeur:
+                    PuissanceMagique = rand.Next();
+                    PtsAttaque = rand.Next();
+                    PtsVieMax = rand.Next();
+                    PtsVieActuel = PtsVieMax;
+                    PointsMagieMax = rand.Next();
+                    PointsMagieActuel = PointsMagieMax;
+                    PtsVitesse = rand.Next();
+                    PtsDefense = rand.Next();
+                    Niveau = 0;
+                    PtsExperience = 0;
+                    SeuilExperience = 200;
+
+                    ObjectTenu = null;
+                    ListeSorts = new List<Sort>();
+                    Inventaire = new List<ObjectInventaire>();
+                    //Multiplier / DividerClass
+                    ModifClasse();
+                    break;
+                case Race.Etudiant:
+                    PuissanceMagique = rand.Next();
+                    PtsAttaque = rand.Next();
+                    PtsVieMax = rand.Next();
+                    PtsVieActuel = PtsVieMax;
+                    PointsMagieMax = rand.Next();
+                    PointsMagieActuel = PointsMagieMax;
+                    PtsVitesse = rand.Next();
+                    PtsDefense = rand.Next();
+                    Niveau = 0;
+                    PtsExperience = 0;
+                    SeuilExperience = 200;
+
+                    ObjectTenu = null;
+                    ListeSorts = new List<Sort>();
+                    Inventaire = new List<ObjectInventaire>();
+                    //Multiplier / DividerClass
+                    ModifClasse();
+                    break;
+                case Race.Travailleur:
+                    PuissanceMagique = rand.Next();
+                    PtsAttaque = rand.Next();
+                    PtsVieMax = rand.Next();
+                    PtsVieActuel = PtsVieMax;
+                    PointsMagieMax = rand.Next();
+                    PointsMagieActuel = PointsMagieMax;
+                    PtsVitesse = rand.Next();
+                    PtsDefense = rand.Next();
+                    Niveau = 0;
+                    PtsExperience = 0;
+                    SeuilExperience = 200;
+
+                    ObjectTenu = null;
+                    ListeSorts = new List<Sort>();
+                    Inventaire = new List<ObjectInventaire>();
+                    //Multiplier / DividerClass
+                    ModifClasse();
+                    break;
+            }
+
+
+
+
+
+        }
+
+        public void ModifClasse()
+        {
+            switch (Classe)
+            {
+                case Classe.Barbare:
+                    break;
+                case Classe.Guerrier:
+                    break;
+                case Classe.Magicien:
+                    break;
+                case Classe.Pretre:
+                    break;
+            }
+        }
 
 
     }
