@@ -17,20 +17,31 @@ namespace Game.Library.TypePersonnage
             Race = Race.Nain; // decision
             Classe = Classe.Magicien; // desision
 
+            var tPuissanceMagique = rand.Next(10, 21);
+            var tPtsAttaque = rand.Next(10, 21);
+            var tPtsVieMax = rand.Next(50, 71);
+            var tPointsMagieMax = rand.Next(20, 31);
+            var tPtsVitesse = rand.Next(10, 20);
+            var tPtsDefense = rand.Next(5, 16);
+            var tNiveau = 0;
+            var tPtsExperience = 0;
+            var tSeuilExperience = 200;
+
+
             switch (Race)
             {
                 case Race.Nain:
-                    PuissanceMagique = rand.Next();
-                    PtsAttaque = rand.Next();
-                    PtsVieMax = rand.Next();
+                    PuissanceMagique = tPuissanceMagique;
+                    PtsAttaque = tPtsAttaque;
+                    PtsVieMax = tPtsVieMax;
                     PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = rand.Next();
+                    PointsMagieMax = tPointsMagieMax;
                     PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = rand.Next();
-                    PtsDefense = rand.Next();
-                    Niveau = 0;
-                    PtsExperience = 0;
-                    SeuilExperience = 200;
+                    PtsVitesse = tPtsVitesse;
+                    PtsDefense = tPtsDefense;
+                    Niveau = tNiveau;
+                    PtsExperience = tPtsExperience;
+                    SeuilExperience = tSeuilExperience;
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
@@ -38,19 +49,19 @@ namespace Game.Library.TypePersonnage
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
-                
+
                 case Race.Humain:
-                    PuissanceMagique = rand.Next();
-                    PtsAttaque = rand.Next();
-                    PtsVieMax = rand.Next();
+                    PuissanceMagique = tPuissanceMagique;
+                    PtsAttaque = tPtsAttaque;
+                    PtsVieMax = tPtsVieMax;
                     PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = rand.Next();
+                    PointsMagieMax = tPointsMagieMax;
                     PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = rand.Next();
-                    PtsDefense = rand.Next();
-                    Niveau = 0;
-                    PtsExperience = 0;
-                    SeuilExperience = 200;
+                    PtsVitesse = tPtsVitesse;
+                    PtsDefense = tPtsDefense;
+                    Niveau = tNiveau;
+                    PtsExperience = tPtsExperience;
+                    SeuilExperience = tSeuilExperience;
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
@@ -59,17 +70,17 @@ namespace Game.Library.TypePersonnage
                     ModifClasse();
                     break;
                 case Race.Elfe:
-                    PuissanceMagique = rand.Next();
-                    PtsAttaque = rand.Next();
-                    PtsVieMax = rand.Next();
+                    PuissanceMagique = tPuissanceMagique;
+                    PtsAttaque = tPtsAttaque;
+                    PtsVieMax = tPtsVieMax;
                     PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = rand.Next();
+                    PointsMagieMax = tPointsMagieMax;
                     PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = rand.Next();
-                    PtsDefense = rand.Next();
-                    Niveau = 0;
-                    PtsExperience = 0;
-                    SeuilExperience = 200;
+                    PtsVitesse = tPtsVitesse;
+                    PtsDefense = tPtsDefense;
+                    Niveau = tNiveau;
+                    PtsExperience = tPtsExperience;
+                    SeuilExperience = tSeuilExperience;
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
@@ -95,6 +106,8 @@ namespace Game.Library.TypePersonnage
                     break;
             }
         }
+
+
 
 
     }
