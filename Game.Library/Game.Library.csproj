@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ConditionAttaque.cs" />
+    <Compile Include="Enums\AttaqueChoisie.cs" />
+    <Compile Include="Methodes\TypeAttaque.cs" />
     <Compile Include="Objets\ArmureObject.cs" />
     <Compile Include="Objets\ConsumableObject.cs" />
     <Compile Include="Objets\ObjectInventaire.cs" />

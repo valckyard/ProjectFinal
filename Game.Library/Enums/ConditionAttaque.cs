@@ -5,13 +5,5 @@
         Attaque,
         Defense
     }
-
-
-    public enum TypeAttaque
-    {
-        AttaqueArme,
-        AttaqueSort,
-        Item
-    }
 }
     
