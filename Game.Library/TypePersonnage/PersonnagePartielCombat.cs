@@ -52,8 +52,6 @@ namespace Game.Library.TypePersonnage
             }
         }
 
-
-
         public void Frapper(ref Ennemi baddie)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
@@ -65,7 +63,6 @@ namespace Game.Library.TypePersonnage
             Console.WriteLine($"{baddie.Name} prends {(int)dmg} de dommage dans la geule!");
             baddie.PtsVie -= (int)dmg;
         }
-
 
 
         public void FrapperPersonnage(ref Personnages perso)
@@ -94,23 +91,6 @@ namespace Game.Library.TypePersonnage
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
             PtsVieActuel -= dmg;
         }
-
-
-
-
-        public void RecevoirFrappePersonnage(Personnages perso)
-        {
-            Console.WriteLine($"{perso.Nom} frappe {Nom} le {Race}");
-
-            //Calc
-            double dmgmultiplier = MethodeCombat.Dommage(perso.Arme.TypeElement, ElementType.Physique);
-            int dmg = 1; //CalculateDmgObjet(perso.Puissance, Perso.Arme);
-            //Calc
-
-            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
-            PtsVieActuel -= dmg;
-        }
-
 
         public double DammageCalculator(Ennemi ennemi, ConditionAttaque condition)
         {

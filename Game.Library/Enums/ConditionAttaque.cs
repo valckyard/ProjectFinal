@@ -1,4 +1,4 @@
-﻿namespace Game.Library.Enums
+﻿    namespace Game.Library.Enums
 {
     public enum ConditionAttaque
     {
