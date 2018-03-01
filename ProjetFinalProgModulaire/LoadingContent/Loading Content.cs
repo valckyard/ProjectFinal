@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.Library;
 using Game.Library.Enums;
+using Game.Library.Methodes;
 using Game.Library.Objets;
 
 namespace ProjetFinalProgModulaire
@@ -51,6 +52,18 @@ namespace ProjetFinalProgModulaire
             var newList = new List<ConsumableObject>
             {
                 new ConsumableObject("Red Bull", ConsumableType.Potion, ElementType.Lumiere, 1)
+            };
+            return newList;
+        }
+
+        public static List<Noeud> LoadingNoeuds()
+        {
+            var newList = new List<Noeud>
+            {
+                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
+                new Noeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
+                new Noeud(, true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
+
             };
             return newList;
         }
