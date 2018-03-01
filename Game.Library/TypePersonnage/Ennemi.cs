@@ -6,7 +6,7 @@ namespace Game.Library.TypePersonnage
     {
         public string Name { get; set; }
         public TypeEnnemi TypeEnnemi { get; set; }
-        public ElementType TypElementType { get; set; }
+        public ElementType TypeElement { get; set; }
         public int PtsVie { get; set; }
         public int Puissance { get; set; }
         public int Defense { get; set; }
@@ -14,12 +14,12 @@ namespace Game.Library.TypePersonnage
 
         public Ennemi(){}
 
-        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, ElementType typElementType, int puissance, int defense, int vitesse)
+        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, ElementType typeElement, int puissance, int defense, int vitesse)
         {
             Name = name;
             PtsVie = hp;
             TypeEnnemi = typeEnnemi;
-            TypElementType = typElementType;
+            TypeElement = typeElement;
             Puissance = puissance;
             Defense = defense;
             Vitesse = vitesse;

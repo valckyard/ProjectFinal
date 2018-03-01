@@ -87,7 +87,9 @@ namespace Game.Library.TypePersonnage
             {
                 PtsExperience -= SeuilExperience;
                 SeuilExperience = SeuilExperience * 1.5;
+                Console.WriteLine("LEVEL UP!");
                 ++Niveau;
+                Console.WriteLine($"Vous etes maintenant niveau {Niveau}");
                 StatsOnLevel();
 
                 // spell add
@@ -110,34 +112,96 @@ namespace Game.Library.TypePersonnage
 
         private Sort ChoixSort()
         {
-            var sortchoisi = new Sort();
-            var spellbook = new Dictionary<int, Sort>();
-            int x = 1;
-            foreach (var s in ListeSorts)
+            if (ListeSorts.Count != 0)
             {
-                spellbook.Add(x, s);
-                Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElementType}");
-                x++;
-            }
-
-            Console.WriteLine("Quel sort voulez vous utiliser ?");
-            int spellreponse; // en read
-            while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
-            {
-            }
-
-            if (spellreponse > 4 & spellreponse < 1)
-                ChoixSort();
-
-            foreach (var sort in spellbook)
-            {
-                if (spellreponse == sort.Key)
+                var rand = new Random();
+                var sortchoisi = new Sort();
+                var spellbook = new Dictionary<int, Sort>();
+                int x = 1;
+                foreach (var s in ListeSorts)
                 {
-                    sortchoisi = sort.Value;
+                    spellbook.Add(x, s);
+                    //Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElement}");
+                    x++;
                 }
+
+                //Console.WriteLine("Quel sort voulez vous utiliser ?");
+                int spellreponse = rand.Next(1, ListeSorts.Count); // en read
+                //while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
+                //{
+                //}
+
+                //if (spellreponse > ListeSorts.Count & spellreponse < 1)
+                //    ChoixSort();
+
+                foreach (var sort in spellbook)
+                {
+                    if (spellreponse == sort.Key)
+                    {
+                        sortchoisi = sort.Value;
+                    }
+                }
+
+                return sortchoisi;
             }
-            return sortchoisi;
+
+            return null;
         }
 
+        public bool UtiliserItemVsEnnemi(ref Ennemi baddie)
+        {
+            if (Inventaire.Count != 0)
+            {
+                var rand = new Random();
+
+                var item = new ConsumableObject();
+                var newList = new List<ConsumableObject>();
+                foreach (var i in Inventaire)
+                {
+                    if (i.ObjetCons != null)
+                    {
+                        newList.Add(i.ObjetCons);
+                    }
+                }
+
+                item = newList[rand.Next(0, newList.Count)];
+
+                var sort = item.ItemToSpell();
+                LancerSortVsEnnemi(ref baddie);
+                return true;
+
+
+            }
+
+            return false;
+        }
+
+        public bool UtiliserItemVsPerso(ref Personnages defenseur)
+        {
+            if (Inventaire.Count != 0)
+            {
+                var rand = new Random();
+
+                var item = new ConsumableObject();
+                var newList = new List<ConsumableObject>();
+                foreach (var i in Inventaire)
+                {
+                    if (i.ObjetCons != null)
+                    {
+                        newList.Add(i.ObjetCons);
+                    }
+                }
+
+                item = newList[rand.Next(0, newList.Count)];
+
+                var sort = item.ItemToSpell();
+                LancerSortVsPerso(ref defenseur);
+                return true;
+
+
+            }
+
+            return false;
+        }
     }
 }

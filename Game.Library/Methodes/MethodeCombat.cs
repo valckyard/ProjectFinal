@@ -169,6 +169,7 @@ namespace Game.Library.Methodes
             }
 
             // Attaquant.AddXP(Defenseur.ValeurPtsExperiences);
+            persJoueur.CheckLevelPlayer();
         }
 
 
@@ -185,10 +186,10 @@ namespace Game.Library.Methodes
                         attaquant.FrapperPersonnage(ref defenseur);
                         break;
                     case AttaqueChoisie.AttaqueSort:
-                        successoption = false; //Pers.LancerSortPerso();
+                        successoption = attaquant.LancerSortVsPerso(ref defenseur);
                         break;
                     case AttaqueChoisie.Item:
-                        successoption = false; //Pers.UseRandItem();
+                        successoption = attaquant.UtiliserItemVsPerso(ref defenseur);
                         break;
                 }
 
@@ -212,6 +213,8 @@ namespace Game.Library.Methodes
 
                 if (cond == ConditionAttaque.Attaque)
                 {
+
+
                     bool successoption = true;
                     var typeatt = TypeAttaquePersonnage(persJ);
 
@@ -219,13 +222,13 @@ namespace Game.Library.Methodes
                     switch (typeatt)
                     {
                         case AttaqueChoisie.AttaqueArme:
-                            persJ.Frapper(ref baddie);
+                            persJ.FrapperEnnemi(ref baddie);
                             break;
                         case AttaqueChoisie.AttaqueSort:
-                            successoption = false;  //Pers.LancerSortPerso();
+                            successoption = persJ.LancerSortVsEnnemi(ref baddie);
                             break;
                         case AttaqueChoisie.Item:
-                            successoption = false;   //Pers.UseRandItem();
+                            successoption = persJ.UtiliserItemVsEnnemi(ref baddie);
                             break;
                     }
 
@@ -237,6 +240,8 @@ namespace Game.Library.Methodes
                     break;
                 }
 
+
+
                 if (cond == ConditionAttaque.Defense)
                 {
                     var typeatt = TypeAttaqueEnnemi(baddie);
@@ -245,7 +250,7 @@ namespace Game.Library.Methodes
                     switch (typeatt)
                     {
                         case AttaqueChoisie.AttaqueArme:
-                            persJ.RecevoirFrappe(baddie);
+                            persJ.RecevoirFrappeDeEnnemi(baddie);
                             break;
                     }
                 }

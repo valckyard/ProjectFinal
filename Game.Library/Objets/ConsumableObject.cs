@@ -20,5 +20,13 @@ namespace Game.Library.Objets
             TypeElement = typeElement;
             Puissance = puissance;
         }
+
+        public Sort ItemToSpell()
+        {
+            var sort = new Sort(NomObjet,TypeElement,Puissance,0);
+
+            return sort;
+        }
+
     }
 }

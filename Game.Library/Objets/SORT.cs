@@ -6,14 +6,14 @@ namespace Game.Library.Objets
     {
 
         public string NomSort { get; set; }
-        public ElementType TypeElementType { get; set; }
+        public ElementType TypeElement { get; set; }
         public int Puissance { get; set; }
         public int CoutMp { get; set; }
 
-        public Sort(string nomSort, ElementType typeElementType, int puissance, int coutMp)
+        public Sort(string nomSort, ElementType typeElement, int puissance, int coutMp)
         {
             NomSort = nomSort;
-            TypeElementType = typeElementType;
+            TypeElement = typeElement;
             Puissance = puissance;
             CoutMp = coutMp;
         }

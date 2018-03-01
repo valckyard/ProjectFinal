@@ -1,70 +1,137 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Game.Library.Enums;
 using Game.Library.Methodes;
+using Game.Library.Objets;
 
 namespace Game.Library.TypePersonnage
 {
-   public partial class Personnages
+    public partial class Personnages
     {
+        //############################################ FRAPPE MAGIQUE ##########################################################//
+        //############################################ FRAPPE MAGIQUE ##########################################################//
+        //############################################ FRAPPE MAGIQUE ##########################################################//
 
-        public bool LancerSort(ref Ennemi baddie)
+
+        public bool LancerSortVsEnnemi(ref Ennemi baddie)
         {
             var sort = ChoixSort();
-            if (PointsMagieActuel >= sort.CoutMp)
-            {
-                if (sort.TypeElementType != ElementType.Lumiere)
+            if (sort != null)
+                if (PointsMagieActuel >= sort.CoutMp)
                 {
-                    PointsMagieActuel -= sort.CoutMp;
-                    Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
-
-                    //Calc
-                    int dmg = 1; //CalculateDmgMagique(PuissanceMagique, sort, Ennemi);
-                    double dmgmultiplier = MethodeCombat.Dommage(sort.TypeElementType, baddie.TypElementType); // integrer calc
-                    //Calc
-
-                    Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
-                    baddie.PtsVie -= dmg;
-                    //check death
-                    return true;
-                }
-                else // ElementType.Lumiere
-                {
-                    PointsMagieActuel -= sort.CoutMp;
-                    Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
-                    int heal = (int)PuissanceMagique * sort.Puissance;
-                    PtsVieActuel += heal;
-                    if (PtsVieActuel > PtsVieMax)
+                    if (sort.TypeElement != ElementType.Lumiere)
                     {
-                        PtsVieActuel = PtsVieMax;
+                        PointsMagieActuel -= sort.CoutMp;
+                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
+
+                        double dmg = DammageCalculatorMagicEnnemi(baddie, sort);
+
+                        Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
+                        baddie.PtsVie -= (int) dmg;
+                        return true;
                     }
-                    Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
-                    return true;
+                    else // ElementType.Lumiere
+                    {
+                        PointsMagieActuel -= sort.CoutMp;
+                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
+                        int heal = (int) PuissanceMagique * sort.Puissance;
+                        PtsVieActuel += heal;
+                        if (PtsVieActuel > PtsVieMax)
+                        {
+                            PtsVieActuel = PtsVieMax;
+                        }
+
+                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        return true;
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine($"Vous ne pouvez pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et vous n'avez que {PointsMagieActuel} MP");
-                return false;
-            }
+                else
+                {
+                    Console.WriteLine(
+                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {PointsMagieActuel} MP");
+                    return false;
+                }
+
+            return false;
         }
 
-        public void Frapper(ref Ennemi baddie)
+        public bool LancerSortVsPerso(ref Personnages defenseur)
+        {
+            var sort = ChoixSort();
+            if (sort != null)
+                if (PointsMagieActuel >= sort.CoutMp)
+                {
+                    if (sort.TypeElement != ElementType.Lumiere)
+                    {
+                        PointsMagieActuel -= sort.CoutMp;
+                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+
+                        double dmg = DammageCalculatorMagicPerso(defenseur, sort);
+
+                        Console.WriteLine($"{defenseur.Nom} prends {dmg} de dommage dans la geule!");
+                        defenseur.PtsVieActuel -= (int) dmg;
+                        return true;
+                    }
+                    else // ElementType.Lumiere
+                    {
+                        PointsMagieActuel -= sort.CoutMp;
+                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
+                        int heal = (int) PuissanceMagique * sort.Puissance;
+                        PtsVieActuel += heal;
+                        if (PtsVieActuel > PtsVieMax)
+                        {
+                            PtsVieActuel = PtsVieMax;
+                        }
+
+                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        return true;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(
+                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {PointsMagieActuel} MP");
+                    return false;
+                }
+
+            return false;
+        }
+
+
+        //############################################ FRAPPE PHYSIQUE ##########################################################//
+        //############################################ FRAPPE PHYSIQUE ##########################################################//
+        //############################################ FRAPPE PHYSIQUE ##########################################################//
+
+
+        public void FrapperEnnemi(ref Ennemi baddie)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
 
             //Calc
-            double dmg = DammageCalculator(baddie, ConditionAttaque.Attaque);
+            double dmg = DammageCalculatorEnnemi(baddie, ConditionAttaque.Attaque);
             //Calc
 
-            Console.WriteLine($"{baddie.Name} prends {(int)dmg} de dommage dans la geule!");
-            baddie.PtsVie -= (int)dmg;
+            Console.WriteLine($"{baddie.Name} prends {(int) dmg} de dommage dans la geule!");
+            baddie.PtsVie -= (int) dmg;
         }
 
+        public void RecevoirFrappeDeEnnemi(Ennemi baddie)
+        {
+            Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
 
+            //Calc
+            double dmg = DammageCalculatorEnnemi(baddie, ConditionAttaque.Defense);
+            //Calc
+
+            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
+            PtsVieActuel -= (int) dmg;
+        }
+
+        //Parfait pour Personnage a personnage
         public void FrapperPersonnage(ref Personnages perso)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
@@ -74,25 +141,16 @@ namespace Game.Library.TypePersonnage
             //Calc
 
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
-            perso.PtsVieActuel -= (int)dmg;
+            perso.PtsVieActuel -= (int) dmg;
         }
 
 
+        //############################################ DAMAGE CALCULATORS ##########################################################//
+        //############################################ DAMAGE CALCULATORS ##########################################################//
+        //############################################ DAMAGE CALCULATORS ##########################################################//
 
-        public void RecevoirFrappe(Ennemi baddie)
-        {
-            Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
 
-            //Calc
-            double dmgmultiplier = MethodeCombat.Dommage(baddie.TypElementType, ElementType.Physique);
-            int dmg = 1; //CalculateDmgObjet(baddie.Puissance);
-            //Calc
-
-            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
-            PtsVieActuel -= dmg;
-        }
-
-        public double DammageCalculator(Ennemi ennemi, ConditionAttaque condition)
+        public double DammageCalculatorEnnemi(Ennemi ennemi, ConditionAttaque condition)
         {
             var rand = new Random();
             double Dmg = 0;
@@ -101,17 +159,18 @@ namespace Game.Library.TypePersonnage
             {
                 case ConditionAttaque.Attaque:
 
-                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypElementType);
+                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
                     Dmg = ((PtsAttaque + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
                 case ConditionAttaque.Defense:
-                    double mulDMGDef = MethodeCombat.Dommage(ennemi.TypElementType, Arme.TypeElement);
+                    double mulDMGDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
                     Dmg = (ennemi.Puissance - (PtsDefense + Armure.Defense)) * mulDMGDef;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
             }
+
             return 0;
         }
 
@@ -126,7 +185,8 @@ namespace Game.Library.TypePersonnage
                 case ConditionAttaque.Attaque:
 
                     double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
-                    Dmg = ((PtsAttaque + Arme.Puissance) - personnageE.PtsDefense + personnageE.Armure.Defense) * mulDMGAtt;
+                    Dmg = ((PtsAttaque + Arme.Puissance) - personnageE.PtsDefense + personnageE.Armure.Defense) *
+                          mulDMGAtt;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
@@ -136,7 +196,33 @@ namespace Game.Library.TypePersonnage
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
             }
+
             return 0;
+        }
+
+
+        public double DammageCalculatorMagicPerso(Personnages defenseur, Sort sort)
+        {
+            var rand = new Random();
+            double Dmg = 0;
+            double chance = (rand.Next(-30, 31) / 100);
+
+            double mulDMGAtt = MethodeCombat.Dommage(sort.TypeElement, defenseur.Armure.TypeElement);
+            Dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.PtsDefense + defenseur.Armure.Defense)) * mulDMGAtt;
+            Dmg = Dmg + (Dmg * chance);
+            return Dmg;
+        }
+
+        public double DammageCalculatorMagicEnnemi(Ennemi baddie, Sort sort)
+        {
+            var rand = new Random();
+            double Dmg = 0;
+            double chance = (rand.Next(-30, 31) / 100);
+
+            double mulDMGAtt = MethodeCombat.Dommage(sort.TypeElement, baddie.TypeElement);
+            Dmg = ((PuissanceMagique * sort.Puissance) - (baddie.Defense)) * mulDMGAtt;
+            Dmg = Dmg + (Dmg * chance);
+            return Dmg;
         }
     }
 }
