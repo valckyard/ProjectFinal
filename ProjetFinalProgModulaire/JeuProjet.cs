@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Library;
+using Game.Library.Methodes;
 using Game.Library.Objets;
 using Game.Library.TypePersonnage;
 using ProjetFinalProgModulaire;
@@ -46,8 +47,11 @@ namespace ProjetFinalProgModulaire
             // |
             // V
             //Combat module
-
-
+            
+            Dictionary<string, Noeud> story = new Dictionary<string, Noeud>();
+            
+            story.Add("Vous etes devant.....", new Noeud());
+             
             //loop
         }
 
@@ -57,6 +61,7 @@ namespace ProjetFinalProgModulaire
             ListeSorts = LoadingContent.LoadingSpells();
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
+            
         }
 
         private static Personnages CreationPersonnage()
