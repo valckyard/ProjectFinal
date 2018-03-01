@@ -3,13 +3,19 @@
     public class Noeud
     {
         public string Intitule;
-        public string Combat;
+        public bool Combat;
         public string ReponseEnfant;
 
-        public Noeud()
+        public Noeud(string intitule, bool combat, string reponseEnfant)
+        {
+            Intitule = intitule;
+            Combat = combat;
+            ReponseEnfant = reponseEnfant;
+        }
+
+        public void ChoixJoueur()
         {
             
         }
-
     }
 }

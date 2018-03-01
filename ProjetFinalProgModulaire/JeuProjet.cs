@@ -14,6 +14,7 @@ namespace ProjetFinalProgModulaire
         public static List<Sort> ListeSorts;
         public static List<ArmureObject> ListeArmures;
         public static List<ConsumableObject> ListeConsumables;
+        public static List<Noeud> ListeNoeuds;
         public static Personnages Player;
 
         public JeuProjet()
@@ -48,10 +49,8 @@ namespace ProjetFinalProgModulaire
             // V
             //Combat module
             
-            Dictionary<string, Noeud> story = new Dictionary<string, Noeud>();
+            Dictionary<string, List<Noeud>> story = new Dictionary<string, List<Noeud>>();
             
-            story.Add("Vous etes devant.....", new Noeud());
-             
             //loop
         }
 
@@ -61,7 +60,7 @@ namespace ProjetFinalProgModulaire
             ListeSorts = LoadingContent.LoadingSpells();
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
-            
+            ListeNoeuds = LoadingContent.LoadingNoeuds();
         }
 
         private static Personnages CreationPersonnage()
