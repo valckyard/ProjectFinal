@@ -85,6 +85,11 @@ namespace Game.Library.Methodes
             return 1;
         }
 
+        public static void TypeAttaqueCalc(Personnages perso)
+        {
+
+        }
+
         
 
 
