@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Game.Library.Enums;
 using Game.Library.Methodes;
 
@@ -10,16 +12,63 @@ namespace Game.Library.Classes.EntiteClasses
         //############################################ FRAPPE MAGIQUE ##########################################################//
         //############################################ FRAPPE MAGIQUE ##########################################################//
 
-
-        public bool LancerSortVsEnnemi(ref Ennemi baddie)
+        private Sort ChoixSort()
         {
-            var sort = ChoixSort();
+            if (ListeSorts.Count != 0)
+            {
+                var rand = new Random();
+                var sortchoisi = new Sort();
+                var spellbook = new Dictionary<int, Sort>();
+                int x = 1;
+                foreach (var s in ListeSorts)
+                {
+                    spellbook.Add(x, s);
+                    //Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElement}");
+                    x++;
+                }
+
+                //Console.WriteLine("Quel sort voulez vous utiliser ?");
+                int spellreponse = rand.Next(1, ListeSorts.Count); // en read
+                //while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
+                //{
+                //}
+
+                //if (spellreponse > ListeSorts.Count & spellreponse < 1)
+                //    ChoixSort();
+
+                foreach (var sort in spellbook)
+                {
+                    if (spellreponse == sort.Key)
+                    {
+                        sortchoisi = sort.Value;
+                    }
+                }
+
+                return sortchoisi;
+            }
+
+            return null;
+        }
+
+        public bool LancerSortVsEnnemi(ref Ennemi baddie, Sort itemSort)
+        {
+            Sort sort;
+            if(itemSort == null)
+            sort = ChoixSort();
+            else
+            sort = itemSort;
+            
+
+
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
                 {
                     if (sort.TypeElement != TypeElement.Lumiere)
                     {
                         MpActuel -= sort.CoutMp;
+                        if (sort.CoutMp ==0)
+                            Console.WriteLine($"{Nom} utilise {sort.NomSort} sur {baddie.Name} le {baddie.TypeEnnemi}");
+                        else
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
 
                         double dmg = DammageCalculatorMagicEnnemi(baddie, sort);
@@ -31,7 +80,12 @@ namespace Game.Library.Classes.EntiteClasses
                     else // ElementType.Lumiere
                     {
                         MpActuel -= sort.CoutMp;
-                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
+                        if (sort.CoutMp == 0)
+                            Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
+
+                        else
+                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
+
                         int heal = (int) PuissanceMagique * sort.Puissance;
                         PvActuels += heal;
                         if (PvActuels > PvMax)
@@ -53,16 +107,25 @@ namespace Game.Library.Classes.EntiteClasses
             return false;
         }
 
-        public bool LancerSortVsPerso(ref Classes.EntiteClasses.Personnage defenseur)
+        public bool LancerSortVsPerso(ref Classes.EntiteClasses.Personnage defenseur, Sort itemSort)
         {
-            var sort = ChoixSort();
+            Sort sort;
+            if (itemSort == null)
+                sort = ChoixSort();
+            else
+                sort = itemSort;
+
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
                 {
                     if (sort.TypeElement != TypeElement.Lumiere)
                     {
                         MpActuel -= sort.CoutMp;
-                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+                        if (sort.CoutMp == 0)
+                            Console.WriteLine($"{Nom} utilise {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+                        else
+                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+
 
                         double dmg = DammageCalculatorMagicPerso(defenseur, sort);
 
@@ -73,7 +136,11 @@ namespace Game.Library.Classes.EntiteClasses
                     else // ElementType.Lumiere
                     {
                         MpActuel -= sort.CoutMp;
-                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
+                        if (sort.CoutMp == 0)
+                            Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
+
+                        else
+                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
                         int heal = (int) PuissanceMagique * sort.Puissance;
                         PvActuels += heal;
                         if (PvActuels > PvMax)

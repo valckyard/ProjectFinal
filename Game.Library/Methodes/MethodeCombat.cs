@@ -188,7 +188,7 @@ namespace Game.Library.Methodes
                         attaquant.FrapperPersonnage(ref defenseur);
                         break;
                     case AttaqueChoisie.AttaqueSort:
-                        successoption = attaquant.LancerSortVsPerso(ref defenseur);
+                        successoption = attaquant.LancerSortVsPerso(ref defenseur,null);
                         break;
                     case AttaqueChoisie.Item:
                         successoption = attaquant.UtiliserItemVsPerso(ref defenseur);
@@ -227,7 +227,7 @@ namespace Game.Library.Methodes
                             persJ.FrapperEnnemi(ref baddie);
                             break;
                         case AttaqueChoisie.AttaqueSort:
-                            successoption = persJ.LancerSortVsEnnemi(ref baddie);
+                            successoption = persJ.LancerSortVsEnnemi(ref baddie, null);
                             break;
                         case AttaqueChoisie.Item:
                             successoption = persJ.UtiliserItemVsEnnemi(ref baddie);

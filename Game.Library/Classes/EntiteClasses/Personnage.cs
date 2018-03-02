@@ -109,43 +109,7 @@ namespace Game.Library.Classes.EntiteClasses
             Vitesse = Vitesse * 1.1616;
         }
 
-        private Sort ChoixSort()
-        {
-            if (ListeSorts.Count != 0)
-            {
-                var rand = new Random();
-                var sortchoisi = new Sort();
-                var spellbook = new Dictionary<int, Sort>();
-                int x = 1;
-                foreach (var s in ListeSorts)
-                {
-                    spellbook.Add(x, s);
-                    //Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElement}");
-                    x++;
-                }
-
-                //Console.WriteLine("Quel sort voulez vous utiliser ?");
-                int spellreponse = rand.Next(1, ListeSorts.Count); // en read
-                //while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
-                //{
-                //}
-
-                //if (spellreponse > ListeSorts.Count & spellreponse < 1)
-                //    ChoixSort();
-
-                foreach (var sort in spellbook)
-                {
-                    if (spellreponse == sort.Key)
-                    {
-                        sortchoisi = sort.Value;
-                    }
-                }
-
-                return sortchoisi;
-            }
-
-            return null;
-        }
+      
 
         public bool UtiliserItemVsEnnemi(ref Ennemi baddie)
         {
@@ -153,7 +117,6 @@ namespace Game.Library.Classes.EntiteClasses
             {
                 var rand = new Random();
 
-                var item = new ObjConsumable();
                 var newList = new List<ObjConsumable>();
                 foreach (var i in Inventaire)
                 {
@@ -163,10 +126,10 @@ namespace Game.Library.Classes.EntiteClasses
                     }
                 }
 
-                item = newList[rand.Next(0, newList.Count)];
+                var item = newList[rand.Next(0, newList.Count)];
 
                 var sort = item.ItemToSpell();
-                LancerSortVsEnnemi(ref baddie);
+                LancerSortVsEnnemi(ref baddie,sort);
                 return true;
 
 
@@ -181,7 +144,6 @@ namespace Game.Library.Classes.EntiteClasses
             {
                 var rand = new Random();
 
-                var item = new ObjConsumable();
                 var newList = new List<ObjConsumable>();
                 foreach (var i in Inventaire)
                 {
@@ -191,10 +153,10 @@ namespace Game.Library.Classes.EntiteClasses
                     }
                 }
 
-                item = newList[rand.Next(0, newList.Count)];
+                var item = newList[rand.Next(0, newList.Count)];
 
                 var sort = item.ItemToSpell();
-                LancerSortVsPerso(ref defenseur);
+                LancerSortVsPerso(ref defenseur, sort);
                 return true;
 
 
