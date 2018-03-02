@@ -1,0 +1,21 @@
+﻿Alex
+		-Exp add module
+		-Max value stats (for speed / power spells etc)
+		-condition potion / parchemin in spells
+		-menu inventaire
+		-rest continue menu stats
+	
+	attaque
+		-crit
+		-miss
+		-?breakweapon
+		-heal if full not cast go back to att or spells
+			-same potion
+
+	
+
+
+
+
+
+
