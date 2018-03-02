@@ -1,5 +1,12 @@
 ﻿Alex
+	
+	finaliser combat de base
 		-Exp add module
+		-Loot
+		-equip
+		-ajout a inventaire
+
+	
 		-Max value stats (for speed / power spells etc)
 		-condition potion / parchemin in spells
 		-menu inventaire
