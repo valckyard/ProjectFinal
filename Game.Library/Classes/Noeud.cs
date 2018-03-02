@@ -1,20 +1,27 @@
-﻿using Game.Library.Classes.EntiteClasses;
+﻿using System.Collections.Generic;
+using Game.Library.Classes.EntiteClasses;
 
 namespace Game.Library.Classes
 {
     public class Noeud
     {
-        public string Intitule;
-        public Ennemi Ennemi;
-        public Personnage EnnemiP;
-        public string ReponseEnfant;
+        public string Intitule { get; set; }
+        public Ennemi Ennemi { get; set; }
+        public Personnage EnnemiP { get; set; }
+        public Dictionary<int,string> ChoixReponses { get; set; }
 
-        public Noeud(string intitule, string reponseEnfant)
+        public Noeud()
         {
-            Intitule = intitule;
-            ReponseEnfant = reponseEnfant;
+                
         }
 
+        public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, Dictionary<int, string> choixReponses)
+        {
+            Intitule = intitule;
+            Ennemi = ennemi;
+            EnnemiP = ennemiP;
+            ChoixReponses = choixReponses;
+        }
 
         public void Init()
         {

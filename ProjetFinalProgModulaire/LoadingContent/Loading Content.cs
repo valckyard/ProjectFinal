@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Library;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -57,16 +58,14 @@ namespace ProjetFinalProgModulaire
             return newList;
         }
 
-        public static List<Noeud> LoadingNoeuds()
+        public static Dictionary<string,Noeud> LoadingNoeuds()
         {
-            var newList = new List<Noeud>
+            var dicnoeud = new Dictionary<int,string>()
             {
-                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
-                new Noeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
-                new Noeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
-
+                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", null, null,
+                    new Dictionary<int, string>(){1,"taxi"},{2,"Sentier"})
             };
-            return newList;
+            
         }
 
     }
