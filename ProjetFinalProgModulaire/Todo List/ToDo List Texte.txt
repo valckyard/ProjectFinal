@@ -1,7 +1,7 @@
 ﻿Alex
 	
 	finaliser combat de base
-		-Exp add module
+		
 		-Loot
 		-equip
 		-ajout a inventaire

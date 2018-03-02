@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
 
@@ -77,7 +78,15 @@ namespace Game.Library.Classes.EntiteClasses
             ListeSorts = new List<Sort>();
         }
 
-       
+        public void AddXpEnnemi(Ennemi ennemi)
+        {
+            Experience += ennemi.ValeurExp;
+        }
+
+        public void AddXpPersonnage(Personnage ennemi)
+        {
+            Experience += ennemi.ValeurExp;
+        }
 
 
         public void CheckLevelPlayer()
@@ -163,6 +172,56 @@ namespace Game.Library.Classes.EntiteClasses
             }
 
             return false;
+        }
+
+        public void MenuInventaire()
+        {
+            AfficherInventaire();
+            Console.Write($"Que voulez vous faire ? \n 1 -- Equipper \n 2 -- Voir Les Statistiques \n 3 -- Sortir de L'Inventaire \n Choix : ");
+            int x;
+            while (int.TryParse(Console.ReadLine(), out x)==false)
+            {}
+
+            if (x<1 & x> Inventaire.Count)
+            {
+                MenuInventaire();
+            }
+
+            switch (x)
+            {
+                case 1:
+                    // equiper
+                    break;
+                case 2:
+                    // afficher tt les stats
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
+        private void AfficherInventaire()
+        {
+            int count = 1;
+            foreach (var objet in Inventaire)
+            {
+                if (objet.ObjetCons != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.ObjetCons.NomObjet}");
+                }
+
+                if (objet.Arme != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.Arme.NomObjet}");
+                }
+
+                else
+                {
+                    Console.WriteLine($"{count} -- {objet.Armure.NomObjet}");
+                }
+
+                ++count;
+            }
         }
     }
 }

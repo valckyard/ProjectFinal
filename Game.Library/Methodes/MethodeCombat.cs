@@ -170,7 +170,7 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(Defenseur.ValeurExp);
+          persJoueur.AddXpPersonnage(persEnnemi);
             persJoueur.CheckLevelPlayer();
         }
 
@@ -272,7 +272,7 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(baddie.ValeurExp);
+        persJ.AddXpEnnemi(baddie);
             persJ.CheckLevelPlayer();
         }
 
