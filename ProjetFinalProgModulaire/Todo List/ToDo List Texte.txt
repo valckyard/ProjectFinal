@@ -6,6 +6,10 @@
 		-equip
 		-ajout a inventaire
 
+		-Ennemi Rstats + mod lvl
+		-persoE Randomstats + mod lvl
+
+
 	
 		-Max value stats (for speed / power spells etc)
 		-condition potion / parchemin in spells

@@ -134,7 +134,7 @@ namespace Game.Library.Methodes
             return chances;
         }
 
-        public static void AttaquePersonnage(ref Personnage persJoueur, ref Personnage persEnnemi)
+        public static void AttaquePersonnage(ref Personnage persJoueur,Personnage persEnnemi)
         {
             bool win = false;
 
@@ -205,7 +205,7 @@ namespace Game.Library.Methodes
         }
 
 
-        public static void AttaqueEnnemi(ref Personnage persJ, ref Ennemi baddie)
+        public static void AttaqueEnnemi(ref Personnage persJ,Ennemi baddie)
         {
             bool win = false;
             var cond = persJ.Vitesse > baddie.Vitesse ? AttaqueCondition.Attaque : AttaqueCondition.Defense;
