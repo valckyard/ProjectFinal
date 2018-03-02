@@ -62,7 +62,7 @@ namespace ProjetFinalProgModulaire
             {
                 new Noeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
                 new Noeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
-                new Noeud(, true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
+                new Noeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
 
             };
             return newList;

@@ -10,7 +10,7 @@ using Game.Library.Objets;
 
 namespace Game.Library.TypePersonnage
 {
-    public partial class Personnages
+    public partial class Personnage
     {
         //############################################ FRAPPE MAGIQUE ##########################################################//
         //############################################ FRAPPE MAGIQUE ##########################################################//
@@ -21,28 +21,28 @@ namespace Game.Library.TypePersonnage
         {
             var sort = ChoixSort();
             if (sort != null)
-                if (PointsMagieActuel >= sort.CoutMp)
+                if (MpActuel >= sort.CoutMp)
                 {
                     if (sort.TypeElement != ElementType.Lumiere)
                     {
-                        PointsMagieActuel -= sort.CoutMp;
+                        MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
 
                         double dmg = DammageCalculatorMagicEnnemi(baddie, sort);
 
                         Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
-                        baddie.PtsVie -= (int) dmg;
+                        baddie.Pv -= (int) dmg;
                         return true;
                     }
                     else // ElementType.Lumiere
                     {
-                        PointsMagieActuel -= sort.CoutMp;
+                        MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
                         int heal = (int) PuissanceMagique * sort.Puissance;
-                        PtsVieActuel += heal;
-                        if (PtsVieActuel > PtsVieMax)
+                        PvActuels += heal;
+                        if (PvActuels > PvMax)
                         {
-                            PtsVieActuel = PtsVieMax;
+                            PvActuels = PvMax;
                         }
 
                         Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
@@ -52,39 +52,39 @@ namespace Game.Library.TypePersonnage
                 else
                 {
                     Console.WriteLine(
-                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {PointsMagieActuel} MP");
+                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP");
                     return false;
                 }
 
             return false;
         }
 
-        public bool LancerSortVsPerso(ref Personnages defenseur)
+        public bool LancerSortVsPerso(ref Personnage defenseur)
         {
             var sort = ChoixSort();
             if (sort != null)
-                if (PointsMagieActuel >= sort.CoutMp)
+                if (MpActuel >= sort.CoutMp)
                 {
                     if (sort.TypeElement != ElementType.Lumiere)
                     {
-                        PointsMagieActuel -= sort.CoutMp;
+                        MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
 
                         double dmg = DammageCalculatorMagicPerso(defenseur, sort);
 
                         Console.WriteLine($"{defenseur.Nom} prends {dmg} de dommage dans la geule!");
-                        defenseur.PtsVieActuel -= (int) dmg;
+                        defenseur.PvActuels -= (int) dmg;
                         return true;
                     }
                     else // ElementType.Lumiere
                     {
-                        PointsMagieActuel -= sort.CoutMp;
+                        MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} sur lui meme !");
                         int heal = (int) PuissanceMagique * sort.Puissance;
-                        PtsVieActuel += heal;
-                        if (PtsVieActuel > PtsVieMax)
+                        PvActuels += heal;
+                        if (PvActuels > PvMax)
                         {
-                            PtsVieActuel = PtsVieMax;
+                            PvActuels = PvMax;
                         }
 
                         Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
@@ -94,7 +94,7 @@ namespace Game.Library.TypePersonnage
                 else
                 {
                     Console.WriteLine(
-                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {PointsMagieActuel} MP");
+                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP");
                     return false;
                 }
 
@@ -116,7 +116,7 @@ namespace Game.Library.TypePersonnage
             //Calc
 
             Console.WriteLine($"{baddie.Name} prends {(int) dmg} de dommage dans la geule!");
-            baddie.PtsVie -= (int) dmg;
+            baddie.Pv -= (int) dmg;
         }
 
         public void RecevoirFrappeDeEnnemi(Ennemi baddie)
@@ -128,11 +128,11 @@ namespace Game.Library.TypePersonnage
             //Calc
 
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
-            PtsVieActuel -= (int) dmg;
+            PvActuels -= (int) dmg;
         }
 
         //Parfait pour Personnage a personnage
-        public void FrapperPersonnage(ref Personnages perso)
+        public void FrapperPersonnage(ref Personnage perso)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
 
@@ -141,7 +141,7 @@ namespace Game.Library.TypePersonnage
             //Calc
 
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
-            perso.PtsVieActuel -= (int) dmg;
+            perso.PvActuels -= (int) dmg;
         }
 
 
@@ -160,13 +160,13 @@ namespace Game.Library.TypePersonnage
                 case ConditionAttaque.Attaque:
 
                     double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
-                    Dmg = ((PtsAttaque + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
+                    Dmg = ((Puissance + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
                 case ConditionAttaque.Defense:
                     double mulDMGDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
-                    Dmg = (ennemi.Puissance - (PtsDefense + Armure.Defense)) * mulDMGDef;
+                    Dmg = (ennemi.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
             }
@@ -174,7 +174,7 @@ namespace Game.Library.TypePersonnage
             return 0;
         }
 
-        public double DammageCalculatorPerso(Personnages personnageE, ConditionAttaque condition)
+        public double DammageCalculatorPerso(Personnage personnageE, ConditionAttaque condition)
         {
             var rand = new Random();
             double Dmg = 0;
@@ -185,14 +185,14 @@ namespace Game.Library.TypePersonnage
                 case ConditionAttaque.Attaque:
 
                     double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
-                    Dmg = ((PtsAttaque + Arme.Puissance) - personnageE.PtsDefense + personnageE.Armure.Defense) *
+                    Dmg = ((Puissance + Arme.Puissance) - personnageE.Defense + personnageE.Armure.Defense) *
                           mulDMGAtt;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
                 case ConditionAttaque.Defense:
                     double mulDMGDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
-                    Dmg = (personnageE.PtsAttaque - (PtsDefense + Armure.Defense)) * mulDMGDef;
+                    Dmg = (personnageE.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
             }
@@ -201,14 +201,14 @@ namespace Game.Library.TypePersonnage
         }
 
 
-        public double DammageCalculatorMagicPerso(Personnages defenseur, Sort sort)
+        public double DammageCalculatorMagicPerso(Personnage defenseur, Sort sort)
         {
             var rand = new Random();
             double Dmg = 0;
             double chance = (rand.Next(-30, 31) / 100);
 
             double mulDMGAtt = MethodeCombat.Dommage(sort.TypeElement, defenseur.Armure.TypeElement);
-            Dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.PtsDefense + defenseur.Armure.Defense)) * mulDMGAtt;
+            Dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.Defense + defenseur.Armure.Defense)) * mulDMGAtt;
             Dmg = Dmg + (Dmg * chance);
             return Dmg;
         }

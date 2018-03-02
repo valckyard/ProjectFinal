@@ -62,7 +62,7 @@
     <Compile Include="Objets\ArmeObject.cs" />
     <Compile Include="TypePersonnage\PersonnagePartielCombat.cs" />
     <Compile Include="TypePersonnage\PersonnagePartielCreation.cs" />
-    <Compile Include="TypePersonnage\Personnages.cs" />
+    <Compile Include="TypePersonnage\Personnage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Race.cs" />
     <Compile Include="Objets\SORT.cs" />

@@ -15,7 +15,7 @@ namespace ProjetFinalProgModulaire
         public static List<ArmureObject> ListeArmures;
         public static List<ConsumableObject> ListeConsumables;
         public static List<Noeud> ListeNoeuds;
-        public static Personnages Player;
+        public static Personnage Player;
 
         public JeuProjet()
         { }
@@ -31,16 +31,16 @@ namespace ProjetFinalProgModulaire
             Console.WriteLine(Player.Arme.NomObjet);
             Console.WriteLine(Player.Armure.NomObjet);
             Console.WriteLine("Niv "+Player.Niveau);
-            Console.WriteLine("MP "+Player.PointsMagieActuel);
-            Console.WriteLine("MPMax " +Player.PointsMagieMax);
-            Console.WriteLine("Att "+Player.PtsAttaque);
-            Console.WriteLine("Def "+Player.PtsDefense);
-            Console.WriteLine("EXP " +Player.PtsExperience);
-            Console.WriteLine("HP "+Player.PtsVieActuel);
-            Console.WriteLine("Vit "+Player.PtsVitesse);
+            Console.WriteLine("MP "+Player.MpActuel);
+            Console.WriteLine("MPMax " +Player.MpMax);
+            Console.WriteLine("Att "+Player.Puissance);
+            Console.WriteLine("Def "+Player.Defense);
+            Console.WriteLine("EXP " +Player.Experience);
+            Console.WriteLine("HP "+Player.PvActuels);
+            Console.WriteLine("Vit "+Player.Vitesse);
             Console.WriteLine("PM "+Player.PuissanceMagique);
             Console.WriteLine(Player.SeuilExperience);
-            Console.WriteLine(Player.ValeurPtsExperiences);
+            Console.WriteLine(Player.ValeurExp);
      
 
             //Histoire modules
@@ -63,9 +63,9 @@ namespace ProjetFinalProgModulaire
             ListeNoeuds = LoadingContent.LoadingNoeuds();
         }
 
-        private static Personnages CreationPersonnage()
+        private static Personnage CreationPersonnage()
         {
-            Player = new Personnages();
+            Player = new Personnage();
             //demander infos
             Player.CharacterCreation();
             foreach (var arme in ListeArmes)

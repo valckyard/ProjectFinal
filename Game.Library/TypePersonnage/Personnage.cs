@@ -6,7 +6,7 @@ using Game.Library.Objets;
 
 namespace Game.Library.TypePersonnage
 {
-    public partial class Personnages
+    public partial class Personnage
     {
         //Characteristiques
         public Race Race { get; set; }
@@ -15,21 +15,21 @@ namespace Game.Library.TypePersonnage
 
         //Experience
         public int Niveau { get; set; }
-        public double ValeurPtsExperiences { get; set; }
-        public double PtsExperience { get; set; }
+        public double ValeurExp { get; set; }
+        public double Experience { get; set; }
         public double SeuilExperience { get; set; }
 
         //Stats
-        public int PtsVieActuel { get; set; }
-        public int PtsVieMax { get; set; }
+        public int PvActuels { get; set; }
+        public int PvMax { get; set; }
 
-        public int PointsMagieMax { get; set; }
-        public int PointsMagieActuel { get; set; }
+        public int MpMax { get; set; }
+        public int MpActuel { get; set; }
 
-        public double PtsAttaque { get; set; }
+        public double Puissance { get; set; }
         public double PuissanceMagique { get; set; }
-        public double PtsDefense { get; set; }
-        public double PtsVitesse { get; set; }
+        public double Defense { get; set; }
+        public double Vitesse { get; set; }
 
         //Options d'attaque
         public List<Sort> ListeSorts { get; set; }
@@ -40,8 +40,8 @@ namespace Game.Library.TypePersonnage
         public List<ObjectInventaire> Inventaire { get; set; }
 
 
-        public Personnages(Race race, Classe classe, string nom, int ptsVieMax, int pointsMagieMax, int ptsAttaque,
-            int puissanceMagique, int ptsDefense, int ptsVitesse)
+        public Personnage(Race race, Classe classe, string nom, int pvMax, int mpMax, int puissance,
+            int puissanceMagique, int defense, int vitesse)
         {
             //Characteristiques
             Race = race;
@@ -50,21 +50,21 @@ namespace Game.Library.TypePersonnage
 
             //Experience
             Niveau = 0;
-            PtsExperience = 0;
+            Experience = 0;
             //SeuilExperience;
-            ValeurPtsExperiences = PtsExperience / 3;
+            ValeurExp = Experience / 3;
 
             //Stats
-            PtsVieActuel = ptsVieMax;
-            PtsVieMax = ptsVieMax;
+            PvActuels = pvMax;
+            PvMax = pvMax;
 
-            PointsMagieMax = pointsMagieMax;
-            PointsMagieActuel = pointsMagieMax;
+            MpMax = mpMax;
+            MpActuel = mpMax;
 
-            PtsAttaque = ptsAttaque;
+            Puissance = puissance;
             PuissanceMagique = puissanceMagique;
-            PtsDefense = ptsDefense;
-            PtsVitesse = ptsVitesse;
+            Defense = defense;
+            Vitesse = vitesse;
 
 
             //Equipement
@@ -73,7 +73,7 @@ namespace Game.Library.TypePersonnage
         }
 
         // Constructeur Vide
-        public Personnages()
+        public Personnage()
         {
             ListeSorts = new List<Sort>();
         }
@@ -83,9 +83,9 @@ namespace Game.Library.TypePersonnage
 
         public void CheckLevelPlayer()
         {
-            if (PtsExperience >= SeuilExperience)
+            if (Experience >= SeuilExperience)
             {
-                PtsExperience -= SeuilExperience;
+                Experience -= SeuilExperience;
                 SeuilExperience = SeuilExperience * 1.5;
                 Console.WriteLine("LEVEL UP!");
                 ++Niveau;
@@ -99,15 +99,15 @@ namespace Game.Library.TypePersonnage
         public void StatsOnLevel()
         {
             PuissanceMagique = PuissanceMagique * 1.1616;
-            PtsAttaque = PtsAttaque * 1.1616;
-            PtsVieMax = (int)(PtsVieMax * 1.1616);
+            Puissance = Puissance * 1.1616;
+            PvMax = (int)(PvMax * 1.1616);
            
             //ajoute les pts gagne en bonus health
-            PtsVieActuel += (int)(PtsVieMax * 0.1616);
-            PointsMagieMax = (int)(PointsMagieMax * 1.1616);
-            PointsMagieActuel += (int)(PointsMagieMax * 0.1616);
-            PtsDefense = PtsDefense * 1.1616;
-            PtsVitesse = PtsVitesse * 1.1616;
+            PvActuels += (int)(PvMax * 0.1616);
+            MpMax = (int)(MpMax * 1.1616);
+            MpActuel += (int)(MpMax * 0.1616);
+            Defense = Defense * 1.1616;
+            Vitesse = Vitesse * 1.1616;
         }
 
         private Sort ChoixSort()
@@ -176,7 +176,7 @@ namespace Game.Library.TypePersonnage
             return false;
         }
 
-        public bool UtiliserItemVsPerso(ref Personnages defenseur)
+        public bool UtiliserItemVsPerso(ref Personnage defenseur)
         {
             if (Inventaire.Count != 0)
             {

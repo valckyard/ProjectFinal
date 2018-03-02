@@ -90,7 +90,7 @@ namespace Game.Library.Methodes
             return AttaqueChoisie.AttaqueArme;
         }
 
-        public static AttaqueChoisie TypeAttaquePersonnage(Personnages perso)
+        public static AttaqueChoisie TypeAttaquePersonnage(Personnage perso)
         {
             var attType = new TypeAttaque
             {
@@ -132,11 +132,11 @@ namespace Game.Library.Methodes
             return chances;
         }
 
-        public static void AttaquePersonnage(ref Personnages persJoueur, ref Personnages persEnnemi)
+        public static void AttaquePersonnage(ref Personnage persJoueur, ref Personnage persEnnemi)
         {
             bool win = false;
 
-            var cond = persJoueur.PtsVitesse > persEnnemi.PtsVitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
+            var cond = persJoueur.Vitesse > persEnnemi.Vitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
 
             while (!win)
             {
@@ -157,8 +157,8 @@ namespace Game.Library.Methodes
                 cond = cond == ConditionAttaque.Attaque ? ConditionAttaque.Defense : ConditionAttaque.Attaque;
 
 
-                if (!(persJoueur.PtsVieActuel <= 0 | persEnnemi.PtsVieActuel <= 0)) continue;
-                if (persJoueur.PtsVieActuel <= 0)
+                if (!(persJoueur.PvActuels <= 0 | persEnnemi.PvActuels <= 0)) continue;
+                if (persJoueur.PvActuels <= 0)
                 {
                     GameOver();
                 }
@@ -168,12 +168,12 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(Defenseur.ValeurPtsExperiences);
+            // Attaquant.AddXP(Defenseur.ValeurExp);
             persJoueur.CheckLevelPlayer();
         }
 
 
-        private static void Attaque(Personnages attaquant, ref Personnages defenseur)
+        private static void Attaque(Personnage attaquant, ref Personnage defenseur)
         {
             while (true)
             {
@@ -203,10 +203,10 @@ namespace Game.Library.Methodes
         }
 
 
-        public static void AttaqueEnnemi(ref Personnages persJ, ref Ennemi baddie)
+        public static void AttaqueEnnemi(ref Personnage persJ, ref Ennemi baddie)
         {
             bool win = false;
-            var cond = persJ.PtsVitesse > baddie.Vitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
+            var cond = persJ.Vitesse > baddie.Vitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
 
             while (!win)
             {
@@ -259,8 +259,8 @@ namespace Game.Library.Methodes
                 cond = cond == ConditionAttaque.Attaque ? ConditionAttaque.Defense : ConditionAttaque.Attaque;
 
 
-                if (!(persJ.PtsVieActuel <= 0 | baddie.PtsVie <= 0)) continue;
-                if (persJ.PtsVieActuel <= 0)
+                if (!(persJ.PvActuels <= 0 | baddie.Pv <= 0)) continue;
+                if (persJ.PvActuels <= 0)
                 {
                     GameOver();
                 }
@@ -270,7 +270,7 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(baddie.ValeurPtsExperiences);
+            // Attaquant.AddXP(baddie.ValeurExp);
             persJ.CheckLevelPlayer();
         }
 

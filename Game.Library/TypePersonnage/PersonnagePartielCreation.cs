@@ -9,7 +9,7 @@ using Game.Library.Objets;
 namespace Game.Library.TypePersonnage
 {
 
-    public partial class Personnages
+    public partial class Personnage
     {
         public void CharacterCreation()
         {
@@ -33,15 +33,15 @@ namespace Game.Library.TypePersonnage
             {
                 case Race.Humain:
                     PuissanceMagique = tPuissanceMagique;
-                    PtsAttaque = tPtsAttaque;
-                    PtsVieMax = tPtsVieMax;
-                    PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = tPointsMagieMax;
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = tPtsVitesse;
-                    PtsDefense = tPtsDefense;
+                    Puissance = tPtsAttaque;
+                    PvMax = tPtsVieMax;
+                    PvActuels = PvMax;
+                    MpMax = tPointsMagieMax;
+                    MpActuel = MpMax;
+                    Vitesse = tPtsVitesse;
+                    Defense = tPtsDefense;
                     Niveau = tNiveau;
-                    PtsExperience = tPtsExperience;
+                    Experience = tPtsExperience;
                     SeuilExperience = tSeuilExperience;
 
                     Arme = null;
@@ -53,15 +53,15 @@ namespace Game.Library.TypePersonnage
 
                 case Race.Nain:
                     PuissanceMagique = tPuissanceMagique -5;
-                    PtsAttaque = tPtsAttaque + 10 ;
-                    PtsVieMax = tPtsVieMax +20;
-                    PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = tPointsMagieMax -20;
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = tPtsVitesse -5;
-                    PtsDefense = tPtsDefense +5 ;
+                    Puissance = tPtsAttaque + 10 ;
+                    PvMax = tPtsVieMax +20;
+                    PvActuels = PvMax;
+                    MpMax = tPointsMagieMax -20;
+                    MpActuel = MpMax;
+                    Vitesse = tPtsVitesse -5;
+                    Defense = tPtsDefense +5 ;
                     Niveau = tNiveau;
-                    PtsExperience = tPtsExperience;
+                    Experience = tPtsExperience;
                     SeuilExperience = tSeuilExperience;
 
                     Arme = null;
@@ -74,15 +74,15 @@ namespace Game.Library.TypePersonnage
                 
                 case Race.Elfe:
                     PuissanceMagique = tPuissanceMagique +5;
-                    PtsAttaque = tPtsAttaque - 10;
-                    PtsVieMax = tPtsVieMax - 20;
-                    PtsVieActuel = PtsVieMax;
-                    PointsMagieMax = tPointsMagieMax + 20;
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsVitesse = tPtsVitesse - 5;
-                    PtsDefense = tPtsDefense + 5;
+                    Puissance = tPtsAttaque - 10;
+                    PvMax = tPtsVieMax - 20;
+                    PvActuels = PvMax;
+                    MpMax = tPointsMagieMax + 20;
+                    MpActuel = MpMax;
+                    Vitesse = tPtsVitesse - 5;
+                    Defense = tPtsDefense + 5;
                     Niveau = tNiveau;
-                    PtsExperience = tPtsExperience;
+                    Experience = tPtsExperience;
                     SeuilExperience = tSeuilExperience;
 
                     Arme = null;
@@ -101,33 +101,33 @@ namespace Game.Library.TypePersonnage
             {
                 case Classe.Barbare:
                     PuissanceMagique *= 0.25;
-                    PointsMagieMax = (int)(PointsMagieMax * 0.25);
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsAttaque *= 1.50;
-                    PtsVitesse *= 0.75;
-                    PtsDefense *= 0.75;
-                    PtsVieMax = (int)(PtsVieMax * 1.35);
-                    PtsVieActuel = PtsVieMax;
+                    MpMax = (int)(MpMax * 0.25);
+                    MpActuel = MpMax;
+                    Puissance *= 1.50;
+                    Vitesse *= 0.75;
+                    Defense *= 0.75;
+                    PvMax = (int)(PvMax * 1.35);
+                    PvActuels = PvMax;
                     break;
                 case Classe.Guerrier:
                     PuissanceMagique *= 0.50;
-                    PointsMagieMax = (int)(PointsMagieMax * 0.50);
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsAttaque *= 1.25;
-                    PtsVitesse *= 1.20;
-                    PtsDefense *= 1.20;
-                    PtsVieMax = (int)(PtsVieMax * 1.15);
-                    PtsVieActuel = PtsVieMax;
+                    MpMax = (int)(MpMax * 0.50);
+                    MpActuel = MpMax;
+                    Puissance *= 1.25;
+                    Vitesse *= 1.20;
+                    Defense *= 1.20;
+                    PvMax = (int)(PvMax * 1.15);
+                    PvActuels = PvMax;
                     break;
                 case Classe.Magicien:
                     PuissanceMagique *= 1.50;
-                    PointsMagieMax = (int)(PointsMagieMax * 1.50);
-                    PointsMagieActuel = PointsMagieMax;
-                    PtsAttaque *= 0.50;
-                    PtsVitesse *= 0.60;
-                    PtsDefense *= 0.50;
-                    PtsVieMax = (int)(PtsVieMax * 0.75);
-                    PtsVieActuel = PtsVieMax;
+                    MpMax = (int)(MpMax * 1.50);
+                    MpActuel = MpMax;
+                    Puissance *= 0.50;
+                    Vitesse *= 0.60;
+                    Defense *= 0.50;
+                    PvMax = (int)(PvMax * 0.75);
+                    PvActuels = PvMax;
                     break;
             }
         }
