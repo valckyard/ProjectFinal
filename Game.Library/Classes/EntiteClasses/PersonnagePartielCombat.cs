@@ -107,7 +107,7 @@ namespace Game.Library.Classes.EntiteClasses
             return false;
         }
 
-        public bool LancerSortVsPerso(ref Classes.EntiteClasses.Personnage defenseur, Sort itemSort)
+        public bool LancerSortVsPerso(ref Personnage defenseur, Sort itemSort)
         {
             Sort sort;
             if (itemSort == null)
@@ -193,7 +193,7 @@ namespace Game.Library.Classes.EntiteClasses
         }
 
         //Parfait pour Personnage a personnage
-        public void FrapperPersonnage(ref Classes.EntiteClasses.Personnage perso)
+        public void FrapperPersonnage(ref Personnage perso)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
 
@@ -235,7 +235,7 @@ namespace Game.Library.Classes.EntiteClasses
             return 0;
         }
 
-        public double DammageCalculatorPerso(Classes.EntiteClasses.Personnage personnageE, AttaqueCondition condition)
+        public double DammageCalculatorPerso(Personnage personnageE, AttaqueCondition condition)
         {
             var rand = new Random();
             double Dmg = 0;
@@ -262,7 +262,7 @@ namespace Game.Library.Classes.EntiteClasses
         }
 
 
-        public double DammageCalculatorMagicPerso(Classes.EntiteClasses.Personnage defenseur, Sort sort)
+        public double DammageCalculatorMagicPerso(Personnage defenseur, Sort sort)
         {
             var rand = new Random();
             double Dmg = 0;
