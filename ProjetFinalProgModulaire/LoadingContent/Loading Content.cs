@@ -57,13 +57,13 @@ namespace ProjetFinalProgModulaire
             return newList;
         }
 
-        public static List<ClassNoeud> LoadingNoeuds()
+        public static List<Noeud> LoadingNoeuds()
         {
-            var newList = new List<ClassNoeud>
+            var newList = new List<Noeud>
             {
-                new ClassNoeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
-                new ClassNoeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
-                new ClassNoeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
+                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
+                new Noeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
+                new Noeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
 
             };
             return newList;
