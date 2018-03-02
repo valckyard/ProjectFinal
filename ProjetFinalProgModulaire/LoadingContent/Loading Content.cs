@@ -60,12 +60,222 @@ namespace ProjetFinalProgModulaire
 
         public static Dictionary<string,Noeud> LoadingNoeuds()
         {
-            var dicnoeud = new Dictionary<int,string>()
+            var dicnoeud = new Dictionary<string,Noeud>()
             {
-                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", null, null,
-                    new Dictionary<int, string>(){1,"taxi"},{2,"Sentier"})
+                //Apres introduction histoire voici la premiere question --- TAXI OU SENTIER
+                //
+                { "a", new Noeud("Je prends un taxi ou je prend la sentier sur la gauche!!!", null, null,
+                                    new Dictionary<int, string>()
+                                    {
+                                        { 1,"taxi"},
+                                        { 2,"Sentier"}
+                                    }
+                               )
+                },
+
+                //Vous avez décidé de prendre le taxi            -- COMBAT TO ADD       --  RACINE OU Boul. Univ
+                {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous crié: TAXI!!. En vitesse ...", null, null,
+                                    new Dictionary<int, string>()
+                                    {
+                                        { 1,"Racine"},
+                                        { 2,"Boul.Université"}
+                                    }
+                               )
+                },
+
+                //   Marche
+                {"Sentier", new Noeud("Arrivé a la fontaine ......", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"Hangard"},
+                            { 2,"Terrain Vague"}
+                        }
+                    )
+                },
+
+                //   
+                {"Racine", new Noeud("Homme milieu de la rue", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"Stop"},
+                            { 2,"Continue"}
+                        }
+                    )
+                },
+
+                //   
+                {"boul.Université", new Noeud("panne de taxi", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"Argumente"},
+                            { 2,"Continue mon chemin"}
+                        }
+                    )
+                },
+
+                
+                //   
+                {"Hangard", new Noeud("Contourne hangard entend du bruit provenant du bateau", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"La Majolaine"},
+                            { 2,"La Cathedrale"}
+                        }
+                    )
+                },
+
+                
+                //   
+                {"Terrain Vague", new Noeud("Terrain miné !!!", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"MORT"},
+                        }
+                    )
+                },
+
+                
+                //    -- Combat
+                {"Stop", new Noeud("Vous sortez du taxi et vous vous avancer vers....", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,""},
+                            { 2,""}
+                        }
+                    )
+                },
+
+                //
+                {"Continue", new Noeud("Vous criez au chauffeur de npas", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+                // Combat
+                {"Argumente", new Noeud(" Une altercation avec le chauffeur de taxi", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"Redemarrer taxi"},
+                            { 2,"A pied"}
+                        }
+                    )
+                },
+
+                
+                //   
+                {"Continue son chemin", new Noeud("Arrive ", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+                
+                
+                //  
+                {"La Marjolaine", new Noeud("Entre bateau, fight bateau derive pendant la bagarre derive s'échouecture", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"A"},
+                        }
+                    )
+                },
+
+                
+                //   
+                {"La Cathedrale", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
+
+                
+                //Templates   
+                {"Combat", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
+
+                
+                //Templates   
+                {"Passe mon chemin", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
+
+                
+                //Templates   
+                {"Redemarrer taxi", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"MORT"},
+
+                            { 2,"MORT"}
+                        }
+                    )
+                },
+
+
+                
+                //Templates   
+                {"A pied", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,""},
+
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
+
+                
+                //Templates   
+                {"", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
+
+                //Templates   
+                {"", new Noeud("", null, null,
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"CHOIX"},
+
+                            { 2,"CHOIX"}
+                        }
+                    )
+                },
+
             };
-            
+            return dicnoeud;
+
         }
 
     }
