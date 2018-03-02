@@ -1,24 +1,24 @@
 ﻿using System;
 using Game.Library.Enums;
 
-namespace Game.Library.Methodes
+namespace Game.Library.Classes
 {
     
-    public class TypeAttaque
+    public class ClasseTypeAttaque
     {
         public int AttaqueArme { get; set; }
         public int AttaqueSort { get; set; }
         public int Item { get; set; }
         public AttaqueChoisie Choix { get; set; }
 
-        public TypeAttaque(int attaqueArme, int attaqueSort, int item)
+        public ClasseTypeAttaque(int attaqueArme, int attaqueSort, int item)
         {
             AttaqueArme = attaqueArme;
             AttaqueSort = attaqueSort;
             Item = item;
         }
 
-        public TypeAttaque()
+        public ClasseTypeAttaque()
         {
         }
 

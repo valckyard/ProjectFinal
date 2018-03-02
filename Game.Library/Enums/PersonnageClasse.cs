@@ -1,6 +1,6 @@
 ﻿namespace Game.Library.Enums
 {
-    public enum Classe
+    public enum PersonnageClasse
     {
         Barbare,
         Magicien,

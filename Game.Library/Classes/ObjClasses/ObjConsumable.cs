@@ -1,19 +1,19 @@
 ﻿using Game.Library.Enums;
 
-namespace Game.Library.Objets
+namespace Game.Library.Classes.ObjClasses
 {
-    public class ConsumableObject
+    public class ObjConsumable
     {
         public string NomObjet { get; set; }
-        public ConsumableType TypeConsumable { get; set; }
-        public ElementType TypeElement { get; set; }
+        public TypeConsumable TypeConsumable { get; set; }
+        public TypeElement TypeElement { get; set; }
         public int Puissance { get; set; }
 
-        public ConsumableObject()
+        public ObjConsumable()
         {
         }
 
-        public ConsumableObject(string nomObjet, ConsumableType typeConsumable, ElementType typeElement, int puissance)
+        public ObjConsumable(string nomObjet, TypeConsumable typeConsumable, TypeElement typeElement, int puissance)
         {
             NomObjet = nomObjet;
             TypeConsumable = typeConsumable;

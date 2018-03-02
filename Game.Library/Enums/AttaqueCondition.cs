@@ -1,6 +1,6 @@
 ﻿    namespace Game.Library.Enums
 {
-    public enum ConditionAttaque
+    public enum AttaqueCondition
     {
         Attaque,
         Defense

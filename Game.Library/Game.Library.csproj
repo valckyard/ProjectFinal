@@ -47,29 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\ConditionAttaque.cs" />
+    <Compile Include="Enums\AttaqueCondition.cs" />
     <Compile Include="Enums\AttaqueChoisie.cs" />
-    <Compile Include="Methodes\TypeAttaque.cs" />
-    <Compile Include="Objets\ArmureObject.cs" />
-    <Compile Include="Objets\ConsumableObject.cs" />
-    <Compile Include="Objets\ObjectInventaire.cs" />
-    <Compile Include="TypePersonnage\Ennemi.cs" />
-    <Compile Include="Enums\Classe.cs" />
-    <Compile Include="Enums\ConsumableType.cs" />
-    <Compile Include="Enums\ElementType.cs" />
+    <Compile Include="Classes\TypeAttaque.cs" />
+    <Compile Include="Classes\ObjClasses\ObjArmure.cs" />
+    <Compile Include="Classes\ObjClasses\ObjConsumable.cs" />
+    <Compile Include="Classes\ObjClasses\ObjInventaire.cs" />
+    <Compile Include="Classes\EntiteClasses\Ennemi.cs" />
+    <Compile Include="Enums\PersonnageClasse.cs" />
+    <Compile Include="Enums\TypeConsumable.cs" />
+    <Compile Include="Enums\TypeElement.cs" />
     <Compile Include="Methodes\MethodeCombat.cs" />
-    <Compile Include="Methodes\Noeud.cs" />
-    <Compile Include="Objets\ArmeObject.cs" />
-    <Compile Include="TypePersonnage\PersonnagePartielCombat.cs" />
-    <Compile Include="TypePersonnage\PersonnagePartielCreation.cs" />
-    <Compile Include="TypePersonnage\Personnage.cs" />
+    <Compile Include="Classes\Noeud.cs" />
+    <Compile Include="Classes\ObjClasses\ObjArme.cs" />
+    <Compile Include="Classes\EntiteClasses\PersonnagePartielCombat.cs" />
+    <Compile Include="Classes\EntiteClasses\PersonnagePartielCreation.cs" />
+    <Compile Include="Classes\EntiteClasses\Personnage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Enums\Race.cs" />
-    <Compile Include="Objets\SORT.cs" />
+    <Compile Include="Enums\PersonnageRace.cs" />
+    <Compile Include="Classes\ClassSort.cs" />
     <Compile Include="Enums\TypeEnnemi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

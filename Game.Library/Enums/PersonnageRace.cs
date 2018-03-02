@@ -1,6 +1,6 @@
 ﻿namespace Game.Library.Enums
 {
-    public enum Race
+    public enum PersonnageRace
     {
         Humain,
         Nain,

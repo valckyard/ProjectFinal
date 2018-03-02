@@ -1,12 +1,12 @@
 ﻿using Game.Library.Enums;
 
-namespace Game.Library.TypePersonnage
+namespace Game.Library.Classes.EntiteClasses
 {
     public class Ennemi
     {
         public string Name { get; set; }
         public TypeEnnemi TypeEnnemi { get; set; }
-        public ElementType TypeElement { get; set; }
+        public TypeElement TypeElement { get; set; }
         public int Pv { get; set; }
         public int Puissance { get; set; }
         public int Defense { get; set; }
@@ -14,7 +14,7 @@ namespace Game.Library.TypePersonnage
 
         public Ennemi(){}
 
-        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, ElementType typeElement, int puissance, int defense, int vitesse)
+        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, TypeElement typeElement, int puissance, int defense, int vitesse)
         {
             Name = name;
             Pv = hp;

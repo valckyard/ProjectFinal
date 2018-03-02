@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using Game.Library.Enums;
 using Game.Library.Methodes;
-using Game.Library.Objets;
 
-namespace Game.Library.TypePersonnage
+namespace Game.Library.Classes.EntiteClasses
 {
     public partial class Personnage
     {
@@ -23,7 +17,7 @@ namespace Game.Library.TypePersonnage
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
                 {
-                    if (sort.TypeElement != ElementType.Lumiere)
+                    if (sort.TypeElement != TypeElement.Lumiere)
                     {
                         MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
@@ -59,13 +53,13 @@ namespace Game.Library.TypePersonnage
             return false;
         }
 
-        public bool LancerSortVsPerso(ref Personnage defenseur)
+        public bool LancerSortVsPerso(ref Classes.EntiteClasses.Personnage defenseur)
         {
             var sort = ChoixSort();
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
                 {
-                    if (sort.TypeElement != ElementType.Lumiere)
+                    if (sort.TypeElement != TypeElement.Lumiere)
                     {
                         MpActuel -= sort.CoutMp;
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
@@ -112,7 +106,7 @@ namespace Game.Library.TypePersonnage
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
 
             //Calc
-            double dmg = DammageCalculatorEnnemi(baddie, ConditionAttaque.Attaque);
+            double dmg = DammageCalculatorEnnemi(baddie, AttaqueCondition.Attaque);
             //Calc
 
             Console.WriteLine($"{baddie.Name} prends {(int) dmg} de dommage dans la geule!");
@@ -124,7 +118,7 @@ namespace Game.Library.TypePersonnage
             Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
 
             //Calc
-            double dmg = DammageCalculatorEnnemi(baddie, ConditionAttaque.Defense);
+            double dmg = DammageCalculatorEnnemi(baddie, AttaqueCondition.Defense);
             //Calc
 
             Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
@@ -132,12 +126,12 @@ namespace Game.Library.TypePersonnage
         }
 
         //Parfait pour Personnage a personnage
-        public void FrapperPersonnage(ref Personnage perso)
+        public void FrapperPersonnage(ref Classes.EntiteClasses.Personnage perso)
         {
             Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
 
             //Calc
-            double dmg = DammageCalculatorPerso(perso, ConditionAttaque.Attaque);
+            double dmg = DammageCalculatorPerso(perso, AttaqueCondition.Attaque);
             //Calc
 
             Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
@@ -150,21 +144,21 @@ namespace Game.Library.TypePersonnage
         //############################################ DAMAGE CALCULATORS ##########################################################//
 
 
-        public double DammageCalculatorEnnemi(Ennemi ennemi, ConditionAttaque condition)
+        public double DammageCalculatorEnnemi(Ennemi ennemi, AttaqueCondition condition)
         {
             var rand = new Random();
             double Dmg = 0;
             double chance = (rand.Next(-30, 31) / 100);
             switch (condition)
             {
-                case ConditionAttaque.Attaque:
+                case AttaqueCondition.Attaque:
 
                     double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
                     Dmg = ((Puissance + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
-                case ConditionAttaque.Defense:
+                case AttaqueCondition.Defense:
                     double mulDMGDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
                     Dmg = (ennemi.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
                     Dmg = Dmg + (Dmg * chance);
@@ -174,7 +168,7 @@ namespace Game.Library.TypePersonnage
             return 0;
         }
 
-        public double DammageCalculatorPerso(Personnage personnageE, ConditionAttaque condition)
+        public double DammageCalculatorPerso(Classes.EntiteClasses.Personnage personnageE, AttaqueCondition condition)
         {
             var rand = new Random();
             double Dmg = 0;
@@ -182,7 +176,7 @@ namespace Game.Library.TypePersonnage
 
             switch (condition)
             {
-                case ConditionAttaque.Attaque:
+                case AttaqueCondition.Attaque:
 
                     double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
                     Dmg = ((Puissance + Arme.Puissance) - personnageE.Defense + personnageE.Armure.Defense) *
@@ -190,7 +184,7 @@ namespace Game.Library.TypePersonnage
                     Dmg = Dmg + (Dmg * chance);
                     return Dmg;
 
-                case ConditionAttaque.Defense:
+                case AttaqueCondition.Defense:
                     double mulDMGDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
                     Dmg = (personnageE.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
                     Dmg = Dmg + (Dmg * chance);
@@ -201,7 +195,7 @@ namespace Game.Library.TypePersonnage
         }
 
 
-        public double DammageCalculatorMagicPerso(Personnage defenseur, Sort sort)
+        public double DammageCalculatorMagicPerso(Classes.EntiteClasses.Personnage defenseur, Sort sort)
         {
             var rand = new Random();
             double Dmg = 0;

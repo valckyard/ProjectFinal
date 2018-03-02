@@ -1,6 +1,6 @@
 ﻿namespace Game.Library.Enums
 {
-    public enum ConsumableType
+    public enum TypeConsumable
     {
         Potion,
         Parchemin

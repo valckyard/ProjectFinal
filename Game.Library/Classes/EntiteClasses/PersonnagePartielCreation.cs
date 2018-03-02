@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
-using Game.Library.Objets;
 
-namespace Game.Library.TypePersonnage
+namespace Game.Library.Classes.EntiteClasses
 {
 
     public partial class Personnage
@@ -15,8 +12,8 @@ namespace Game.Library.TypePersonnage
         {
             var rand = new Random();
             Nom = $"Placeholder_" + rand.Next(500,1000);
-            Classe = (Classe) rand.Next(0, 3);
-            Race = (Race) rand.Next(0,3);
+            Classe = (PersonnageClasse) rand.Next(0, 3);
+            Race = (PersonnageRace) rand.Next(0,3);
 
             var tPuissanceMagique = rand.Next(10, 21);
             var tPtsAttaque = rand.Next(10, 21);
@@ -31,7 +28,7 @@ namespace Game.Library.TypePersonnage
 
             switch (Race)
             {
-                case Race.Humain:
+                case PersonnageRace.Humain:
                     PuissanceMagique = tPuissanceMagique;
                     Puissance = tPtsAttaque;
                     PvMax = tPtsVieMax;
@@ -46,12 +43,12 @@ namespace Game.Library.TypePersonnage
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
-                    Inventaire = new List<ObjectInventaire>();
+                    Inventaire = new List<ObjInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
 
-                case Race.Nain:
+                case PersonnageRace.Nain:
                     PuissanceMagique = tPuissanceMagique -5;
                     Puissance = tPtsAttaque + 10 ;
                     PvMax = tPtsVieMax +20;
@@ -66,13 +63,13 @@ namespace Game.Library.TypePersonnage
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
-                    Inventaire = new List<ObjectInventaire>();
+                    Inventaire = new List<ObjInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
 
                 
-                case Race.Elfe:
+                case PersonnageRace.Elfe:
                     PuissanceMagique = tPuissanceMagique +5;
                     Puissance = tPtsAttaque - 10;
                     PvMax = tPtsVieMax - 20;
@@ -87,7 +84,7 @@ namespace Game.Library.TypePersonnage
 
                     Arme = null;
                     ListeSorts = new List<Sort>();
-                    Inventaire = new List<ObjectInventaire>();
+                    Inventaire = new List<ObjInventaire>();
                     //Multiplier / DividerClass
                     ModifClasse();
                     break;
@@ -99,7 +96,7 @@ namespace Game.Library.TypePersonnage
         {
             switch (Classe)
             {
-                case Classe.Barbare:
+                case PersonnageClasse.Barbare:
                     PuissanceMagique *= 0.25;
                     MpMax = (int)(MpMax * 0.25);
                     MpActuel = MpMax;
@@ -109,7 +106,7 @@ namespace Game.Library.TypePersonnage
                     PvMax = (int)(PvMax * 1.35);
                     PvActuels = PvMax;
                     break;
-                case Classe.Guerrier:
+                case PersonnageClasse.Guerrier:
                     PuissanceMagique *= 0.50;
                     MpMax = (int)(MpMax * 0.50);
                     MpActuel = MpMax;
@@ -119,7 +116,7 @@ namespace Game.Library.TypePersonnage
                     PvMax = (int)(PvMax * 1.15);
                     PvActuels = PvMax;
                     break;
-                case Classe.Magicien:
+                case PersonnageClasse.Magicien:
                     PuissanceMagique *= 1.50;
                     MpMax = (int)(MpMax * 1.50);
                     MpActuel = MpMax;

@@ -1,12 +1,12 @@
-﻿namespace Game.Library.Methodes
+﻿namespace Game.Library.Classes
 {
-    public class Noeud
+    public class ClassNoeud
     {
         public string Intitule;
         public bool Combat;
         public string ReponseEnfant;
 
-        public Noeud(string intitule, bool combat, string reponseEnfant)
+        public ClassNoeud(string intitule, bool combat, string reponseEnfant)
         {
             Intitule = intitule;
             Combat = combat;

@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Library;
+using Game.Library.Classes;
+using Game.Library.Classes.ObjClasses;
 using Game.Library.Methodes;
-using Game.Library.Objets;
-using Game.Library.TypePersonnage;
 using ProjetFinalProgModulaire;
+using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
 
 namespace ProjetFinalProgModulaire
 {
     public class JeuProjet
     {
-        public static List<ArmeObject> ListeArmes;
+        public static List<ObjArme> ListeArmes;
         public static List<Sort> ListeSorts;
-        public static List<ArmureObject> ListeArmures;
-        public static List<ConsumableObject> ListeConsumables;
-        public static List<Noeud> ListeNoeuds;
+        public static List<ObjArmure> ListeArmures;
+        public static List<ObjConsumable> ListeConsumables;
+        public static List<ClassNoeud> ListeNoeuds;
         public static Personnage Player;
 
         public JeuProjet()
@@ -49,7 +50,7 @@ namespace ProjetFinalProgModulaire
             // V
             //Combat module
             
-            Dictionary<string, List<Noeud>> story = new Dictionary<string, List<Noeud>>();
+            Dictionary<string, List<ClassNoeud>> story = new Dictionary<string, List<ClassNoeud>>();
             
             //loop
         }

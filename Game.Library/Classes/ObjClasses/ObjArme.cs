@@ -1,18 +1,18 @@
 ﻿using Game.Library.Enums;
 
-namespace Game.Library.Objets
+namespace Game.Library.Classes.ObjClasses
 {
-    public class ArmeObject
+    public class ObjArme
     {
         public string NomObjet { get; set; }
-        public ElementType TypeElement { get; set; }
+        public TypeElement TypeElement { get; set; }
         public int Puissance { get; set; }
 
-        public ArmeObject()
+        public ObjArme()
         {
         }
 
-        public ArmeObject(string nomObjet, ElementType typeElement, int puissance)
+        public ObjArme(string nomObjet, TypeElement typeElement, int puissance)
         {
             NomObjet = nomObjet;
             TypeElement = typeElement;

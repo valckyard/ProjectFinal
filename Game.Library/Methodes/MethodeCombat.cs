@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
+using Game.Library.Classes;
+using Game.Library.Classes.EntiteClasses;
 using Game.Library.Enums;
-using Game.Library.TypePersonnage;
+using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
 
 namespace Game.Library.Methodes
 {
     public class MethodeCombat
     {
-        public static double Dommage(ElementType elementattaque, ElementType elementdefense)
+        public static double Dommage(TypeElement elementattaque, TypeElement elementdefense)
         {
             switch (elementattaque)
             {
-                case ElementType.Physique:
-                    if (elementdefense == ElementType.Etheral)
+                case TypeElement.Physique:
+                    if (elementdefense == TypeElement.Etheral)
                     {
                         return 0.5;
                     }
@@ -22,17 +24,17 @@ namespace Game.Library.Methodes
                         return 1;
                     }
 
-                case ElementType.Etheral:
+                case TypeElement.Etheral:
 
                     return 1;
 
-                case ElementType.Air:
+                case TypeElement.Air:
 
-                    if (elementdefense == ElementType.Eau)
+                    if (elementdefense == TypeElement.Eau)
                     {
                         return 1.5;
                     }
-                    else if (elementdefense == ElementType.Terre)
+                    else if (elementdefense == TypeElement.Terre)
                     {
                         return 0.5;
                     }
@@ -41,12 +43,12 @@ namespace Game.Library.Methodes
                         return 1;
                     }
 
-                case ElementType.Feu:
-                    if (elementdefense == ElementType.Terre)
+                case TypeElement.Feu:
+                    if (elementdefense == TypeElement.Terre)
                     {
                         return 1.5;
                     }
-                    else if (elementdefense == ElementType.Eau)
+                    else if (elementdefense == TypeElement.Eau)
                     {
                         return 0.5;
                     }
@@ -54,12 +56,12 @@ namespace Game.Library.Methodes
                     {
                         return 1;
                     }
-                case ElementType.Eau:
-                    if (elementdefense == ElementType.Feu)
+                case TypeElement.Eau:
+                    if (elementdefense == TypeElement.Feu)
                     {
                         return 1.5;
                     }
-                    else if (elementdefense == ElementType.Air)
+                    else if (elementdefense == TypeElement.Air)
                     {
                         return 0.5;
                     }
@@ -67,12 +69,12 @@ namespace Game.Library.Methodes
                     {
                         return 1;
                     }
-                case ElementType.Terre:
-                    if (elementdefense == ElementType.Feu)
+                case TypeElement.Terre:
+                    if (elementdefense == TypeElement.Feu)
                     {
                         return 0.5;
                     }
-                    else if (elementdefense == ElementType.Air)
+                    else if (elementdefense == TypeElement.Air)
                     {
                         return 1.5;
                     }
@@ -92,7 +94,7 @@ namespace Game.Library.Methodes
 
         public static AttaqueChoisie TypeAttaquePersonnage(Personnage perso)
         {
-            var attType = new TypeAttaque
+            var attType = new ClasseTypeAttaque
             {
                 AttaqueArme = 60,
                 AttaqueSort = 30,
@@ -102,13 +104,13 @@ namespace Game.Library.Methodes
 
             switch (perso.Race)
             {
-                case Race.Humain:
+                case PersonnageRace.Humain:
                     attType = TypeAttSwitchClasse(perso.Classe, attType);
                     break;
-                case Race.Nain:
+                case PersonnageRace.Nain:
                     attType = TypeAttSwitchClasse(perso.Classe, attType);
                     break;
-                case Race.Elfe:
+                case PersonnageRace.Elfe:
                     attType = TypeAttSwitchClasse(perso.Classe, attType);
                     break;
             }
@@ -117,15 +119,15 @@ namespace Game.Library.Methodes
             return attType.Choix;
         }
 
-        public static TypeAttaque TypeAttSwitchClasse(Classe perso, TypeAttaque chances)
+        public static ClasseTypeAttaque TypeAttSwitchClasse(PersonnageClasse perso, ClasseTypeAttaque chances)
         {
             switch (perso)
             {
-                case Classe.Barbare:
+                case PersonnageClasse.Barbare:
                     break;
-                case Classe.Guerrier:
+                case PersonnageClasse.Guerrier:
                     break;
-                case Classe.Magicien:
+                case PersonnageClasse.Magicien:
                     break;
             }
 
@@ -136,25 +138,25 @@ namespace Game.Library.Methodes
         {
             bool win = false;
 
-            var cond = persJoueur.Vitesse > persEnnemi.Vitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
+            var cond = persJoueur.Vitesse > persEnnemi.Vitesse ? AttaqueCondition.Attaque : AttaqueCondition.Defense;
 
             while (!win)
             {
 
                 switch (cond)
                 {
-                    case ConditionAttaque.Attaque:
+                    case AttaqueCondition.Attaque:
                         Attaque(persJoueur, ref persEnnemi);
                         break;
 
-                    case ConditionAttaque.Defense:
+                    case AttaqueCondition.Defense:
                         Attaque(persEnnemi, ref persJoueur);
                         break;
 
                 }
               
 
-                cond = cond == ConditionAttaque.Attaque ? ConditionAttaque.Defense : ConditionAttaque.Attaque;
+                cond = cond == AttaqueCondition.Attaque ? AttaqueCondition.Defense : AttaqueCondition.Attaque;
 
 
                 if (!(persJoueur.PvActuels <= 0 | persEnnemi.PvActuels <= 0)) continue;
@@ -206,12 +208,12 @@ namespace Game.Library.Methodes
         public static void AttaqueEnnemi(ref Personnage persJ, ref Ennemi baddie)
         {
             bool win = false;
-            var cond = persJ.Vitesse > baddie.Vitesse ? ConditionAttaque.Attaque : ConditionAttaque.Defense;
+            var cond = persJ.Vitesse > baddie.Vitesse ? AttaqueCondition.Attaque : AttaqueCondition.Defense;
 
             while (!win)
             {
 
-                if (cond == ConditionAttaque.Attaque)
+                if (cond == AttaqueCondition.Attaque)
                 {
 
 
@@ -242,7 +244,7 @@ namespace Game.Library.Methodes
 
 
 
-                if (cond == ConditionAttaque.Defense)
+                if (cond == AttaqueCondition.Defense)
                 {
                     var typeatt = TypeAttaqueEnnemi(baddie);
 
@@ -256,7 +258,7 @@ namespace Game.Library.Methodes
                 }
 
 
-                cond = cond == ConditionAttaque.Attaque ? ConditionAttaque.Defense : ConditionAttaque.Attaque;
+                cond = cond == AttaqueCondition.Attaque ? AttaqueCondition.Defense : AttaqueCondition.Attaque;
 
 
                 if (!(persJ.PvActuels <= 0 | baddie.Pv <= 0)) continue;

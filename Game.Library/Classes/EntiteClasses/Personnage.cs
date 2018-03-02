@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
-using Game.Library.Methodes;
-using Game.Library.Objets;
 
-namespace Game.Library.TypePersonnage
+namespace Game.Library.Classes.EntiteClasses
 {
     public partial class Personnage
     {
         //Characteristiques
-        public Race Race { get; set; }
-        public Classe Classe { get; set; }
+        public PersonnageRace Race { get; set; }
+        public PersonnageClasse Classe { get; set; }
         public string Nom { get; set; }
 
         //Experience
@@ -33,14 +32,14 @@ namespace Game.Library.TypePersonnage
 
         //Options d'attaque
         public List<Sort> ListeSorts { get; set; }
-        public ArmeObject Arme { get; set; }
-        public ArmureObject Armure { get; set; }
+        public ObjArme Arme { get; set; }
+        public ObjArmure Armure { get; set; }
 
         //inventaire
-        public List<ObjectInventaire> Inventaire { get; set; }
+        public List<ObjInventaire> Inventaire { get; set; }
 
 
-        public Personnage(Race race, Classe classe, string nom, int pvMax, int mpMax, int puissance,
+        public Personnage(PersonnageRace race, PersonnageClasse classe, string nom, int pvMax, int mpMax, int puissance,
             int puissanceMagique, int defense, int vitesse)
         {
             //Characteristiques
@@ -154,8 +153,8 @@ namespace Game.Library.TypePersonnage
             {
                 var rand = new Random();
 
-                var item = new ConsumableObject();
-                var newList = new List<ConsumableObject>();
+                var item = new ObjConsumable();
+                var newList = new List<ObjConsumable>();
                 foreach (var i in Inventaire)
                 {
                     if (i.ObjetCons != null)
@@ -182,8 +181,8 @@ namespace Game.Library.TypePersonnage
             {
                 var rand = new Random();
 
-                var item = new ConsumableObject();
-                var newList = new List<ConsumableObject>();
+                var item = new ObjConsumable();
+                var newList = new List<ObjConsumable>();
                 foreach (var i in Inventaire)
                 {
                     if (i.ObjetCons != null)

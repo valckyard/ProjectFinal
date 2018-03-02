@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using Game.Library;
+using Game.Library.Classes;
+using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
 using Game.Library.Methodes;
-using Game.Library.Objets;
 
 namespace ProjetFinalProgModulaire
 {
     public class LoadingContent
     {
-        public static List<ArmeObject> LoadingArmes()
+        public static List<ObjArme> LoadingArmes()
         {
-            var newList = new List<ArmeObject>
+            var newList = new List<ObjArme>
             {
-                new ArmeObject("Mains Nues", ElementType.Physique, 0),
-                new ArmeObject("Gourdin", ElementType.Physique, 1),
-                new ArmeObject("Poings Americains", ElementType.Physique, 1),
-                new ArmeObject("Dague", ElementType.Physique, 2),
-                new ArmeObject("Dague Maudite", ElementType.Physique, -1),
-                new ArmeObject("Dague de Feu", ElementType.Feu, 0)
+                new ObjArme("Mains Nues", TypeElement.Physique, 0),
+                new ObjArme("Gourdin", TypeElement.Physique, 1),
+                new ObjArme("Poings Americains", TypeElement.Physique, 1),
+                new ObjArme("Dague", TypeElement.Physique, 2),
+                new ObjArme("Dague Maudite", TypeElement.Physique, -1),
+                new ObjArme("Dague de Feu", TypeElement.Feu, 0)
             };
             return newList;
         }
@@ -26,43 +27,43 @@ namespace ProjetFinalProgModulaire
         {
             var newList = new List<Sort>
             {
-                new Sort("Fleche de Crayons", ElementType.Physique, 2, 5),
-                new Sort("Jet de Gatorade", ElementType.Eau, 2, 5),
-                new Sort("Connection internet echoue", ElementType.Etheral, 2, 5),
-                new Sort("Sortir un Red Bull Generation Zel d'un Chapeau", ElementType.Lumiere, 1, 5)
+                new Sort("Fleche de Crayons", TypeElement.Physique, 2, 5),
+                new Sort("Jet de Gatorade", TypeElement.Eau, 2, 5),
+                new Sort("Connection internet echoue", TypeElement.Etheral, 2, 5),
+                new Sort("Sortir un Red Bull Generation Zel d'un Chapeau", TypeElement.Lumiere, 1, 5)
             };
             return newList;
         }
-        public static List<ArmureObject> LoadingArmures()
+        public static List<ObjArmure> LoadingArmures()
         {
-            var newList = new List<ArmureObject>
+            var newList = new List<ObjArmure>
             {
-                new ArmureObject("Vetements", ElementType.Physique, 0),
-                new ArmureObject("Pack Sac", ElementType.Physique, 1),
-                new ArmureObject("Mateau d'Hiver", ElementType.Physique, 1),
-                new ArmureObject("Mateau de Cuir", ElementType.Physique, 2),
-                new ArmureObject("Boxers", ElementType.Physique, -1),
-                new ArmureObject("Manteau de Pluie", ElementType.Eau, 0)
-            };
-            return newList;
-        }
-
-        public static List<ConsumableObject> LoadingConsumableObjects()
-        {
-            var newList = new List<ConsumableObject>
-            {
-                new ConsumableObject("Red Bull", ConsumableType.Potion, ElementType.Lumiere, 1)
+                new ObjArmure("Vetements", TypeElement.Physique, 0),
+                new ObjArmure("Pack Sac", TypeElement.Physique, 1),
+                new ObjArmure("Mateau d'Hiver", TypeElement.Physique, 1),
+                new ObjArmure("Mateau de Cuir", TypeElement.Physique, 2),
+                new ObjArmure("Boxers", TypeElement.Physique, -1),
+                new ObjArmure("Manteau de Pluie", TypeElement.Eau, 0)
             };
             return newList;
         }
 
-        public static List<Noeud> LoadingNoeuds()
+        public static List<ObjConsumable> LoadingConsumableObjects()
         {
-            var newList = new List<Noeud>
+            var newList = new List<ObjConsumable>
             {
-                new Noeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
-                new Noeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
-                new Noeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
+                new ObjConsumable("Red Bull", TypeConsumable.Potion, TypeElement.Lumiere, 1)
+            };
+            return newList;
+        }
+
+        public static List<ClassNoeud> LoadingNoeuds()
+        {
+            var newList = new List<ClassNoeud>
+            {
+                new ClassNoeud("Je prends un taxi ou je me rends au Bistro !!!", false, "Taxi !!"),//
+                new ClassNoeud("Je décide d'aller pêcher dans la fontaine du vieux Port", false, "Je vais prendre une bière"),
+                new ClassNoeud("", true, "Après un combat aussi sanglant, allons prendreu une bière" )//KEY "Taxi"
 
             };
             return newList;
