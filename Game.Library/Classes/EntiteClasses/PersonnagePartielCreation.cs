@@ -8,19 +8,21 @@ namespace Game.Library.Classes.EntiteClasses
 
     public partial class Personnage
     {
+       public static Random Rand = new Random();
+
         public void CharacterCreation()
         {
-            var rand = new Random();
-            Nom = $"Placeholder_" + rand.Next(500,1000);
-            Classe = (PersonnageClasse) rand.Next(0, 3);
-            Race = (PersonnageRace) rand.Next(0,3);
+           
+            Nom = $"Placeholder_" + Rand.Next(500,1000);
+            Classe = (PersonnageClasse) Rand.Next(0, 3);
+            Race = (PersonnageRace) Rand.Next(0,3);
 
-            var tPuissanceMagique = rand.Next(10, 21);
-            var tPtsAttaque = rand.Next(10, 21);
+            var tPuissanceMagique = Rand.Next(10, 21);
+            var tPtsAttaque = Rand.Next(10, 21);
             var tPtsVieMax = 100;
             var tPointsMagieMax = 50;
-            var tPtsVitesse = rand.Next(10, 20);
-            var tPtsDefense = rand.Next(5, 16);
+            var tPtsVitesse = Rand.Next(10, 20);
+            var tPtsDefense = Rand.Next(5, 16);
             var tNiveau = 0;
             var tPtsExperience = 0;
             var tSeuilExperience = 200;

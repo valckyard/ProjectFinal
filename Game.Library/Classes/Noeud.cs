@@ -30,14 +30,16 @@ namespace Game.Library.Classes
         {
             if (Ennemi != null)
             {
+                var baddie = Ennemi;
                 Console.WriteLine(CombatString);
-                Methodes.MethodeCombat.AttaqueEnnemi(ref personnage,Ennemi);
+                Methodes.MethodeCombat.AttaqueEnnemi(ref personnage,ref baddie);
             }
 
             if (EnnemiP != null)
             {
+                var baddie = EnnemiP;
                 Console.WriteLine(CombatString);
-                Methodes.MethodeCombat.AttaquePersonnage(ref personnage,EnnemiP);
+                Methodes.MethodeCombat.AttaquePersonnage(ref personnage,ref baddie);
             }
 
             Console.WriteLine(Intitule);

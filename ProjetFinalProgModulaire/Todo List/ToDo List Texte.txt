@@ -2,25 +2,25 @@
 	
 	finaliser combat de base
 		
-		-Loot
-		-equip
-		-ajout a inventaire
+		-Loot											// done
+		-equip											// done
+		-ajout a inventaire								 // done
 
 		-Ennemi Rstats + mod lvl
 		-persoE Randomstats + mod lvl
 
 
 	
-		-Max value stats (for speed / power spells etc)
-		-condition potion / parchemin in spells
-		-menu inventaire
-		-rest continue menu stats
+		-Max value stats (for speed / power spells etc)        // meh pas important atm
+		-condition potion / parchemin in spells					//done
+		-menu inventaire									    // done
+		-rest continue menu stats								// done
 	
 	attaque
 		-crit
 		-miss
 		-?breakweapon
-		-heal if full not cast go back to att or spells
+		-heal if full not cast go back to att or spells       
 			-same potion
 
 	
