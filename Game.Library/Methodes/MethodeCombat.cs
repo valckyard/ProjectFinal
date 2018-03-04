@@ -98,9 +98,9 @@ namespace Game.Library.Methodes
         {
             var attType = new ClasseTypeAttaque
             {
-                AttaqueArme = 60,
+                AttaqueArme = 30,
                 AttaqueSort = 30,
-                Item = 10
+                Item = 40
             };
 
 

@@ -52,6 +52,9 @@ namespace Game.Library.Classes.EntiteClasses
             //Experience
             Niveau = 0;
             Experience = 0;
+
+            ExperienceTotale = 0;
+            ValeurExp = 0;
             //SeuilExperience;
 
             //Stats
@@ -69,13 +72,17 @@ namespace Game.Library.Classes.EntiteClasses
 
             //Equipement
             ListeSorts = new List<Sort>();
+            Inventaire = new List<ObjInventaire>();
             Arme = null;
         }
 
         // Constructeur Vide
         public Personnage()
         {
+            ExperienceTotale = 0;
+            ValeurExp = 0;
             ListeSorts = new List<Sort>();
+            Inventaire = new List<ObjInventaire>();
         }
 
         public void AddXpEnnemi(Ennemi ennemi)
@@ -90,6 +97,7 @@ namespace Game.Library.Classes.EntiteClasses
             Experience += ennemi.ValeurExp;
         }
 
+        
 
         public void CheckLevelPlayer()
         {

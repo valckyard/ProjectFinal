@@ -28,7 +28,7 @@ namespace Game.Library.Classes.EntiteClasses
                 }
 
                 //Console.WriteLine("Quel sort voulez vous utiliser ?");
-                int spellreponse = rand.Next(1, ListeSorts.Count); // en read
+                int spellreponse = rand.Next(1, ListeSorts.Count+1); // en read
                 //while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
                 //{
                 //}
@@ -79,6 +79,7 @@ namespace Game.Library.Classes.EntiteClasses
                     }
                     else // ElementType.Lumiere
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp == 0)
                             Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
@@ -94,6 +95,7 @@ namespace Game.Library.Classes.EntiteClasses
                         }
 
                         Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         return true;
                     }
                 }
@@ -135,6 +137,7 @@ namespace Game.Library.Classes.EntiteClasses
                     }
                     else // ElementType.Lumiere
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp == 0)
                             Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
@@ -149,6 +152,7 @@ namespace Game.Library.Classes.EntiteClasses
                         }
 
                         Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         return true;
                     }
                 }

@@ -37,7 +37,7 @@ namespace Game.Library.Classes
                 return Choix = AttaqueChoisie.AttaqueArme;
             }
 
-            if (randomc <= spellAtt | randomc > AttaqueArme)
+            if (randomc <= spellAtt & randomc > AttaqueArme)
             {
                 return Choix = AttaqueChoisie.AttaqueSort;
             }

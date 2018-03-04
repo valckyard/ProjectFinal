@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -32,7 +33,20 @@ namespace TestConsoleJeu
 
             
             LoadAllContent();
-            Player = CreationPersonnage();
+
+
+            Player = new Personnage(PersonnageRace.Humain, PersonnageClasse.Magicien, "Alex", 100, 100, 19, 5, 5,
+                5)
+            {
+                Arme = new ObjArme("yeaaa", TypeElement.Air, 3),
+                Armure = new ObjArmure("PasUneArmure", TypeElement.Air, 2),
+                SeuilExperience = 200,
+                ListeSorts = ListeSorts
+            };
+            Player.Inventaire.Add(new ObjInventaire(new ObjConsumable("pete", TypeConsumable.Potion, TypeElement.Lumiere, 7)));
+            Player.Inventaire.Add(new ObjInventaire(new ObjConsumable("pete", TypeConsumable.Potion, TypeElement.Lumiere, 7)));
+
+
             var Client = new AffichageManager.AffichageManagerTest();
             Client.Init();
             //Client.SendLoop();
@@ -44,6 +58,7 @@ namespace TestConsoleJeu
             
            Player2 = new Personnage(PersonnageRace.Humain,PersonnageClasse.Magicien,"Pablo",100,5,5,5,5,5);
             Player2.Arme = new ObjArme("PabStick", TypeElement.Air, 2);
+            Player2.ValeurExp = 300;
             Player2.Armure = new ObjArmure("Pab String",TypeElement.Air,2);
             Console.WriteLine("Nom "+Player.Nom);
             Console.WriteLine(Player.Classe);
@@ -64,6 +79,7 @@ namespace TestConsoleJeu
             Console.ReadLine();
             Console.Clear();
 
+            Onrouledesnoeuds("Taxi");
 
            MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
            Affichage.Abort();
@@ -75,6 +91,18 @@ namespace TestConsoleJeu
 
 
             //loop
+        }
+        public static string Onrouledesnoeuds(string monnoeud)
+        {
+            string newnoeud = null;
+            foreach (var kvNoeud in DicStory)
+            {
+                if (kvNoeud.Key == monnoeud)
+                    kvNoeud.Value.Init(ref Player);
+                newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
+                break;
+            }
+            return Onrouledesnoeuds(newnoeud);
         }
 
         private static void LoadAllContent()
