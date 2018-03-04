@@ -1,9 +1,10 @@
 ﻿using System;
+using Game.Library.Classes.EntiteClasses;
 using Lidgren.Network;
 
 namespace TestConsoleJeu.AffichageManager
 {
-    public class AffichageManager
+    public class AffichageManagerTest
     {
         public NetClient Client;
 
@@ -12,7 +13,15 @@ namespace TestConsoleJeu.AffichageManager
             NetPeerConfiguration config = new NetPeerConfiguration("FinalProjet");
             Client = new NetClient(config);
             Client.Start();
-            Client.Connect("localhost", 14242);
+            var mOut = Client.CreateMessage();
+            mOut.Write(JeuProjetTest.Player.MpMax);
+            mOut.Write(JeuProjetTest.Player.MpActuel);
+            mOut.Write(JeuProjetTest.Player.PvMax);
+            mOut.Write(JeuProjetTest.Player.PvActuels);
+
+          
+            Client.Connect("localhost", 14242,mOut);
+            Client.FlushSendQueue();
         }
 
         public void SendLoop()
@@ -22,9 +31,7 @@ namespace TestConsoleJeu.AffichageManager
 
             while (!stop)
             {
-                var mOut = Client.CreateMessage();
-                mOut.ReadAllFields(JeuProjetTest.Player);
-                Client.SendMessage(mOut, Client.ServerConnection, NetDeliveryMethod.ReliableOrdered);
+                
 
 
                 while ((message = Client.ReadMessage()) != null)
@@ -32,8 +39,15 @@ namespace TestConsoleJeu.AffichageManager
                     switch (message.MessageType)
                     {
                         case NetIncomingMessageType.Data:
-                            {
-
+                        {
+                                message.ReadBoolean();
+                                var mOut = Client.CreateMessage();
+                                mOut.Write(JeuProjetTest.Player.MpMax);
+                                mOut.Write(JeuProjetTest.Player.MpActuel);
+                                mOut.Write(JeuProjetTest.Player.PvMax);
+                                mOut.Write(JeuProjetTest.Player.PvActuels);
+                                Client.SendMessage(mOut, Client.ServerConnection, NetDeliveryMethod.ReliableOrdered);
+                                Client.FlushSendQueue();
                             }
 
                             break;

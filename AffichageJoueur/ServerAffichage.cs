@@ -10,19 +10,24 @@ using Lidgren.Network;
 
 namespace AffichageJoueur
 {
-    class ServerAffichage
+   public class ServerAffichage
     {
         private static NetServer _server;
         private static List<NetPeer> _client;
         private static Personnage _player;
-        private Thread _affichage;
 
         public void Run()
         {
+            _player = new Personnage();
+            _player.MpActuel = 1;
+            _player.MpMax = 1;
+            _player.PvActuels = 1;
+            _player.PvMax = 1;
             _client = new List<NetPeer>();
             NetPeerConfiguration config = new NetPeerConfiguration("FinalProjet") {Port = 14242};
+            config.DisableMessageType(NetIncomingMessageType.ConnectionApproval);
             _server = new NetServer(config);
-            _affichage = new Thread(AffichageStats);
+            _server.Start();
 
             if (_server.Status == NetPeerStatus.Running)
             {
@@ -49,8 +54,15 @@ namespace AffichageJoueur
                     switch (message.MessageType)
                     {
                         case NetIncomingMessageType.Data:
-                            _player = new Personnage();
-                            message.ReadAllFields(_player);
+                            _player.MpMax = message.ReadInt32();
+                            _player.MpActuel = message.ReadInt32();
+                            _player.PvMax = message.ReadInt32();
+                            _player.PvActuels = message.ReadInt32();
+
+                            var mout = _server.CreateMessage();
+                            mout.Write(true);
+                            _server.SendMessage(mout, message.SenderConnection, NetDeliveryMethod.ReliableOrdered);
+                            _server.FlushSendQueue();
 
 
                             break;
@@ -59,12 +71,20 @@ namespace AffichageJoueur
                             Console.WriteLine(message.ReadString());
                             break;
                         case NetIncomingMessageType.StatusChanged:
+                            _player.MpMax = message.ReadInt32();
+                            _player.MpActuel = message.ReadInt32();
+                            _player.PvMax = message.ReadInt32();
+                            _player.PvActuels = message.ReadInt32();
+
+                            mout = _server.CreateMessage();
+                            mout.Write(true);
+                            _server.SendMessage(mout, message.SenderConnection, NetDeliveryMethod.ReliableOrdered);
+                            _server.FlushSendQueue();
                             Console.WriteLine(message.SenderConnection.Status);
                             if (message.SenderConnection.Status == NetConnectionStatus.Connected)
                             {
                                 //message.SenderConnection.Approve();
                                 _client.Add(message.SenderConnection.Peer);
-                                _affichage.Start();
                                 Console.WriteLine("{0} has connected.",
                                     message.SenderConnection.Peer.Configuration.LocalAddress);
                             }
@@ -72,7 +92,6 @@ namespace AffichageJoueur
                             if (message.SenderConnection.Status == NetConnectionStatus.Disconnected)
                             {
                                 _client.Remove(message.SenderConnection.Peer);
-                                _affichage.Abort();
                                 Console.WriteLine("{0} has disconnected.",
                                     message.SenderConnection.Peer.Configuration.LocalAddress);
                             }
@@ -96,14 +115,13 @@ namespace AffichageJoueur
 
         }
 
-        public static void AffichageStats()
+        public void AffichageStats()
         {
             var timetoget = DateTime.Now.AddMilliseconds(300);
 
             while (true)
             {
-                if (_player != null)
-                {
+          
                     var timenow = DateTime.Now;
                     if (timenow >= timetoget)
                     {
@@ -125,4 +143,3 @@ namespace AffichageJoueur
             }
         }
     }
-}

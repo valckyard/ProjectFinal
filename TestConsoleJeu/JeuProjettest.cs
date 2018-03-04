@@ -21,7 +21,7 @@ namespace TestConsoleJeu
         public static Dictionary<string,Noeud> DicStory;
         public static Personnage Player;
         public static Personnage Player2;
-       // public static Thread Affichage;
+        public static Thread Affichage;
 
         public JeuProjetTest()
         { }
@@ -30,16 +30,17 @@ namespace TestConsoleJeu
         {
             LoadAllContent();
 
-            //Affichage = new Thread(start: AffichageStats);
-            //Affichage.Start();
-            var Client = new ProjetFinalProgModulaire.AffichageManager.AffichageManager();
-            Client.Init();
+            
             LoadAllContent();
             Player = CreationPersonnage();
-            Client.SendLoop();
+            var Client = new AffichageManager.AffichageManagerTest();
+            Client.Init();
+            //Client.SendLoop();
 
-            Player = new Personnage();
-            Player = CreationPersonnage();
+            Affichage = new Thread(Client.SendLoop);
+            Affichage.Start();
+                Thread.Sleep(300);
+   
             
            Player2 = new Personnage(PersonnageRace.Humain,PersonnageClasse.Magicien,"Pablo",100,5,5,5,5,5);
             Player2.Arme = new ObjArme("PabStick", TypeElement.Air, 2);
@@ -65,7 +66,7 @@ namespace TestConsoleJeu
 
 
            MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
-           // Affichage.Abort();
+           Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
