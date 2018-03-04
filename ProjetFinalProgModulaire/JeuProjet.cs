@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Library;
+using ProjetFinalProgModulaire;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Methodes;
-using ProjetFinalProgModulaire;
+using ProjetFinalProgModulaire.AffichageManager;
+using Lidgren.Network;
 using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
 
 namespace ProjetFinalProgModulaire
@@ -24,8 +26,11 @@ namespace ProjetFinalProgModulaire
 
         public void Init()
         {
+          var Client = new AffichageManager.AffichageManager();
+            Client.Init();
             LoadAllContent();
             Player = CreationPersonnage();
+            Client.SendLoop();
 
             //Console.WriteLine("Nom "+Player.Nom);
             //Console.WriteLine(Player.Classe);

@@ -21,7 +21,7 @@ namespace TestConsoleJeu
         public static Dictionary<string,Noeud> DicStory;
         public static Personnage Player;
         public static Personnage Player2;
-        public static Thread Affichage;
+       // public static Thread Affichage;
 
         public JeuProjetTest()
         { }
@@ -30,9 +30,13 @@ namespace TestConsoleJeu
         {
             LoadAllContent();
 
-            Affichage = new Thread(start: AffichageStats);
-            Affichage.Start();
-
+            //Affichage = new Thread(start: AffichageStats);
+            //Affichage.Start();
+            var Client = new ProjetFinalProgModulaire.AffichageManager.AffichageManager();
+            Client.Init();
+            LoadAllContent();
+            Player = CreationPersonnage();
+            Client.SendLoop();
 
             Player = new Personnage();
             Player = CreationPersonnage();
@@ -61,7 +65,7 @@ namespace TestConsoleJeu
 
 
            MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
-            Affichage.Abort();
+           // Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
@@ -79,7 +83,7 @@ namespace TestConsoleJeu
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
             LootTable = LootTableCompile();
-            //DicStory = LoadingContent.LoadingNoeuds();
+            DicStory = LoadingContent.LoadingNoeuds();
 
         }
 
