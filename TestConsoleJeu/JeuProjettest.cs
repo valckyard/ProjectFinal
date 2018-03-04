@@ -32,7 +32,6 @@ namespace TestConsoleJeu
             LoadAllContent();
 
             
-            LoadAllContent();
 
 
             Player = new Personnage(PersonnageRace.Humain, PersonnageClasse.Magicien, "Alex", 100, 100, 19, 5, 5,
@@ -98,10 +97,15 @@ namespace TestConsoleJeu
             foreach (var kvNoeud in DicStory)
             {
                 if (kvNoeud.Key == monnoeud)
+                {
                     kvNoeud.Value.Init(ref Player);
-                newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
-                break;
+                    newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
+                    break;
+                }
+
+
             }
+            
             return Onrouledesnoeuds(newnoeud);
         }
 
