@@ -68,7 +68,7 @@ namespace ProjetFinalProgModulaire
                 { "Pont", new Noeud("Vous avez traversé la riviere et vous arrivez au bout du pont.\n" +
                                     "Devant vous,vous avez un boulevard où vous pourriez appeler un taxi ou\n" +
                                     "vous preferez prendre le sentier plus discret sur votre gauche qui longe\n" +
-                                    " la rivière.", null, null,
+                                    " la rivière.", null, null, 
                                     new Dictionary<int, string>()
                                     {
                                         { 1,"Taxi"},

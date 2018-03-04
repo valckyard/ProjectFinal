@@ -11,6 +11,7 @@ namespace Game.Library.Classes
         public string CombatString { get; set; }
         public Ennemi Ennemi { get; set; }
         public Personnage EnnemiP { get; set; }
+        public bool MortOuRandom { get; set; }
         public Dictionary<int,string> ChoixReponses { get; set; }
 
         public Noeud()
@@ -18,7 +19,7 @@ namespace Game.Library.Classes
                 
         }
 
-        public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, Dictionary<int, string> choixReponses)
+        public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, bool mortOuRandom, Dictionary<int, string> choixReponses)
         {
             Intitule = intitule;
             Ennemi = ennemi;
@@ -48,12 +49,28 @@ namespace Game.Library.Classes
 
         public string ChoixJoueur(ref Personnage personnage)
         {
-            foreach (var kv in ChoixReponses)
+            Random rand = new Random();
+            if (MortOuRandom == true)
             {
-                Console.Write($"{kv.Key} -- ");
-                Console.WriteLine($"{kv.Value}");
+                if (ChoixReponses.Count == 1)
+                {
+                    return ChoixReponses.Values.ToString();
+                    
+                }
+                else
+                {
+                    return ChoixReponses.Values.ElementAt(rand.Next(0, ChoixReponses.Count));
+                    
+                }
             }
-
+            else
+            {
+                foreach (var kv in ChoixReponses)
+                {
+                    Console.Write($"{kv.Key} -- ");
+                    Console.WriteLine($"{kv.Value}");
+                }
+            }
             int x;
             while (int.TryParse(Console.ReadLine(),out x)== false)
             {
