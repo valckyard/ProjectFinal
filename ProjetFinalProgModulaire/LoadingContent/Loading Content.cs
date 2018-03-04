@@ -64,7 +64,7 @@ namespace ProjetFinalProgModulaire
             var dicnoeud = new Dictionary<string, Noeud>()
             {
                 //Apres introduction histoire voici la premiere question --- TAXI OU SENTIER
-                
+                //#01
                 { "Pont", new Noeud("Vous avez traversé la riviere et vous arrivez au bout du pont.\n" +
                                     "Devant vous,vous avez un boulevard où vous pourriez appeler un taxi ou\n" +
                                     "vous preferez prendre le sentier plus discret sur votre gauche qui longe\n" +
@@ -77,7 +77,7 @@ namespace ProjetFinalProgModulaire
                                )
                 },
 
-                //Vous avez décidé de prendre le taxi                --  RACINE OU Boul. Univ
+                //#02 Vous avez décidé de prendre le taxi                --  RACINE OU Boul. Univ
                 {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez dans" +
                                    "le taxi. Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
                                    " la ville et ainsi arriver derrière votre objectif ou vous préférez tenter passer\n" +
@@ -90,7 +90,7 @@ namespace ProjetFinalProgModulaire
                                )
                 },
 
-                //3  Marche  -- Combat
+                //#03  Marche  -- Combat
                 {"Sentier", new Noeud("Vous marchez dans le sentier et après quelques minutes, vous arrivez devant une\n" +
                                       "fontaine d'eau. Vous regardez au loin sur votre droite, vous voyez un terrain\n" +
                                       "vague l'autre coté du boulevard ou tout semble tranquille ou vous décidez\n" +
@@ -103,7 +103,7 @@ namespace ProjetFinalProgModulaire
                     )
                 },
 
-                //4  
+                //#04  
                 {"Racine", new Noeud("Vous arrivez à la hauteur de la rue Racine et vous tournez à gauche. " +
                                      "Il y a une voie de libre et un homme est en plein milieu de celle-ci." +
                                      "Cela ressemble à un guet-apen. Vous ordonnez au chauffeur d'arrêter ou au contraire" +
@@ -117,9 +117,9 @@ namespace ProjetFinalProgModulaire
                     )
                 },
 
-                // 5  
+                //#05  
                 {"Boul.Université", new Noeud("Après un peu plus de 200m la taxi tombe en panne. Vous regardez le chauffeur\n" +
-                                              "d'un air suspicieux.....", null, null,
+                                              "d'un air suspicieux.....", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Argumente"},
@@ -129,10 +129,10 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                // 6 
+                //#06 
                 {"Hangard", new Noeud(
                                     "Vous contournez le très long hangard sans être repéré. Arrivez au bout, vous entendez du bruit\n" +
-                                    "sur le bateau sur votre gauche.", null, null,
+                                    "sur le bateau sur votre gauche.", null, null, false,
                             new Dictionary<int, string>()
                             {
                                 { 1,"La Marjolaine"},
@@ -142,7 +142,7 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                //  7 
+                //#07 
                 {"Terrain Vague", new Noeud("Vous vous diriger vers la droite où vous suivez le chemin de pierre.\n" +
                                             "Arrivez au boulevard, vous remarquez que c'est le calme plat de l'autre côté de\n" +
                                             "la route. Vous trouvez que c'est trop tranquille justement, mais, vous avez\n" +
@@ -152,7 +152,7 @@ namespace ProjetFinalProgModulaire
                                             "tranquillement sur le terrain en direction de votre objectif final\n" +
                                             "qui se trouve tout en haut au sommet du haut de la ville. Vous apercez des escaliers" +
                                             "devant vous que vous vous empressez d'atteindre.\n\n",
-                                            null, null,
+                                            null, null, false,
                         new Dictionary<int, string>()
                         {
                             {1,"Escalier"},
@@ -164,9 +164,9 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                //   8 -- Combat
+                //#08 -- Combat
                 {"Arrêter", new Noeud("Vous sortez du taxi et vous vous avancer vers l'homme d'un pas très prudent. Arrivé à" +
-                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.", null, null,
+                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"A pied"},
@@ -177,19 +177,19 @@ namespace ProjetFinalProgModulaire
                 },
 
 
-                //9
+                //#09
                 {"Continuer", new Noeud("Vous criez au chauffeur de pas s'arrêter ou vous lui trancherez la gorge sans hésitez." +
                                         "Incapable de peut-être tuer un homme innocent, le chauffeur braque à gauche, perd" +
                                         "la maitrise de son taxi et vous n'avez aucun chance en entrant à plein vitesse dans" +
-                                        "le mur de brique de l'immeuble devant vous.", null, null,
+                                        "le mur de brique de l'immeuble devant vous.", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"MORT"},
                         }
                     )
                 },
-                //10 Combat
-                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, null,
+                //#10 Combat
+                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vous tentez de redemarrer le taxi"},
@@ -199,9 +199,9 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                // 11  
+                //#11  
                 {"Escalier", new Noeud("Vous traversez le terrain vague sans être répérer. Vous apercevez un escalier en très mauvaise" +
-                                       "état qui mène au haut de la colline", null, null,
+                                       "état qui mène au haut de la colline", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathédrale"},
@@ -211,10 +211,10 @@ namespace ProjetFinalProgModulaire
                 },
                 
                 
-                //  12
+                //#12
                 {"La Marjolaine", new Noeud("Vous sautez à bord du bateau, et après quelques recherches, vous rendez compte\n" +
                                             "que c'était le vent qui a fait rouler une bouteile sur le pont. Vous retournez\n" +
-                                            "vers la sortie.", null, null,
+                                            "vers la sortie.", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Derive"},
@@ -223,11 +223,11 @@ namespace ProjetFinalProgModulaire
                     )
                 },
 
-                //12a
+                //#13
                 {"Derive", new Noeud("Le bateau n'était pas amarré et pendant la bagarre, vous avez dérivé.\n" +
                                      "Après quelques minutes de dérive, coup de chance, le bateau s'échoue sur le pilier\n" +
                                      "du pont. Vous réussissez à grimper et vous marchez en direction de la ville où\n" +
-                                     "vous vous trouviez il y a à peine quelques minutes. ", null, null,
+                                     "vous vous trouviez il y a à peine quelques minutes. ", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Pont"},
@@ -236,12 +236,12 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                // 13
+                //#14
                 {"Vers La Cathedrale", new Noeud("Sur le chemin de la Cathédrale, vous atteingnez enfin le haut de la colline,\n" +
                                             "et vous vous retrouvez sur le coin d'un immeuble sur la rue Racine. Sur la gauche à 200 mètres" +
                                             " se trouve La Cathédrale. POur y accéder, vous devez traverser en diagonale la rue." +
                                             "La rue semble déserte, mais c'est très à découvert. En avant de vous, de l'autre côté de la rue, " +
-                                            "vous avez l'Hotel du Sorcier où vient d'entrer 2 Guerriers. Quel choix ferez-vous ? ", null, null,
+                                            "vous avez l'Hotel du Sorcier où vient d'entrer 2 Guerriers. Quel choix ferez-vous ? ", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Hotel"},
@@ -250,13 +250,11 @@ namespace ProjetFinalProgModulaire
                     )
                 },
 
-
                 
-                
-                //16   
+                //#15   
                 {"Vous tentez de redemarrer le taxi", new Noeud("Vous tentez de redémarrer le taxi par vous même. Lorsque vous apercevez le chauffeur" +
                                               "s'éloigner à pleine jambe du taxi, vous comprenez ce qui se passe. Une déflagration" +
-                                              "se fait attendre et s'en fait du taxi et de tout ce qui s'y trouve. ", null, null,
+                                              "se fait attendre et s'en fait du taxi et de tout ce qui s'y trouve. ", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"MORT"},
@@ -265,8 +263,9 @@ namespace ProjetFinalProgModulaire
                 },
 
                 
-                //17   
-                {"A pied", new Noeud("N'ayant pas de temps à perdre vous continuez votre route en direction de votre objectif sur la rue racine", null, null,
+                //#16  
+                {"A pied", new Noeud("N'ayant pas de temps à perdre vous continuez votre route en direction de votre objectif sur la rue" +
+                                     "racine", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathedrale"},
@@ -277,50 +276,51 @@ namespace ProjetFinalProgModulaire
                     )
                 },
 
-                //18   
+                //#17   
                 {"Hotel", new Noeud("Vous entrez dans l'hotel et vous arrivez dans le vestibule de l'hotel.  Les 2 barbares ont disparus." +
                                     "Devant vous, vous voyez la porte qui donne vers l'arrière de l'hôtel. Cependant, vous devez traverser" +
                                     "un couloir qui semble très dangereux avec ses nombreuses portes. Vous courrez tout de même le risque" +
                                     "et vous tente de rejoindre la porte arrière ou vous tentez de passer à l'étage par l'escalier " +
                                     "afin d'avoir une meilleure vision. Avant même d'avoir pris votre décision, vous sortez du vestibule" +
-                                    "en faisant quelques pas.  ", null, null,
+                                    "en faisant quelques pas.  ", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Etage"},
-
                             { 2,"Porte de derrière"}
                         }
                     )
                 },
 
-                {"Etage", new Noeud("Vous montez à l'étage par l'escalier. Malheuresuement pour vous" +
-                                    "bla bla bla", null, null,
+                //#18
+                {"Etage", new Noeud("Vous montez à l'étage par l'escalier. Malheureusement pour vous, on vous y attendait" +
+                                    "Les deux guerriers que vous aviez vu entrer et le reste de la bande vous saute dessus, et vous" +
+                                    "acheve et vous éclate la tronche !!!!", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"MORT"},
-
                         }
                     )
                 },
 
-                {"Porte de derrière", new Noeud("Après avoir traversé le halle de l'hotel, vous arrivez au couloir. ", null, null,
+                //#19
+                {"Porte de derrière", new Noeud("Après avoir traversé le halle de l'hotel, vous arrivez au couloir. ", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Cour de l'hotel"},
-
                             { 2,"Rendus au milieu de couloir, vous vous rendez compte dans quel pétrin vous êtes," +
                                 "les 6 portes s'ouvrent d'un coup et on vous tombe dessus sans que vous ayez le temps" +
-                                "de faire quoi que ce soit."}
+                                "de faire quoi que ce soit."
+                            }
                         }
                     )
                 },
 
-                //19  
+                //#20  
                 {"Cour de l'hotel", new Noeud("Vous ouvrez la porte de l'hotel et vous voilà tout prêt de votre objectif. Vous vous rendez tout" +
-                                              "près de la clôture en bordure de la rue, ", null, null,
+                                              "près de la clôture en bordure de la rue, ", null, null, true,
                         new Dictionary<int, string>()
                         {
-                            { 1,"E"},
+                            { 1,"Traversez la rue"},
 
                             { 2,"La vue de votre objectif à quelques mètres, vous a fait perdre votre vigilence et vous 'avez pas remarquer les" +
                                 "$$$$$$$$$ qui vous attendaient à l'étage. Leur $$$$$$$ vous réduisent à bouillis. "}
@@ -329,33 +329,34 @@ namespace ProjetFinalProgModulaire
                 },
 
 
-                //19  
-            {"Traversez la rue", new Noeud("Vous attendez que la rue soit déserte, et vous vous lancez en direction de la " +
-                                                 "Cathédrale.", null, null,
+                //#21  
+                {"Traversez la rue", new Noeud("Vous attendez que la rue soit déserte, et vous vous lancez en direction de la " +
+                                                 "Cathédrale.", null, null, true,
                     new Dictionary<int, string>()
                     {
                         { 1,"Entrez dans la cathdrale"},
 
                         { 2,"Lorsque vous arrivez au milieu, vous entendez un léger déclic et vous sentez une grande chaleur" +
                             "vous envahir. Une rue minée vous attendait et vous n'aviez aucune chance de la traverser.  "}
-                    }
-                )
-            },
-
-                {"Entrez dans la Cathedrale", new Noeud("Vous arrivez devant la Cathédrale et vous entrer par la seule issue encore" +
-                                                        "disponible, les 2 grandes portes centrales. Une fois à l'intérieur, vous devez" +
-                                                        "faire vite et atteindre l'objectif, qui se trouve sous le plancher derrière" +
-                                                        "l'hotel de l'église. Vous y arrivez rapidement et ouvrez la trappe. Un portable" +
-                                                        "vous y attend ou devez changer changer la bonne de code afin de .....", null, null,
-                        new Dictionary<int, string>()
-                        {
-                            { 1,""},
-
-                            { 2,""}
                         }
                     )
                 },
-                {"MORT", new Noeud("Vous etes mort", null, null,
+
+                //#22
+                {"Entrez dans la Cathedrale", new Noeud("Vous arrivez devant la Cathédrale et vous entrer par la seule issue encore" +
+                                                        "disponible, les 2 grandes portes centrales. Une fois à l'intérieur, vous devez" +
+                                                        "faire vite et atteindre l'objectif, qui se trouve sous le plancher derrière" +
+                                                        "l'hotel de l'église. Vous y arrivez rapidement et ouvrez la trappe sous le plancher." +
+                                                        "Un portable vous y attend.", null, null, true, //valider si true/false
+                        new Dictionary<int, string>()
+                        {
+                            { 1,"Fin"}
+                        }
+                    )
+                },
+
+                //#23
+                {"MORT", new Noeud("Vous etes mort", null, null, true,   //valider si true/false
                         new Dictionary<int, string>()
                         {
                             { 1, null},

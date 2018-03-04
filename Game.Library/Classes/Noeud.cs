@@ -15,14 +15,14 @@ namespace Game.Library.Classes
         public Ennemi Ennemi { get; set; }
         public Personnage EnnemiP { get; set; }
         public bool MortOuRandom { get; set; }
-        public Dictionary<int,string> ChoixReponses { get; set; }
+        public Dictionary<int, string> ChoixReponses { get; set; }
 
         public Noeud()
         {
-                
         }
 
-        public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, bool mortOuRandom, Dictionary<int, string> choixReponses)
+        public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, bool mortOuRandom,
+            Dictionary<int, string> choixReponses)
         {
             Intitule = intitule;
             Ennemi = ennemi;
@@ -36,20 +36,19 @@ namespace Game.Library.Classes
             {
                 var baddie = Ennemi;
                 Console.WriteLine(CombatString);
-                Methodes.MethodeCombat.AttaqueEnnemi(ref personnage,ref baddie);
+                Methodes.MethodeCombat.AttaqueEnnemi(ref personnage, ref baddie);
             }
 
             if (EnnemiP != null)
             {
                 var baddie = EnnemiP;
                 Console.WriteLine(CombatString);
-                Methodes.MethodeCombat.AttaquePersonnage(ref personnage,ref baddie);
+                Methodes.MethodeCombat.AttaquePersonnage(ref personnage, ref baddie);
             }
 
             Console.WriteLine(Intitule);
-            ChoixJoueur(ref personnage);
         }
-        
+
         public string ChoixJoueur(ref Personnage personnage)
         {
             Random rand = new Random();
@@ -58,7 +57,6 @@ namespace Game.Library.Classes
                 if (ChoixReponses.Count == 1)
                 {
                     return ChoixReponses.Values.ToString();
-                    
                 }
                 else
                 {
@@ -66,14 +64,16 @@ namespace Game.Library.Classes
 
                     foreach (var reponse in ChoixReponses)
                     {
-                        if (z == reponse.Key)
+                        if (z == ChoixReponses.Count)
+                        {
+                            Console.WriteLine(reponse.Value);
+                            return "Mort";
+                        }
+                        else
                         {
                             return reponse.Value;
-
                         }
                     }
-                   
-                    
                 }
             }
             else // !MortOuRandom
@@ -85,12 +85,11 @@ namespace Game.Library.Classes
                 }
             }
             int x;
-            while (int.TryParse(Console.ReadLine(),out x)== false)
+            while (int.TryParse(Console.ReadLine(), out x) == false)
             {
-                
             }
 
-            if (x<1 & x>ChoixReponses.Count)
+            if (x < 1 & x > ChoixReponses.Count)
             {
                 ChoixJoueur(ref personnage);
             }
@@ -105,7 +104,6 @@ namespace Game.Library.Classes
                 }
             }
             return newkey;
-
         }
     }
 }

@@ -11,7 +11,11 @@ namespace TestConsoleJeu
         static void Main(string[] args)
         {
             var jeu = new JeuProjetTest();
-            jeu.Init();
+            do
+            {
+                jeu.Init();
+
+            } while (true);
 
         }
 

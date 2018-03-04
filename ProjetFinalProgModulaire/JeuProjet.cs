@@ -61,12 +61,12 @@ namespace ProjetFinalProgModulaire
                     Console.Clear();
                     Console.WriteLine((DicStory[valueKey].Intitule) + "\n\n");
                     //Affiche les choix de reponse possible
-
+                    
                     if ((DicStory[valueKey].Ennemi == null && DicStory[valueKey].EnnemiP == null) &&
                         DicStory[valueKey].ChoixReponses[2].Length > 50)
                     {
                         Console.WriteLine(
-                            "Pas d'ennemis et Chortoix 2 long alors Dead"); //POurrait permettre un aleatoir de continuer avec rep 1...
+                            "Pas d'ennemis et Chortoix 2 long alors Random ou Dead"); //POurrait permettre un aleatoir de continuer avec rep 1...
                         Console.ReadKey();
                         valueKey = DicStory[valueKey].ChoixReponses[1];
 
