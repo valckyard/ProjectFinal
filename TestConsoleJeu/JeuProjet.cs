@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Game.Library;
+using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
+using Game.Library.Enums;
 using Game.Library.Methodes;
 using ProjetFinalProgModulaire;
+using static Game.Library.Classes.EntiteClasses.Personnage;
 using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
 
-namespace ProjetFinalProgModulaire
+namespace TestConsoleJeu
 {
-    public class JeuProjet
+    public class JeuProjetTest
     {
         public static List<ObjArme> ListeArmes;
         public static List<Sort> ListeSorts;
@@ -19,15 +20,26 @@ namespace ProjetFinalProgModulaire
         public static List<ObjInventaire> LootTable;
         public static Dictionary<string,Noeud> DicStory;
         public static Personnage Player;
+        public static Personnage Player2;
+        public static Thread Affichage;
 
-        public JeuProjet()
+        public JeuProjetTest()
         { }
 
         public void Init()
         {
             LoadAllContent();
-            Player = CreationPersonnage();
 
+            Affichage = new Thread(start: AffichageStats);
+            Affichage.Start();
+
+
+            Player = new Personnage();
+            Player = CreationPersonnage();
+            
+           Player2 = new Personnage(PersonnageRace.Humain,PersonnageClasse.Magicien,"Pablo",100,5,5,5,5,5);
+            Player2.Arme = new ObjArme("PabStick", TypeElement.Air, 2);
+            Player2.Armure = new ObjArmure("Pab String",TypeElement.Air,2);
             Console.WriteLine("Nom "+Player.Nom);
             Console.WriteLine(Player.Classe);
             Console.WriteLine(Player.Race);
@@ -44,15 +56,19 @@ namespace ProjetFinalProgModulaire
             Console.WriteLine("PM "+Player.PuissanceMagique);
             Console.WriteLine(Player.SeuilExperience);
             Console.WriteLine(Player.ValeurExp);
-     
+            Console.ReadLine();
+            Console.Clear();
 
+
+           MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
+            Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
             // V
             //Combat module
-            
-            
+
+
             //loop
         }
 
@@ -63,7 +79,7 @@ namespace ProjetFinalProgModulaire
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
             LootTable = LootTableCompile();
-            DicStory = LoadingContent.LoadingNoeuds();
+            //DicStory = LoadingContent.LoadingNoeuds();
 
         }
 
@@ -136,6 +152,33 @@ namespace ProjetFinalProgModulaire
             }
 
             return Player;
+        }
+
+        public static void AffichageStats()
+        {
+            var timetoget = DateTime.Now.AddMilliseconds(300);
+
+            while (true)
+            {
+                var timenow = DateTime.Now;
+                if (timenow >= timetoget)
+                {
+                    Console.SetCursorPosition(0,8);
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.Write("-----------------------\n||");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(" HP:" + Player.PvActuels + "/" + Player.PvMax);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(" MP :" + Player.MpActuel + "/" + Player.MpMax);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write("||\n-----------------------");
+                    Console.SetCursorPosition(0, 0);
+                    timetoget = DateTime.Now.AddMilliseconds(300);
+                }
+
+            }
+
         }
 
     }

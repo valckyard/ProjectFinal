@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
 
@@ -17,6 +18,7 @@ namespace Game.Library.Classes.EntiteClasses
         public double ValeurExp { get; set; }
         public double Experience { get; set; }
         public double SeuilExperience { get; set; }
+        public double ExperienceTotale { get; set; }
 
         //Stats
         public int PvActuels { get; set; }
@@ -51,11 +53,10 @@ namespace Game.Library.Classes.EntiteClasses
             Niveau = 0;
             Experience = 0;
             //SeuilExperience;
-            ValeurExp = Experience / 3;
 
             //Stats
-            PvActuels = pvMax;
             PvMax = pvMax;
+            PvActuels = pvMax;
 
             MpMax = mpMax;
             MpActuel = mpMax;
@@ -77,12 +78,24 @@ namespace Game.Library.Classes.EntiteClasses
             ListeSorts = new List<Sort>();
         }
 
-       
+        public void AddXpEnnemi(Ennemi ennemi)
+        {
+            ExperienceTotale += ennemi.ValeurExp;
+            Experience += ennemi.ValeurExp;
+        }
+
+        public void AddXpPersonnage(Personnage ennemi)
+        {
+            ExperienceTotale += ennemi.ValeurExp;
+            Experience += ennemi.ValeurExp;
+        }
 
 
         public void CheckLevelPlayer()
         {
-            if (Experience >= SeuilExperience)
+            ValeurExp = ExperienceTotale / 3;
+
+           while (Experience >= SeuilExperience)
             {
                 Experience -= SeuilExperience;
                 SeuilExperience = SeuilExperience * 1.5;
@@ -163,6 +176,154 @@ namespace Game.Library.Classes.EntiteClasses
             }
 
             return false;
+        }
+
+        public void MenuInventaire()
+        {
+            AfficherInventaire();
+            Console.Write($"Que voulez vous faire ? \n 1 -- Equipper \n 2 -- Voir Les Statistiques \n 3 -- Sortir de L'Inventaire \n Choix : ");
+            int x;
+            while (int.TryParse(Console.ReadLine(), out x)==false)
+            {}
+
+            if (x<1 & x> Inventaire.Count)
+            {
+                MenuInventaire();
+            }
+
+            switch (x)
+            {
+                case 1:
+                   EquiperArmeArmure();
+                    break;
+                case 2:
+                    Console.Write($"Quel Objet ? \n Choix : ");
+                    int y;
+                    while (int.TryParse(Console.ReadLine(), out y) == false)
+                    { }
+                    if (y < 1 & y > Inventaire.Count) MenuInventaire();
+
+                    // afficher item stats
+                    ObjInventaire choisi = Inventaire.ElementAt(y);
+                    AfficherStatsItem(choisi);
+                    MenuInventaire();
+                        break;
+                case 3:
+                    break;
+            }
+        }
+
+        public void AfficherStatsItem(ObjInventaire choisi)
+        {
+            if (choisi.Armure != null)
+            {
+                Console.WriteLine($"Nom : {choisi.Armure.NomObjet}\n" +
+                                  $"Element : {choisi.Armure.TypeElement}\nDefense : {choisi.Armure.Defense}");
+            }
+            if (choisi.Arme != null)
+            {
+                Console.WriteLine($"Nom : {choisi.Arme.NomObjet} \n" +
+                                  $"Element : {choisi.Arme.TypeElement}\nPuissance : {choisi.Arme.Puissance}");
+            }
+            else
+            {
+                Console.WriteLine($"Nom : {choisi.ObjetCons.NomObjet} \nType : {choisi.ObjetCons.TypeConsumable}\n" +
+                                  $"Element : {choisi.ObjetCons.TypeElement}\nPuissance : {choisi.ObjetCons.Puissance}");
+            }
+
+        }
+
+        public void EquiperArmeArmure()
+        {
+            var equipinv = new Dictionary<int, ObjInventaire>();
+            int count = 1;
+            foreach (var objet in Inventaire)
+            {
+                if (objet.Armure != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.Armure.NomObjet}");
+                    equipinv.Add(count, objet);
+                }
+
+                if (objet.Arme != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.Arme.NomObjet}");
+                    equipinv.Add(count, objet);
+                }
+              
+                ++count;
+            }
+
+            Console.Write($"Que voulez vous faire ? \n 1 -- Equipper \n 2 -- Retour a l'Inventaire \n Choix : ");
+            int x;
+            while (int.TryParse(Console.ReadLine(), out x) == false)
+            { }
+            if (x < 1 & x > equipinv.Count )
+            {
+              EquiperArmeArmure();
+            }
+
+            switch (x)
+            {
+                case 1:
+                    Console.Write($"Quelle Arme ou Armure ? \n Choix : ");
+                    int y;
+                    while (int.TryParse(Console.ReadLine(), out y) == false)
+                    { }
+                    if (y < 1 & y > equipinv.Count)
+                    {
+                        EquiperArmeArmure();
+                    }
+                    foreach (var kv in equipinv)               {
+
+                        if (kv.Key == y)
+                        {
+                            if (kv.Value.Armure != null)
+                            {
+                               Inventaire.Add(new ObjInventaire(Armure));
+                                Armure = kv.Value.Armure;
+                                Inventaire.RemoveAt(count -1);
+                            }
+                            else
+                            {
+                                Inventaire.Add(new ObjInventaire(Arme));
+                                Arme = kv.Value.Arme;
+                                Inventaire.RemoveAt(count - 1);
+                            }
+
+                        }
+                    }
+
+                    break;
+                case 2:
+                    MenuInventaire();
+                    break;
+            }
+
+        }
+
+        private void AfficherInventaire()
+        {
+            int count = 1;
+            foreach (var objet in Inventaire)
+            {
+                if (objet.ObjetCons != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.ObjetCons.NomObjet}");
+                }
+
+                if (objet.Arme != null)
+                {
+                    Console.WriteLine($"{count} -- {objet.Arme.NomObjet}");
+                }
+
+                else
+                {
+                    Console.WriteLine($"{count} -- {objet.Armure.NomObjet}");
+                }
+
+                ++count;
+            }
         }
     }
 }

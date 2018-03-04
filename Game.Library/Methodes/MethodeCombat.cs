@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
+using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.EntiteClasses;
 using Game.Library.Enums;
@@ -134,7 +136,7 @@ namespace Game.Library.Methodes
             return chances;
         }
 
-        public static void AttaquePersonnage(ref Personnage persJoueur,Personnage persEnnemi)
+        public static void AttaquePersonnage(ref Personnage persJoueur,ref Personnage persEnnemi)
         {
             bool win = false;
 
@@ -170,28 +172,35 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(Defenseur.ValeurExp);
+          persJoueur.AddXpPersonnage(persEnnemi);
             persJoueur.CheckLevelPlayer();
         }
 
 
         private static void Attaque(Personnage attaquant, ref Personnage defenseur)
         {
-            while (true)
+            bool successoption = false;
+
+            while (!successoption)
             {
+             
+
                 var typeatt = TypeAttaquePersonnage(attaquant);
-                bool successoption = true;
 
                 switch (typeatt)
                 {
                     case AttaqueChoisie.AttaqueArme:
                         attaquant.FrapperPersonnage(ref defenseur);
+                        successoption = true;
+                        Thread.Sleep(500);
                         break;
                     case AttaqueChoisie.AttaqueSort:
                         successoption = attaquant.LancerSortVsPerso(ref defenseur,null);
+                        Thread.Sleep(500);
                         break;
                     case AttaqueChoisie.Item:
                         successoption = attaquant.UtiliserItemVsPerso(ref defenseur);
+                        Thread.Sleep(500);
                         break;
                 }
 
@@ -205,7 +214,7 @@ namespace Game.Library.Methodes
         }
 
 
-        public static void AttaqueEnnemi(ref Personnage persJ,Ennemi baddie)
+        public static void AttaqueEnnemi(ref Personnage persJ, ref Ennemi baddie)
         {
             bool win = false;
             var cond = persJ.Vitesse > baddie.Vitesse ? AttaqueCondition.Attaque : AttaqueCondition.Defense;
@@ -272,7 +281,7 @@ namespace Game.Library.Methodes
                 }
             }
 
-            // Attaquant.AddXP(baddie.ValeurExp);
+            persJ.AddXpEnnemi(baddie);
             persJ.CheckLevelPlayer();
         }
 

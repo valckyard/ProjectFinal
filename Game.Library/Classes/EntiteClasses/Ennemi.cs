@@ -1,4 +1,6 @@
-﻿using Game.Library.Enums;
+﻿using System.Collections.Generic;
+using Game.Library.Classes.ObjClasses;
+using Game.Library.Enums;
 
 namespace Game.Library.Classes.EntiteClasses
 {
@@ -11,10 +13,13 @@ namespace Game.Library.Classes.EntiteClasses
         public int Puissance { get; set; }
         public int Defense { get; set; }
         public int Vitesse { get; set; }
+        public int ValeurExp { get; set; }
+        public int LootChances { get; set; }
 
         public Ennemi(){}
 
-        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, TypeElement typeElement, int puissance, int defense, int vitesse)
+        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, TypeElement typeElement, int puissance, int defense,
+            int vitesse, int valeurExp, int lootChances)
         {
             Name = name;
             Pv = hp;
@@ -23,6 +28,9 @@ namespace Game.Library.Classes.EntiteClasses
             Puissance = puissance;
             Defense = defense;
             Vitesse = vitesse;
+            ValeurExp = valeurExp;
+            LootChances = lootChances;
         }
-    }
+
+     }
 }
