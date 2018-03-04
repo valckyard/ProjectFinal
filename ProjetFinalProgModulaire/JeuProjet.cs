@@ -25,7 +25,7 @@ namespace ProjetFinalProgModulaire
         public void Init()
         {
             LoadAllContent();
-            //Player = CreationPersonnage();
+            Player = CreationPersonnage();
 
             //Console.WriteLine("Nom "+Player.Nom);
             //Console.WriteLine(Player.Classe);
@@ -110,10 +110,10 @@ namespace ProjetFinalProgModulaire
 
         private static void LoadAllContent()
         {
-            //ListeArmes = LoadingContent.LoadingArmes();
-            //ListeSorts = LoadingContent.LoadingSpells();
-            //ListeArmures = LoadingContent.LoadingArmures();
-            //ListeConsumables = LoadingContent.LoadingConsumableObjects();
+            ListeArmes = LoadingContent.LoadingArmes();
+            ListeSorts = LoadingContent.LoadingSpells();
+            ListeArmures = LoadingContent.LoadingArmures();
+            ListeConsumables = LoadingContent.LoadingConsumableObjects();
             DicStory = LoadingContent.LoadingNoeuds();
         }
 

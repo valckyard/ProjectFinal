@@ -53,7 +53,7 @@ namespace Game.Library.Classes
         public string ChoixJoueur(ref Personnage personnage)
         {
             Random rand = new Random();
-            if (MortOuRandom == true)
+            if (MortOuRandom)
             {
                 if (ChoixReponses.Count == 1)
                 {
@@ -62,11 +62,21 @@ namespace Game.Library.Classes
                 }
                 else
                 {
-                    return ChoixReponses.Values.ElementAt(rand.Next(0, ChoixReponses.Count));
+                    int z = rand.Next(1, ChoixReponses.Count + 1);
+
+                    foreach (var reponse in ChoixReponses)
+                    {
+                        if (z == reponse.Key)
+                        {
+                            return reponse.Value;
+
+                        }
+                    }
+                   
                     
                 }
             }
-            else
+            else // !MortOuRandom
             {
                 foreach (var kv in ChoixReponses)
                 {
