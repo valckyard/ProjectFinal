@@ -6,7 +6,11 @@ namespace ProjetFinalProgModulaire
         static void Main(string[] args)
         {
             var jeu = new JeuProjet();
-            jeu.Init();
+            do
+            {
+                jeu.Init();
+
+            } while (true);
          
         }
     }

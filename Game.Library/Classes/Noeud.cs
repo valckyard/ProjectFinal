@@ -47,6 +47,7 @@ namespace Game.Library.Classes
             }
 
             Console.WriteLine(Intitule);
+           
         }
 
         public string ChoixJoueur(ref Personnage personnage)
@@ -67,6 +68,8 @@ namespace Game.Library.Classes
                         if (z == ChoixReponses.Count)
                         {
                             Console.WriteLine(reponse.Value);
+                            Console.WriteLine("\nAppuyez sur une touche pour continuer\n");
+                            Console.ReadKey();
                             return "Mort";
                         }
                         else

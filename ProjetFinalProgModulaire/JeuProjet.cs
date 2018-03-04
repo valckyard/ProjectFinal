@@ -5,10 +5,12 @@ using Game.Library;
 using ProjetFinalProgModulaire;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
+using Game.Library.Enums;
 using Game.Library.Methodes;
 using ProjetFinalProgModulaire.AffichageManager;
 using Lidgren.Network;
 using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
+using Game.Library.Classes.EntiteClasses;
 
 namespace ProjetFinalProgModulaire
 {
@@ -26,12 +28,12 @@ namespace ProjetFinalProgModulaire
 
         public void Init()
         {
-          var Client = new AffichageManager.AffichageManager();
-            Client.Init();
+            //var Client = new AffichageManager.AffichageManager();
+            //Client.Init();
             LoadAllContent();
-            Player = CreationPersonnage();
-            Client.SendLoop();
-
+            //Player = CreationPersonnage();
+            //Client.SendLoop();
+            
             //Console.WriteLine("Nom "+Player.Nom);
             //Console.WriteLine(Player.Classe);
             //Console.WriteLine(Player.Race);
@@ -57,9 +59,8 @@ namespace ProjetFinalProgModulaire
 
 
             //Validation du combat 
-            while (valueKey != "MORT")
+            while (valueKey != "MORT" && valueKey != "FIN" )
             {
-
 
                 if (DicStory[valueKey].ChoixReponses.Count != 1)
                 {
@@ -68,7 +69,7 @@ namespace ProjetFinalProgModulaire
                     //Affiche les choix de reponse possible
                     
                     if ((DicStory[valueKey].Ennemi == null && DicStory[valueKey].EnnemiP == null) &&
-                        DicStory[valueKey].ChoixReponses[2].Length > 50)
+                        DicStory[valueKey].ChoixReponses[2].Length > 30)
                     {
                         Console.WriteLine(
                             "Pas d'ennemis et Chortoix 2 long alors Random ou Dead"); //POurrait permettre un aleatoir de continuer avec rep 1...
@@ -81,7 +82,7 @@ namespace ProjetFinalProgModulaire
                         foreach (var choix in DicStory[valueKey].ChoixReponses)
                         {
                             Console.Write("\n" + choix.Key + "." + choix.Value);
-
+                            
                         }
                         Console.Write("\nQue désirez-vous faire ?  ");
                         choixJoueur = int.Parse(Console.ReadLine());
@@ -94,12 +95,28 @@ namespace ProjetFinalProgModulaire
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine((DicStory[valueKey].Intitule) + "\n\n");
                     Console.ReadKey();
                     valueKey = DicStory[valueKey].ChoixReponses[1];
 
                 }
             }
+            if (valueKey == "MORT")
+            {
+                //Fin
+                Console.Clear();
+                Console.WriteLine("Vous êtes mort");
+                Console.ReadKey();
+
+            }
+            else if (valueKey =="FIN")
+            {
+                Console.WriteLine("Vous êtes a la fin il ne vous reste qu'une qu'à bla bla bla");
+                Console.ReadKey();
+
+            }
+
 
             //Assigne a valuekey la prochaine cle a chercher.
 
@@ -113,6 +130,20 @@ namespace ProjetFinalProgModulaire
             //loop
         }
 
+
+        public string Onrouledesnoeuds(string monnoeud)
+        {
+            string newnoeud = null;
+            foreach (var kvNoeud in DicStory)
+            {
+                if(kvNoeud.Key == monnoeud)
+                kvNoeud.Value.Init(ref Player);
+                newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
+                break;
+            }
+            return Onrouledesnoeuds(newnoeud);
+        }
+
         private static void LoadAllContent()
         {
             ListeArmes = LoadingContent.LoadingArmes();
@@ -120,6 +151,7 @@ namespace ProjetFinalProgModulaire
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
             DicStory = LoadingContent.LoadingNoeuds();
+            
         }
 
         private static Personnage CreationPersonnage()
