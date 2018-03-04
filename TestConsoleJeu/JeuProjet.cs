@@ -21,6 +21,7 @@ namespace TestConsoleJeu
         public static Dictionary<string,Noeud> DicStory;
         public static Personnage Player;
         public static Personnage Player2;
+        public static Thread Affichage;
 
         public JeuProjetTest()
         { }
@@ -28,6 +29,11 @@ namespace TestConsoleJeu
         public void Init()
         {
             LoadAllContent();
+
+            Affichage = new Thread(start: AffichageStats);
+            Affichage.Start();
+
+
             Player = new Personnage();
             Player = CreationPersonnage();
             
@@ -50,8 +56,12 @@ namespace TestConsoleJeu
             Console.WriteLine("PM "+Player.PuissanceMagique);
             Console.WriteLine(Player.SeuilExperience);
             Console.WriteLine(Player.ValeurExp);
+            Console.ReadLine();
+            Console.Clear();
+
 
            MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
+            Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
             // |
@@ -142,6 +152,33 @@ namespace TestConsoleJeu
             }
 
             return Player;
+        }
+
+        public static void AffichageStats()
+        {
+            var timetoget = DateTime.Now.AddMilliseconds(300);
+
+            while (true)
+            {
+                var timenow = DateTime.Now;
+                if (timenow >= timetoget)
+                {
+                    Console.SetCursorPosition(0,8);
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.Write("-----------------------\n||");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(" HP:" + Player.PvActuels + "/" + Player.PvMax);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(" MP :" + Player.MpActuel + "/" + Player.MpMax);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write("||\n-----------------------");
+                    Console.SetCursorPosition(0, 0);
+                    timetoget = DateTime.Now.AddMilliseconds(300);
+                }
+
+            }
+
         }
 
     }
