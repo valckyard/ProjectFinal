@@ -68,7 +68,7 @@ namespace ProjetFinalProgModulaire
                 { "Pont", new Noeud("Vous avez traversé la riviere et vous arrivez au bout du pont.\n" +
                                     "Devant vous,vous avez un boulevard où vous pourriez appeler un taxi ou\n" +
                                     "vous preferez prendre le sentier plus discret sur votre gauche qui longe\n" +
-                                    " la rivière.", null, null, 
+                                    " la rivière.", null, null, false,
                                     new Dictionary<int, string>()
                                     {
                                         { 1,"Taxi"},
@@ -81,7 +81,7 @@ namespace ProjetFinalProgModulaire
                 {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez dans" +
                                    "le taxi. Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
                                    " la ville et ainsi arriver derrière votre objectif ou vous préférez tenter passer\n" +
-                                   " directement dans la Ville par la rue Racine." , null, null,
+                                   " directement dans la Ville par la rue Racine." , null, null, false,
                                     new Dictionary<int, string>()
                                     {
                                         { 1,"Racine"},
@@ -94,7 +94,7 @@ namespace ProjetFinalProgModulaire
                 {"Sentier", new Noeud("Vous marchez dans le sentier et après quelques minutes, vous arrivez devant une\n" +
                                       "fontaine d'eau. Vous regardez au loin sur votre droite, vous voyez un terrain\n" +
                                       "vague l'autre coté du boulevard ou tout semble tranquille ou vous décidez\n" +
-                                      "de contourner le grand hangard", null, null,
+                                      "de contourner le grand hangard", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Hangard"},
@@ -108,7 +108,7 @@ namespace ProjetFinalProgModulaire
                                      "Il y a une voie de libre et un homme est en plein milieu de celle-ci." +
                                      "Cela ressemble à un guet-apen. Vous ordonnez au chauffeur d'arrêter ou au contraire" +
                                      "vous lui ordonner de continuer et risquer d'écraser l'homme s'il ne se tasse pas" +
-                                     "à temp.", null, null,
+                                     "à temp.", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Arrêter"},
