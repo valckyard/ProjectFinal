@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using Game.Library.Classes.EntiteClasses;
+using Game.Library.Enums;
+using Microsoft.Win32.SafeHandles;
 
 namespace Game.Library.Classes
 {
@@ -46,7 +49,7 @@ namespace Game.Library.Classes
             Console.WriteLine(Intitule);
             ChoixJoueur(ref personnage);
         }
-
+        
         public string ChoixJoueur(ref Personnage personnage)
         {
             Random rand = new Random();
