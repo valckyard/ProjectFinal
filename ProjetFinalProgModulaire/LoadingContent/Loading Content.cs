@@ -81,7 +81,8 @@ namespace ProjetFinalProgModulaire
                 {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez dans" +
                                    "le taxi. Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
                                    " la ville et ainsi arriver derrière votre objectif ou vous préférez tenter passer\n" +
-                                   " directement dans la Ville par la rue Racine." , null, null, false,
+                                   " directement dans la Ville par la rue Racine." , new Ennemi("Gonzo2", TypeEnnemi.PerchaudeEnchantee, 90,
+                                     TypeElement.Air, 20, 12, 2, 2, 2), null, false,
                                     new Dictionary<int, string>()
                                     {
                                         { 1,"Racine"},
@@ -152,7 +153,7 @@ namespace ProjetFinalProgModulaire
                                             "tranquillement sur le terrain en direction de votre objectif final\n" +
                                             "qui se trouve tout en haut au sommet du haut de la ville. Vous apercez des escaliers" +
                                             "devant vous que vous vous empressez d'atteindre.\n\n",
-                                            null, null, false,
+                                            null, null, true,
                         new Dictionary<int, string>()
                         {
                             {1,"Escalier"},
@@ -184,7 +185,7 @@ namespace ProjetFinalProgModulaire
                                         "le mur de brique de l'immeuble devant vous.", null, null, true,
                         new Dictionary<int, string>()
                         {
-                            { 1,"MORT"},
+                            { 1,"MORT"}
                         }
                     )
                 },
@@ -205,7 +206,7 @@ namespace ProjetFinalProgModulaire
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathédrale"},
-                            { 2,"En plein milieu de l'escalier, sur un vous"}
+                            { 2,"En plein milieu de l'escalier, sur un vousblablblblblblblblblblbllb"}
                         }
                     )
                 },
@@ -226,7 +227,7 @@ namespace ProjetFinalProgModulaire
                 //#13
                 {"Derive", new Noeud("Le bateau n'était pas amarré et pendant la bagarre, vous avez dérivé.\n" +
                                      "Après quelques minutes de dérive, coup de chance, le bateau s'échoue sur le pilier\n" +
-                                     "du pont. Vous réussissez à grimper et vous marchez en direction de la ville où\n" +
+                                     "dBu pont. Vous réussissez à grimper et vous marchez en direction de la ville où\n" +
                                      "vous vous trouviez il y a à peine quelques minutes. ", null, null, true,
                         new Dictionary<int, string>()
                         {
@@ -334,7 +335,7 @@ namespace ProjetFinalProgModulaire
                                                  "Cathédrale.", null, null, true,
                     new Dictionary<int, string>()
                     {
-                        { 1,"Entrez dans la cathdrale"},
+                        { 1,"Entrez dans la Cathedrale"},
 
                         { 2,"Lorsque vous arrivez au milieu, vous entendez un léger déclic et vous sentez une grande chaleur" +
                             "vous envahir. Une rue minée vous attendait et vous n'aviez aucune chance de la traverser.  "}
@@ -350,18 +351,7 @@ namespace ProjetFinalProgModulaire
                                                         "Un portable vous y attend.", null, null, true, //valider si true/false
                         new Dictionary<int, string>()
                         {
-                            { 1,"Fin"}
-                        }
-                    )
-                },
-
-                //#23
-                {"MORT", new Noeud("Vous etes mort", null, null, true,   //valider si true/false
-                        new Dictionary<int, string>()
-                        {
-                            { 1, null},
-
-                            { 2, null}
+                            { 1,"FIN"}
                         }
                     )
                 },
