@@ -57,6 +57,7 @@
     <Compile Include="Enums\PersonnageClasse.cs" />
     <Compile Include="Enums\TypeConsumable.cs" />
     <Compile Include="Enums\TypeElement.cs" />
+    <Compile Include="Methodes\InputChoice.cs" />
     <Compile Include="Methodes\MethodeCombat.cs" />
     <Compile Include="Classes\Noeud.cs" />
     <Compile Include="Classes\ObjClasses\ObjArme.cs" />

@@ -10,6 +10,7 @@ namespace ProjetFinalProgModulaire.AffichageManager
         public void Init()
         {
             NetPeerConfiguration config = new NetPeerConfiguration("FinalProjet");
+            config.DisableMessageType(NetIncomingMessageType.ConnectionApproval);
             Client = new NetClient(config);
             Client.Start();
             var mOut = Client.CreateMessage();
@@ -49,7 +50,6 @@ namespace ProjetFinalProgModulaire.AffichageManager
                             break;
 
                         case NetIncomingMessageType.StatusChanged:
-                            Console.WriteLine(message.SenderConnection.Status);
                             if (message.SenderConnection.Status == NetConnectionStatus.Connected) { }
                             if (message.SenderConnection.Status == NetConnectionStatus.Disconnected) { }
                             break;

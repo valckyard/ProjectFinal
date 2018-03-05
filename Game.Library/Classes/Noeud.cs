@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
 using Game.Library.Classes.EntiteClasses;
-using Game.Library.Enums;
-using Microsoft.Win32.SafeHandles;
+using Game.Library.Methodes;
 
 namespace Game.Library.Classes
 {
@@ -32,9 +29,9 @@ namespace Game.Library.Classes
 
         public void Init(ref Personnage personnage)
         {
+            AskForInventory(ref personnage);
+
             
-
-
             if (Ennemi != null)
             {
                 var baddie = Ennemi;
@@ -50,7 +47,22 @@ namespace Game.Library.Classes
             }
 
             Console.WriteLine(Intitule);
-           
+        }
+
+        private static void AskForInventory(ref Personnage personnage)
+        {
+            do
+            {
+                Console.WriteLine("Voulez-Vous Acceder a l'Inventaire ? O/N");
+                var cki = Console.ReadKey();
+                if (cki.Key == ConsoleKey.N)
+                break;
+                
+
+                if (cki.Key != ConsoleKey.O) continue;
+                personnage.MenuInventaire();
+                break;
+            } while (true);
         }
 
         public string ChoixJoueur(ref Personnage personnage)
@@ -90,15 +102,8 @@ namespace Game.Library.Classes
                     Console.WriteLine($"{kv.Value}");
                 }
             }
-            int x;
-            while (int.TryParse(Console.ReadLine(), out x) == false)
-            {
-            }
 
-            if (x < 1 & x > ChoixReponses.Count)
-            {
-                ChoixJoueur(ref personnage);
-            }
+           int x = InputChoice.Choice(ChoixReponses.Count);
 
             string newkey = null;
             foreach (var c in ChoixReponses)
@@ -109,7 +114,10 @@ namespace Game.Library.Classes
                     break;
                 }
             }
+
             return newkey;
         }
+
+    
     }
 }
