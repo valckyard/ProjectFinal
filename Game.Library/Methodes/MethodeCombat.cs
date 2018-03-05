@@ -181,7 +181,7 @@ namespace Game.Library.Methodes
         {
             bool successoption = false;
 
-            while (!successoption)
+            while (true)
             {
              
 
