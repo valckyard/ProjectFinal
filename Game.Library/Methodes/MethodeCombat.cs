@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Policy;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.EntiteClasses;
@@ -174,6 +171,7 @@ namespace Game.Library.Methodes
 
           persJoueur.AddXpPersonnage(persEnnemi);
             persJoueur.CheckLevelPlayer();
+            persEnnemi.Loot(ref persJoueur);
         }
 
 
@@ -285,6 +283,7 @@ namespace Game.Library.Methodes
 
             persJ.AddXpEnnemi(baddie);
             persJ.CheckLevelPlayer();
+            baddie.Loot(ref persJ);
         }
 
         public static void GameOver()
