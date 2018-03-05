@@ -28,12 +28,7 @@ namespace Game.Library.Classes.EntiteClasses
                     x++;
                 }
 
-
-
-
                 int spellreponse = _rand.Next(0, ListeSorts.Count)+1;
-
-
 
                 foreach (var sort in spellbook)
                 {
@@ -49,6 +44,8 @@ namespace Game.Library.Classes.EntiteClasses
             return null;
         }
 
+
+
         public bool LancerSortVsEnnemi(ref Ennemi baddie, Sort itemSort)
         {
             Sort sort;
@@ -57,7 +54,6 @@ namespace Game.Library.Classes.EntiteClasses
             else
             sort = itemSort;
 
-            Console.WriteLine("");
 
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
@@ -66,13 +62,13 @@ namespace Game.Library.Classes.EntiteClasses
                     {
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp ==0)
-                            Console.WriteLine($"{Nom} utilise {sort.NomSort} sur {baddie.Name} le {baddie.TypeEnnemi}");
+                            Console.WriteLine($"\n{Nom} utilise {sort.NomSort} sur {baddie.Name} le {baddie.TypeEnnemi}");
                         else
                         Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
 
                         double dmg = DammageCalculatorMagicEnnemi(baddie, sort);
 
-                        Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!");
+                        Console.WriteLine($"{baddie.Name} prends {dmg} de dommage dans la geule!\n");
                         baddie.Pv -= (int) dmg;
                         return true;
                     }
@@ -81,7 +77,7 @@ namespace Game.Library.Classes.EntiteClasses
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp == 0)
-                            Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
+                            Console.WriteLine($"\n{Nom} utilise {sort.NomSort} !");
 
                         else
                             Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
@@ -93,7 +89,7 @@ namespace Game.Library.Classes.EntiteClasses
                             PvActuels = PvMax;
                         }
 
-                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !\n");
                         Console.ForegroundColor = ConsoleColor.Gray;
                         return true;
                     }
@@ -101,7 +97,7 @@ namespace Game.Library.Classes.EntiteClasses
                 else
                 {
                     Console.WriteLine(
-                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP");
+                        $"\n{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP\n");
                     return false;
                 }
 
@@ -123,14 +119,14 @@ namespace Game.Library.Classes.EntiteClasses
                     {
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp == 0)
-                            Console.WriteLine($"{Nom} utilise {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+                            Console.WriteLine($"\n{Nom} utilise {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
                         else
                             Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
 
 
                         double dmg = DammageCalculatorMagicPerso(defenseur, sort);
 
-                        Console.WriteLine($"{defenseur.Nom} prends {dmg} de dommage dans la geule!");
+                        Console.WriteLine($"{defenseur.Nom} prends {dmg} de dommage dans la geule!\n");
                         defenseur.PvActuels -= (int) dmg;
                         return true;
                     }
@@ -139,7 +135,7 @@ namespace Game.Library.Classes.EntiteClasses
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         MpActuel -= sort.CoutMp;
                         if (sort.CoutMp == 0)
-                            Console.WriteLine($"{Nom} utilise {sort.NomSort} !");
+                            Console.WriteLine($"\n{Nom} utilise {sort.NomSort} !");
 
                         else
                             Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
@@ -150,7 +146,7 @@ namespace Game.Library.Classes.EntiteClasses
                             PvActuels = PvMax;
                         }
 
-                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !");
+                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !\n");
                         Console.ForegroundColor = ConsoleColor.Gray;
                         return true;
                     }
@@ -158,7 +154,7 @@ namespace Game.Library.Classes.EntiteClasses
                 else
                 {
                     Console.WriteLine(
-                        $"{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP");
+                        $"\n{Nom} pas lancer le sort {sort.NomSort} il coute {sort.CoutMp} MP et il n'a que {MpActuel} MP\n");
                     return false;
                 }
 
@@ -173,38 +169,38 @@ namespace Game.Library.Classes.EntiteClasses
 
         public void FrapperEnnemi(ref Ennemi baddie)
         {
-            Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
+            Console.WriteLine($"\n{Nom} frappe avec {Arme.NomObjet}  {baddie.Name} le {baddie.TypeEnnemi}");
 
             //Calc
             double dmg = DammageCalculatorEnnemi(baddie, AttaqueCondition.Attaque);
             //Calc
 
-            Console.WriteLine($"{baddie.Name} prends {(int) dmg} de dommage dans la geule!");
+            Console.WriteLine($"{baddie.Name} prends {(int) dmg} de dommage dans la geule!\n");
             baddie.Pv -= (int) dmg;
         }
 
         public void RecevoirFrappeDeEnnemi(Ennemi baddie)
         {
-            Console.WriteLine($"{baddie.Name} frappe {Nom} le {Race}");
+            Console.WriteLine($"\n{baddie.Name} frappe {Nom} le {Race}");
 
             //Calc
             double dmg = DammageCalculatorEnnemi(baddie, AttaqueCondition.Defense);
             //Calc
 
-            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!");
+            Console.WriteLine($"{Nom} prends {dmg} de dommage dans la geule!\n");
             PvActuels -= (int) dmg;
         }
 
         //Parfait pour Personnage a personnage
         public void FrapperPersonnage(ref Personnage perso)
         {
-            Console.WriteLine($"{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
+            Console.WriteLine($"\n{Nom} frappe avec {Arme.NomObjet}  {perso.Nom} le {perso.Race}");
 
             //Calc
             double dmg = DammageCalculatorPerso(perso, AttaqueCondition.Attaque);
             //Calc
 
-            Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!");
+            Console.WriteLine($"{perso.Nom} prends {dmg} de dommage dans la geule!\n");
             perso.PvActuels -= (int) dmg;
         }
 

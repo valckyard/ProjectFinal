@@ -41,7 +41,7 @@ namespace Game.Library.Classes.EntiteClasses
             ObjInventaire loot = null;
             var rand = new Random();
             var chances = rand.Next(0, 101);
-            if (chances > LootChances)
+            if (chances < LootChances)
             {
                 loot = LootTable.Table[rand.Next(0, LootTable.Table.Count)];
             }
