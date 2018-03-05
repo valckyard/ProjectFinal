@@ -95,9 +95,9 @@ namespace Game.Library.Methodes
         {
             var attType = new ClasseTypeAttaque
             {
-                AttaqueArme = 10,
-                AttaqueSort = 10,
-                Item = 80
+                AttaqueArme = 60,
+                AttaqueSort = 40,
+                Item = 10
             };
 
 
@@ -133,7 +133,7 @@ namespace Game.Library.Methodes
             return chances;
         }
 
-        public static void AttaquePersonnage(ref Personnage persJoueur,ref Personnage persEnnemi)
+        public static void CombatPersonnage(ref Personnage persJoueur,ref Personnage persEnnemi)
         {
             bool win = false;
 
@@ -145,10 +145,12 @@ namespace Game.Library.Methodes
                 switch (cond)
                 {
                     case AttaqueCondition.Attaque:
+                        Console.WriteLine($"{persJoueur.Nom} Attaque !");
                         Attaque(persJoueur, ref persEnnemi);
                         break;
 
                     case AttaqueCondition.Defense:
+                        Console.WriteLine($"{persEnnemi.Nom} Attaque !");
                         Attaque(persEnnemi, ref persJoueur);
                         break;
 
@@ -169,7 +171,7 @@ namespace Game.Library.Methodes
                 }
             }
 
-          persJoueur.AddXpPersonnage(persEnnemi);
+            persJoueur.AddXpPersonnage(persEnnemi);
             persJoueur.CheckLevelPlayer();
             persEnnemi.Loot(ref persJoueur);
         }
@@ -198,12 +200,13 @@ namespace Game.Library.Methodes
                         successoption = attaquant.UtiliserItemVsPerso(ref defenseur);
                         break;
                 }
-                Thread.Sleep(500);
 
                 if (!successoption)
                 {
                     continue;
                 }
+                //WaitAfterAtt
+                Thread.Sleep(250);
 
                 break;
             }
@@ -220,7 +223,7 @@ namespace Game.Library.Methodes
 
                 if (cond == AttaqueCondition.Attaque)
                 {
-
+                    Console.WriteLine($"{persJ.Nom} Attaque !");
 
                     bool successoption = true;
                     var typeatt = TypeAttaquePersonnage(persJ);
@@ -239,21 +242,21 @@ namespace Game.Library.Methodes
                             break;
                     }
 
-                    Thread.Sleep(500);
 
 
                     if (!successoption)
                     {
                         continue;
                     }
-
-                   
+                    //WaitAfterAtt
+                    Thread.Sleep(250);
                 }
 
 
 
                 if (cond == AttaqueCondition.Defense)
                 {
+                    Console.WriteLine($"{baddie.Name} Attaque !");
                     var typeatt = TypeAttaqueEnnemi(baddie);
 
 
@@ -261,9 +264,10 @@ namespace Game.Library.Methodes
                     {
                         case AttaqueChoisie.AttaqueArme:
                             persJ.RecevoirFrappeDeEnnemi(baddie);
-                            Thread.Sleep(500);
                             break;
                     }
+                    //WaitAfterAtt
+                    Thread.Sleep(250);
                 }
 
 
@@ -288,7 +292,13 @@ namespace Game.Library.Methodes
 
         public static void GameOver()
         {
-            Console.WriteLine("ta perdu sti");
+            Console.WriteLine($"  ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .          ▌ ▐·▄▄▄ .▄▄▄      ▄▄\n "+
+                               " ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·   ▪     ▪█·█▌▀▄.▀·▀▄ █·    ██▌\n"+
+                               "▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄     ▄█▀▄ ▐█▐█•▐▀▀▪▄▐▀▀▄     ▐█·\n"+
+                               "▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▌.▐▌ ███ ▐█▄▄▌▐█•█▌    .▀ \n"+
+                               "·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀     ▀ ");
+            Console.WriteLine($"\n\nPress Any Key to Exit......");
+            Environment.Exit(1);
         }
     }
 }

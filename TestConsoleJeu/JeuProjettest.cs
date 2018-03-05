@@ -101,7 +101,7 @@ namespace TestConsoleJeu
 
             Onrouledesnoeuds("Taxi");
 
-           MethodeCombat.AttaquePersonnage(ref Player, ref Player2);
+           MethodeCombat.CombatPersonnage(ref Player, ref Player2);
            Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
