@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Game.Library;
+﻿using System.Collections.Generic;
 using Game.Library.Classes;
 using Game.Library.Classes.EntiteClasses;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
-using Game.Library.Methodes;
 
 namespace ProjetFinalProgModulaire
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Lidgren.Network;
 
-namespace TestConsoleJeu.AffichageManager
+namespace ProjetFinalProgModulaire.AffichageManager
 {
-    public class AffichageManagerTest
+    public class AffichageMngr
     {
         public NetClient Client;
 
@@ -13,11 +13,11 @@ namespace TestConsoleJeu.AffichageManager
             Client = new NetClient(config);
             Client.Start();
             var mOut = Client.CreateMessage();
-            mOut.Write(JeuProjetTest.Player.MpMax);
-            mOut.Write(JeuProjetTest.Player.MpActuel);
-            mOut.Write(JeuProjetTest.Player.PvMax);
-            mOut.Write(JeuProjetTest.Player.PvActuels);
-            Client.Connect("localhost", 14242,mOut);
+            mOut.Write(JeuProjet.Player.MpMax);
+            mOut.Write(JeuProjet.Player.MpActuel);
+            mOut.Write(JeuProjet.Player.PvMax);
+            mOut.Write(JeuProjet.Player.PvActuels);
+            Client.Connect("localhost", 14242, mOut);
             Client.FlushSendQueue();
         }
 
@@ -31,15 +31,15 @@ namespace TestConsoleJeu.AffichageManager
                     switch (message.MessageType)
                     {
                         case NetIncomingMessageType.Data:
-                        {
+                            {
                                 message.ReadBoolean();
                                 var mOut = Client.CreateMessage();
-                                mOut.Write(JeuProjetTest.Player.MpMax);
-                                mOut.Write(JeuProjetTest.Player.MpActuel);
-                                mOut.Write(JeuProjetTest.Player.PvMax);
-                                mOut.Write(JeuProjetTest.Player.PvActuels);
-                                mOut.Write(JeuProjetTest.Player.Arme.NomObjet);
-                                mOut.Write(JeuProjetTest.Player.Armure.NomObjet);
+                                mOut.Write(JeuProjet.Player.MpMax);
+                                mOut.Write(JeuProjet.Player.MpActuel);
+                                mOut.Write(JeuProjet.Player.PvMax);
+                                mOut.Write(JeuProjet.Player.PvActuels);
+                                mOut.Write(JeuProjet.Player.Arme.NomObjet);
+                                mOut.Write(JeuProjet.Player.Armure.NomObjet);
                                 Client.SendMessage(mOut, Client.ServerConnection, NetDeliveryMethod.ReliableOrdered);
                                 Client.FlushSendQueue();
                             }
@@ -50,8 +50,8 @@ namespace TestConsoleJeu.AffichageManager
 
                         case NetIncomingMessageType.StatusChanged:
                             Console.WriteLine(message.SenderConnection.Status);
-                            if (message.SenderConnection.Status == NetConnectionStatus.Connected){}
-                            if (message.SenderConnection.Status == NetConnectionStatus.Disconnected){}
+                            if (message.SenderConnection.Status == NetConnectionStatus.Connected) { }
+                            if (message.SenderConnection.Status == NetConnectionStatus.Disconnected) { }
                             break;
 
                         case NetIncomingMessageType.WarningMessage:

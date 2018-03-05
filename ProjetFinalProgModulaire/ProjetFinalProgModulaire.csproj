@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AffichageManager\AffichageManager.cs" />
+    <Compile Include="AffichageManager\AffichageMngr.cs" />
     <Compile Include="JeuProjet.cs" />
     <Compile Include="LoadingContent\Loading Content.cs" />
     <Compile Include="Program.cs" />

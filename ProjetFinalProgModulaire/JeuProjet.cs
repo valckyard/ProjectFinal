@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Game.Library;
-using ProjetFinalProgModulaire;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
-using Game.Library.Enums;
-using Game.Library.Methodes;
 using ProjetFinalProgModulaire.AffichageManager;
-using Lidgren.Network;
 using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
-using Game.Library.Classes.EntiteClasses;
 
 namespace ProjetFinalProgModulaire
 {
@@ -23,30 +16,76 @@ namespace ProjetFinalProgModulaire
         public static Dictionary<string, Noeud> DicStory;
         public static Personnage Player;
 
+        private Thread _infoSender;
+
         public JeuProjet()
         { }
 
         public void Init()
         {
+           
 
             LoadAllContent();
-            Player = CreationPersonnage();
+            //Create Random Char ATM
+            NewCharacter();
+
+            //start after char creation
+            PlayerInterfaceSender();
+
+            //Init The Game Loop
+            DepartDuJeu();
+        }
+
+        private void DepartDuJeu()
+        {
             string depart = "Pont";
-            Onrouledesnoeuds(depart);
+            OnRouleDesNoeuds(depart);
+        }
+
+        private static void NewCharacter()
+        {
+            Player = CreationPersonnage();
+            foreach (var arme in ListeArmes)
+            {
+                if (arme.NomObjet == "Mains Nues")
+                {
+                    Player.Arme = arme;
+                }
+            }
+
+            foreach (var armure in ListeArmures)
+            {
+                if (armure.NomObjet == "Vetements")
+                {
+                    Player.Armure = armure;
+                }
+            }
+        }
+
+        private void PlayerInterfaceSender()
+        {
+            var client = new AffichageMngr();
+            client.Init();
+            _infoSender = new Thread(client.SendLoop);
+            _infoSender.Start();
+            Thread.Sleep(300);
         }
 
 
-        public string Onrouledesnoeuds(string monnoeud)
+        public static string OnRouleDesNoeuds(string monnoeud)
         {
             string newnoeud = null;
             foreach (var kvNoeud in DicStory)
             {
-                if(kvNoeud.Key == monnoeud)
-                kvNoeud.Value.Init(ref Player);
-                newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
-                break;
+                if (kvNoeud.Key == monnoeud)
+                {
+                    kvNoeud.Value.Init(ref Player);
+                    newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
+                    break;
+                }
+
             }
-            return Onrouledesnoeuds(newnoeud);
+            return OnRouleDesNoeuds(newnoeud);
         }
 
         private static void LoadAllContent()
@@ -62,7 +101,7 @@ namespace ProjetFinalProgModulaire
         private static Personnage CreationPersonnage()
         {
             Player = new Personnage();
-            //demander infos
+            //demander infos//
             Player.CharacterCreation();
             foreach (var arme in ListeArmes)
             {
