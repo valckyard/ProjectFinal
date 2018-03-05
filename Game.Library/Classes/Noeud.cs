@@ -35,22 +35,23 @@ namespace Game.Library.Classes
             if (Ennemi != null)
             {
                 var baddie = Ennemi;
-                Console.WriteLine(CombatString);
+                Console.WriteLine("\n"+CombatString+"\n");
                 Methodes.MethodeCombat.AttaqueEnnemi(ref personnage, ref baddie);
             }
 
             if (EnnemiP != null)
             {
                 var baddie = EnnemiP;
-                Console.WriteLine(CombatString);
+                Console.WriteLine(CombatString+"\n");
                 Methodes.MethodeCombat.AttaquePersonnage(ref personnage, ref baddie);
             }
 
-            Console.WriteLine(Intitule);
+            Console.WriteLine("\n"+Intitule + "\n");
         }
 
         private static void AskForInventory(ref Personnage personnage)
         {
+            Console.Clear();
             do
             {
                 Console.WriteLine("Voulez-Vous Acceder a l'Inventaire ? O/N");
@@ -61,6 +62,7 @@ namespace Game.Library.Classes
 
                 if (cki.Key != ConsoleKey.O) continue;
                 personnage.MenuInventaire();
+                Console.Clear();
                 break;
             } while (true);
         }
