@@ -57,19 +57,30 @@ namespace Game.Library.Classes.EntiteClasses
         {
             if (choisi.Armure != null)
             {
-                Console.WriteLine($"Nom : {choisi.Armure.NomObjet}\n" +
-                                  $"Element : {choisi.Armure.TypeElement}\nDefense : {choisi.Armure.Defense}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n------------------------------------------------------\n" +
+                                  $"Nom : {choisi.Armure.NomObjet}\n" +
+                                  $"Element : {choisi.Armure.TypeElement}\nDefense : {choisi.Armure.Defense}" +
+                                  $"\n------------------------------------------------------\n");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
 
             if (choisi.Arme != null)
             {
-                Console.WriteLine($"Nom : {choisi.Arme.NomObjet} \n" +
-                                  $"Element : {choisi.Arme.TypeElement}\nPuissance : {choisi.Arme.Puissance}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n------------------------------------------------------\nNom : {choisi.Arme.NomObjet} \n" +
+                                  $"Element : {choisi.Arme.TypeElement}\nPuissance : {choisi.Arme.Puissance}" +
+                                  $"\n------------------------------------------------------\n");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
             if (choisi.ObjetCons != null)
             {
-                Console.WriteLine($"Nom : {choisi.ObjetCons.NomObjet} \nType : {choisi.ObjetCons.TypeConsumable}\n" +
-                                  $"Element : {choisi.ObjetCons.TypeElement}\nPuissance : {choisi.ObjetCons.Puissance}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n------------------------------------------------------\nNom : {choisi.ObjetCons.NomObjet}" +
+                                  $" \nType : {choisi.ObjetCons.TypeConsumable}\n" +
+                                  $"Element : {choisi.ObjetCons.TypeElement}\nPuissance : {choisi.ObjetCons.Puissance}" +
+                                  $"\n------------------------------------------------------\n");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
 
