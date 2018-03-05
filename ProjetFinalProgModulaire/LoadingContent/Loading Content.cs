@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Game.Library.Classes;
 using Game.Library.Classes.EntiteClasses;
 using Game.Library.Classes.ObjClasses;
@@ -83,19 +84,57 @@ namespace ProjetFinalProgModulaire
 
             //PersonnageRace race, PersonnageClasse classe, string nom, int pvMax, int mpMax, int puissance,
             //int puissanceMagique, int defense, int vitesse)
-            var perso1 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Barbare, "Normare", 100, 20, 25, 9, 15,
-                4);
+            var perso1 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Barbare, "Normare", 100, 20, 25, 9, 15,4)
+            {
+                    Armure = LoadingArmures().ElementAt(3),
+                    Arme = LoadingArmes().ElementAt(2),
+                    ValeurExp = 200
+            };
             
             
             
-            var perso2 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Magicelfe", 100, 20, 25, 9, 15, 4);
-            var perso3 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Barbare, "Nornain", 100, 20, 25, 9, 15, 4);
-            var perso4 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Guerrier, "Hubier", 100, 20, 25, 9, 15, 4);
-            var perso5 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Momien", 100, 20, 25, 9, 15, 4);
-            var perso6 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Guerrier, "Naguerre", 100, 20, 25, 9, 15, 4);
-            var perso7 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Magicien, "Hogick", 100, 20, 25, 9, 15, 4);
-            var perso8 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Barbare, "Elsbar", 100, 20, 25, 9, 15, 4);
-
+            var perso2 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Magicelfe", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso3 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Barbare, "Nornain", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso4 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Guerrier, "Hubier", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso5 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Momien", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso6 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Guerrier, "Naguerre", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso7 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Magicien, "Hogick", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
+            var perso8 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Barbare, "Elsbar", 100, 20, 25, 9, 15, 4)
+            {
+                Armure = LoadingArmures().ElementAt(3),
+                Arme = LoadingArmes().ElementAt(2),
+                ValeurExp = 200
+            };
 
 
             var dicnoeud = new Dictionary<string, Noeud>()
