@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using Game.Library.Classes;
+using Game.Library.Classes.EntiteClasses;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
 using Game.Library.Methodes;
@@ -44,7 +45,20 @@ namespace TestConsoleJeu
             };
             Player.Inventaire.Add(new ObjInventaire(new ObjConsumable("pete", TypeConsumable.Potion, TypeElement.Lumiere, 7)));
             Player.Inventaire.Add(new ObjInventaire(new ObjConsumable("pete", TypeConsumable.Potion, TypeElement.Lumiere, 7)));
+            Player.Inventaire.Add(new ObjInventaire(ListeConsumables[0]));
 
+            foreach (var listeArme in ListeArmes)
+            {
+                Player.Inventaire.Add(new ObjInventaire(listeArme));
+            }
+
+            foreach (var listeArme in ListeArmures)
+            {
+                Player.Inventaire.Add(new ObjInventaire(listeArme));
+            }
+
+            var suif = new Ennemi("Vache Enrage", TypeEnnemi.PerchaudeEnchantee, 30, TypeElement.Eau, 10, 10, 10, 200,
+                2);
 
             var Client = new AffichageManager.AffichageManagerTest();
             Client.Init();
@@ -77,6 +91,15 @@ namespace TestConsoleJeu
             Console.WriteLine(Player.ValeurExp);
             Console.ReadLine();
             Console.Clear();
+
+
+            Player.MenuInventaire();
+
+
+
+            MethodeCombat.AttaqueEnnemi(ref Player, ref suif);
+
+
 
             Onrouledesnoeuds("Taxi");
 

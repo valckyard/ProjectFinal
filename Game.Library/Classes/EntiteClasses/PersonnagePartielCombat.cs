@@ -8,6 +8,7 @@ namespace Game.Library.Classes.EntiteClasses
 {
     public partial class Personnage
     {
+        private readonly Random _rand = new Random();
         //############################################ FRAPPE MAGIQUE ##########################################################//
         //############################################ FRAPPE MAGIQUE ##########################################################//
         //############################################ FRAPPE MAGIQUE ##########################################################//
@@ -16,25 +17,23 @@ namespace Game.Library.Classes.EntiteClasses
         {
             if (ListeSorts.Count != 0)
             {
-                var rand = new Random();
+               
                 var sortchoisi = new Sort();
                 var spellbook = new Dictionary<int, Sort>();
                 int x = 1;
                 foreach (var s in ListeSorts)
                 {
                     spellbook.Add(x, s);
-                    //Console.WriteLine($"{x} -- {s.NomSort}, Cout : {s.CoutMp} , Puissance : {s.Puissance}, Element : {s.TypeElement}");
+                 
                     x++;
                 }
 
-                //Console.WriteLine("Quel sort voulez vous utiliser ?");
-                int spellreponse = rand.Next(1, ListeSorts.Count+1); // en read
-                //while (int.TryParse(Console.ReadLine(), out spellreponse) == false)
-                //{
-                //}
 
-                //if (spellreponse > ListeSorts.Count & spellreponse < 1)
-                //    ChoixSort();
+
+
+                int spellreponse = _rand.Next(0, ListeSorts.Count)+1;
+
+
 
                 foreach (var sort in spellbook)
                 {

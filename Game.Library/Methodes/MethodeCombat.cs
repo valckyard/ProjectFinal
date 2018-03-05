@@ -98,9 +98,9 @@ namespace Game.Library.Methodes
         {
             var attType = new ClasseTypeAttaque
             {
-                AttaqueArme = 30,
-                AttaqueSort = 30,
-                Item = 40
+                AttaqueArme = 10,
+                AttaqueSort = 10,
+                Item = 80
             };
 
 
@@ -192,17 +192,15 @@ namespace Game.Library.Methodes
                     case AttaqueChoisie.AttaqueArme:
                         attaquant.FrapperPersonnage(ref defenseur);
                         successoption = true;
-                        Thread.Sleep(500);
                         break;
                     case AttaqueChoisie.AttaqueSort:
                         successoption = attaquant.LancerSortVsPerso(ref defenseur,null);
-                        Thread.Sleep(500);
                         break;
                     case AttaqueChoisie.Item:
                         successoption = attaquant.UtiliserItemVsPerso(ref defenseur);
-                        Thread.Sleep(500);
                         break;
                 }
+                Thread.Sleep(500);
 
                 if (!successoption)
                 {
@@ -243,12 +241,15 @@ namespace Game.Library.Methodes
                             break;
                     }
 
+                    Thread.Sleep(500);
+
+
                     if (!successoption)
                     {
                         continue;
                     }
 
-                    break;
+                   
                 }
 
 
@@ -262,6 +263,7 @@ namespace Game.Library.Methodes
                     {
                         case AttaqueChoisie.AttaqueArme:
                             persJ.RecevoirFrappeDeEnnemi(baddie);
+                            Thread.Sleep(500);
                             break;
                     }
                 }
