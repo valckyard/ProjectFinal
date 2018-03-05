@@ -64,7 +64,7 @@ namespace Game.Library.Classes.EntiteClasses
                         if (sort.CoutMp ==0)
                             Console.WriteLine($"\n{Nom} utilise {sort.NomSort} sur {baddie.Name} le {baddie.TypeEnnemi}");
                         else
-                        Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
+                        Console.WriteLine($"\n{Nom} lance le sort {sort.NomSort} a {baddie.Name} le {baddie.TypeEnnemi}");
 
                         double dmg = DammageCalculatorMagicEnnemi(baddie, sort);
 
@@ -80,7 +80,7 @@ namespace Game.Library.Classes.EntiteClasses
                             Console.WriteLine($"\n{Nom} utilise {sort.NomSort} !");
 
                         else
-                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
+                            Console.WriteLine($"\n{Nom} lance le sort {sort.NomSort} !");
 
                         int heal = (int) PuissanceMagique * sort.Puissance;
                         PvActuels += heal;
@@ -89,7 +89,7 @@ namespace Game.Library.Classes.EntiteClasses
                             PvActuels = PvMax;
                         }
 
-                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !\n");
+                        Console.WriteLine($"{Nom} se soigne de {heal} Points de vie !\n\n");
                         Console.ForegroundColor = ConsoleColor.Gray;
                         return true;
                     }
@@ -121,7 +121,7 @@ namespace Game.Library.Classes.EntiteClasses
                         if (sort.CoutMp == 0)
                             Console.WriteLine($"\n{Nom} utilise {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
                         else
-                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
+                            Console.WriteLine($"\n{Nom} lance le sort {sort.NomSort} a {defenseur.Nom} le {defenseur.Race}");
 
 
                         double dmg = DammageCalculatorMagicPerso(defenseur, sort);
@@ -138,7 +138,7 @@ namespace Game.Library.Classes.EntiteClasses
                             Console.WriteLine($"\n{Nom} utilise {sort.NomSort} !");
 
                         else
-                            Console.WriteLine($"{Nom} lance le sort {sort.NomSort} !");
+                            Console.WriteLine($"\n{Nom} lance le sort {sort.NomSort} !");
                         int heal = (int) PuissanceMagique * sort.Puissance;
                         PvActuels += heal;
                         if (PvActuels > PvMax)

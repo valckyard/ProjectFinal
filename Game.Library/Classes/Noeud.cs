@@ -53,7 +53,7 @@ namespace Game.Library.Classes
         {
             do
             {
-                Console.Write($"\nVoulez-Vous Acceder a l'Inventaire ? O/N ");
+                Console.Write($"\n\nVoulez-Vous Acceder a l'Inventaire ? O/N ");
                 var cki = Console.ReadKey();
 
                 if (cki.Key == ConsoleKey.N)

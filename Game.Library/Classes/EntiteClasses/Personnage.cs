@@ -92,12 +92,18 @@ namespace Game.Library.Classes.EntiteClasses
         {
             ExperienceTotale += ennemi.ValeurExp;
             Experience += ennemi.ValeurExp;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{Nom} Gagne {ennemi.ValeurExp} Experience !");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public void AddXpPersonnage(Personnage ennemi)
         {
             ExperienceTotale += ennemi.ValeurExp;
             Experience += ennemi.ValeurExp;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{Nom} Gagne {ennemi.ValeurExp} Experience !");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
 
@@ -109,9 +115,11 @@ namespace Game.Library.Classes.EntiteClasses
             {
                 Experience -= SeuilExperience;
                 SeuilExperience = SeuilExperience * 1.5;
-                Console.WriteLine("LEVEL UP!");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("LEVEL UP!\n");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 ++Niveau;
-                Console.WriteLine($"Vous etes maintenant niveau {Niveau}");
+                Console.WriteLine($"Vous etes maintenant NIVEAU {Niveau} !!!!!\nVos Attributs Augmentent !");
                 StatsOnLevel();
 
                 // spell add

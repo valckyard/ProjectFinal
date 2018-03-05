@@ -145,12 +145,15 @@ namespace Game.Library.Methodes
                 switch (cond)
                 {
                     case AttaqueCondition.Attaque:
-                        Console.WriteLine($"{persJoueur.Nom} Attaque !");
+                        Console.WriteLine($"\n{persJoueur.Nom} Attaque !");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Attaque(persJoueur, ref persEnnemi);
                         break;
 
                     case AttaqueCondition.Defense:
-                        Console.WriteLine($"{persEnnemi.Nom} Attaque !");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"\n{persEnnemi.Nom} Attaque !");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Attaque(persEnnemi, ref persJoueur);
                         break;
 
@@ -167,10 +170,13 @@ namespace Game.Library.Methodes
                 }
                 else
                 {
+                    Console.Clear();
+                    Console.WriteLine($"{persJoueur.Nom} a Vaincu {persEnnemi.Nom} !!!!!\nVous avez Gagne !\n");
                     win = true;
                 }
             }
 
+            Console.ForegroundColor = ConsoleColor.Gray;
             persJoueur.AddXpPersonnage(persEnnemi);
             persJoueur.CheckLevelPlayer();
             persEnnemi.Loot(ref persJoueur);
@@ -206,7 +212,7 @@ namespace Game.Library.Methodes
                     continue;
                 }
                 //WaitAfterAtt
-                Thread.Sleep(250);
+                Thread.Sleep(450);
 
                 break;
             }
@@ -217,14 +223,14 @@ namespace Game.Library.Methodes
         {
             bool win = false;
             var cond = persJ.Vitesse > baddie.Vitesse ? AttaqueCondition.Attaque : AttaqueCondition.Defense;
-
             while (!win)
             {
 
                 if (cond == AttaqueCondition.Attaque)
                 {
-                    Console.WriteLine($"{persJ.Nom} Attaque !");
-
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\n{persJ.Nom} Attaque !");
+                    Console.ForegroundColor = ConsoleColor.White;
                     bool successoption = true;
                     var typeatt = TypeAttaquePersonnage(persJ);
 
@@ -249,14 +255,16 @@ namespace Game.Library.Methodes
                         continue;
                     }
                     //WaitAfterAtt
-                    Thread.Sleep(250);
+                    Thread.Sleep(450);
                 }
 
 
 
                 if (cond == AttaqueCondition.Defense)
                 {
-                    Console.WriteLine($"{baddie.Name} Attaque !");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"\n{baddie.Name} Attaque !");
+                    Console.ForegroundColor = ConsoleColor.White;
                     var typeatt = TypeAttaqueEnnemi(baddie);
 
 
@@ -267,12 +275,11 @@ namespace Game.Library.Methodes
                             break;
                     }
                     //WaitAfterAtt
-                    Thread.Sleep(250);
+                    Thread.Sleep(450);
                 }
 
 
                 cond = cond == AttaqueCondition.Attaque ? AttaqueCondition.Defense : AttaqueCondition.Attaque;
-
 
                 if (!(persJ.PvActuels <= 0 | baddie.Pv <= 0)) continue;
                 if (persJ.PvActuels <= 0)
@@ -282,9 +289,15 @@ namespace Game.Library.Methodes
                 else
                 {
                     win = true;
+      
+                    Console.WriteLine($"{persJ.Nom} a Vaincu {baddie.Name} !!!!!\nVous avez Gagne !");
+                    Console.WriteLine("\nAppuyez sur une touche pour continuer....!");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
 
+            Console.ForegroundColor = ConsoleColor.Gray;
             persJ.AddXpEnnemi(baddie);
             persJ.CheckLevelPlayer();
             baddie.Loot(ref persJ);
@@ -292,11 +305,13 @@ namespace Game.Library.Methodes
 
         public static void GameOver()
         {
-            Console.WriteLine($"  ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .          ▌ ▐·▄▄▄ .▄▄▄      ▄▄\n "+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine($"  ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .          ▌ ▐·▄▄▄ .▄▄▄      ▄▄\n " +
                                " ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·   ▪     ▪█·█▌▀▄.▀·▀▄ █·    ██▌\n"+
                                "▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄     ▄█▀▄ ▐█▐█•▐▀▀▪▄▐▀▀▄     ▐█·\n"+
                                "▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▌.▐▌ ███ ▐█▄▄▌▐█•█▌    .▀ \n"+
                                "·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀     ▀ ");
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine($"\n\nPress Any Key to Exit......");
             Environment.Exit(1);
         }
