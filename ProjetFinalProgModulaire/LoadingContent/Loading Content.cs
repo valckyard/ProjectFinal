@@ -58,19 +58,36 @@ namespace ProjetFinalProgModulaire
 
         public static Dictionary<string, Noeud> LoadingNoeuds()
         {
-            var ennemi1 = new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2);
-            var ennemi2 = new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 2);
-            var ennemi3 = new Ennemi("Zoreye", TypeEnnemi.Lievre, 90, TypeElement.Terre, 20, 12, 2, 2, 2);
-            var ennemi4 = new Ennemi("Suzie", TypeEnnemi.Perdrix, 90, TypeElement.Air, 20, 12, 2, 2, 2);
-            var ennemi5 = new Ennemi("Xamien", TypeEnnemi.Chien, 90, TypeElement.Etheral, 20, 12, 2, 2, 2);
-            var ennemi6 = new Ennemi("Raster", TypeEnnemi.Lievre, 90, TypeElement.Lumiere, 20, 12, 2, 2, 2);
-            var ennemi7 = new Ennemi("Fraprix", TypeEnnemi.Perdrix, 90, TypeElement.Feu, 20, 12, 2, 2, 2);
+            var ennemi1 =
+                new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2){ValeurExp = 200};
+
+            var ennemi2 = 
+                new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 2){ValeurExp = 200};
+
+            var ennemi3 =
+                new Ennemi("Zoreye", TypeEnnemi.Lievre, 90, TypeElement.Terre, 20, 12, 2, 2, 2) {ValeurExp = 200};
+
+            var ennemi4 =
+                new Ennemi("Suzie", TypeEnnemi.Perdrix, 90, TypeElement.Air, 20, 12, 2, 2, 2) {ValeurExp = 200};
+
+            var ennemi5 =
+                new Ennemi("Xamien", TypeEnnemi.Chien, 90, TypeElement.Etheral, 20, 12, 2, 2, 2) {ValeurExp = 200};
+
+            var ennemi6 =
+                new Ennemi("Raster", TypeEnnemi.Lievre, 90, TypeElement.Lumiere, 20, 12, 2, 2, 2) {ValeurExp = 200};
+
+            var ennemi7 =
+                new Ennemi("Fraprix", TypeEnnemi.Perdrix, 90, TypeElement.Feu, 20, 12, 2, 2, 2) {ValeurExp = 200};
 
 
 
             //PersonnageRace race, PersonnageClasse classe, string nom, int pvMax, int mpMax, int puissance,
             //int puissanceMagique, int defense, int vitesse)
-            var perso1 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Barbare, "Normare", 100, 20, 25, 9,15, 4 );
+            var perso1 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Barbare, "Normare", 100, 20, 25, 9, 15,
+                4);
+            
+            
+            
             var perso2 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Magicelfe", 100, 20, 25, 9, 15, 4);
             var perso3 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Barbare, "Nornain", 100, 20, 25, 9, 15, 4);
             var perso4 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Guerrier, "Hubier", 100, 20, 25, 9, 15, 4);
