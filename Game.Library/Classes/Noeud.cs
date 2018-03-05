@@ -32,6 +32,9 @@ namespace Game.Library.Classes
 
         public void Init(ref Personnage personnage)
         {
+            
+
+
             if (Ennemi != null)
             {
                 var baddie = Ennemi;

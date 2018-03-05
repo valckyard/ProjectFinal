@@ -244,7 +244,7 @@ namespace Game.Library.Classes.EntiteClasses
             {
             }
 
-            if (y < 1 & y > Inventaire.Count) MenuInventaire();
+            if (y < 1 | y > Inventaire.Count) MenuInventaire();
 
             // afficher item stats
             ObjInventaire choisi = Inventaire.ElementAt(y - 1);
@@ -269,10 +269,6 @@ namespace Game.Library.Classes.EntiteClasses
             {
                 Console.WriteLine($"Nom : {choisi.ObjetCons.NomObjet} \nType : {choisi.ObjetCons.TypeConsumable}\n" +
                                   $"Element : {choisi.ObjetCons.TypeElement}\nPuissance : {choisi.ObjetCons.Puissance}");
-            }
-            else
-            {
-                Console.WriteLine("errer 404");
             }
         }
 
@@ -314,7 +310,7 @@ namespace Game.Library.Classes.EntiteClasses
                     {
                     }
 
-                    if (y < 1 & y > Inventaire.Count)
+                    if (y < 1 | y > Inventaire.Count)
                     {
                         EquiperArmeArmure();
                     }

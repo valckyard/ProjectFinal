@@ -28,106 +28,11 @@ namespace ProjetFinalProgModulaire
 
         public void Init()
         {
-            //var Client = new AffichageManager.AffichageManager();
-            //Client.Init();
+
             LoadAllContent();
-            //Player = CreationPersonnage();
-            //Client.SendLoop();
-            
-            //Console.WriteLine("Nom "+Player.Nom);
-            //Console.WriteLine(Player.Classe);
-            //Console.WriteLine(Player.Race);
-            //Console.WriteLine(Player.Arme.NomObjet);
-            //Console.WriteLine(Player.Armure.NomObjet);
-            //Console.WriteLine("Niv "+Player.Niveau);
-            //Console.WriteLine("MP "+Player.MpActuel);
-            //Console.WriteLine("MPMax " +Player.MpMax);
-            //Console.WriteLine("Att "+Player.Puissance);
-            //Console.WriteLine("Def "+Player.Defense);
-            //Console.WriteLine("EXP " +Player.Experience);
-            //Console.WriteLine("HP "+Player.PvActuels);
-            //Console.WriteLine("Vit "+Player.Vitesse);
-            //Console.WriteLine("PM "+Player.PuissanceMagique);
-            //Console.WriteLine(Player.SeuilExperience);
-            //Console.WriteLine(Player.ValeurExp);
-
-            //Permet que le premier noeud soit choisi au debut
-            int choixJoueur = 0;
-
-            var valueKey = DicStory.Keys.ElementAt(0);
-            //Affiche lintitule du noeud
-
-
-            //Validation du combat 
-            while (valueKey != "MORT" && valueKey != "FIN" )
-            {
-
-                if (DicStory[valueKey].ChoixReponses.Count != 1)
-                {
-                    Console.Clear();
-                    Console.WriteLine((DicStory[valueKey].Intitule) + "\n\n");
-                    //Affiche les choix de reponse possible
-                    
-                    if ((DicStory[valueKey].Ennemi == null && DicStory[valueKey].EnnemiP == null) &&
-                        DicStory[valueKey].ChoixReponses[2].Length > 30)
-                    {
-                        Console.WriteLine(
-                            "Pas d'ennemis et Chortoix 2 long alors Random ou Dead"); //POurrait permettre un aleatoir de continuer avec rep 1...
-                        Console.ReadKey();
-                        valueKey = DicStory[valueKey].ChoixReponses[1];
-
-                    }
-                    else
-                    {
-                        foreach (var choix in DicStory[valueKey].ChoixReponses)
-                        {
-                            Console.Write("\n" + choix.Key + "." + choix.Value);
-                            
-                        }
-                        Console.Write("\nQue désirez-vous faire ?  ");
-                        choixJoueur = int.Parse(Console.ReadLine());
-                        Console.WriteLine(choixJoueur);
-                        valueKey = DicStory[valueKey].ChoixReponses[choixJoueur];
-                    }
-
-
-
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine((DicStory[valueKey].Intitule) + "\n\n");
-                    Console.ReadKey();
-                    valueKey = DicStory[valueKey].ChoixReponses[1];
-
-                }
-            }
-            if (valueKey == "MORT")
-            {
-                //Fin
-                Console.Clear();
-                Console.WriteLine("Vous êtes mort");
-                Console.ReadKey();
-
-            }
-            else if (valueKey =="FIN")
-            {
-                Console.WriteLine("Vous êtes a la fin il ne vous reste qu'une qu'à bla bla bla");
-                Console.ReadKey();
-
-            }
-
-
-            //Assigne a valuekey la prochaine cle a chercher.
-
-            //Histoire modules
-            //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes
-            // |
-            // V
-            //Combat module
-
-
-            //loop
+            Player = CreationPersonnage();
+            string depart = "Pont";
+            Onrouledesnoeuds(depart);
         }
 
 
