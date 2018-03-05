@@ -298,6 +298,7 @@ namespace Game.Library.Methodes
                                "▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▌.▐▌ ███ ▐█▄▄▌▐█•█▌    .▀ \n"+
                                "·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀     ▀ ");
             Console.WriteLine($"\n\nPress Any Key to Exit......");
+            Console.ReadKey();
             Environment.Exit(1);
         }
     }

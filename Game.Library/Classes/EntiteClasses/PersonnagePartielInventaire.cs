@@ -245,97 +245,98 @@ namespace Game.Library.Classes.EntiteClasses
             Console.WriteLine($"╔═════════════════════════════════════════════════╗\n");
             int counteq = 1;
 
-
-
-
-            if(Inventaire.ElementAt(y - 1).Armure == null && Inventaire.ElementAt(y - 1).Arme == null)
+            //Si inventaire vide skip tout cela
+            if (Inventaire.Count != 0)
             {
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Choix Invalide !");
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
+
+                if (Inventaire.ElementAt(y - 1).Armure == null && Inventaire.ElementAt(y - 1).Arme == null)
+                {
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Choix Invalide !");
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+                }
+
+                if (Inventaire.ElementAt(y - 1).Armure != null & !happenned)
+                {
+                    Inventaire.Add(new ObjInventaire(Armure));
+
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Vous Retirez l'Armure : ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{Armure.NomObjet} !");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Et vous la mettez dans votre Inventaire !");
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ ");
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+
+                    Armure = Inventaire.ElementAt(y - 1).Armure;
+
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Et Vous Equippez l'Armure : ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{Armure.NomObjet} !");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+
+                    Inventaire.RemoveAt(y - 1);
+                    ++counteq;
+
+                    happenned = true;
+                }
+
+                if (Inventaire.ElementAt(y - 1).Arme != null & !happenned)
+                {
+                    Inventaire.Add(new ObjInventaire(Arme));
+
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Vous Retirez l'Arme : ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{Arme.NomObjet} !");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Et vous la mettez dans votre Inventaire !");
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ ");
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+                    ++counteq;
+
+                    Arme = Inventaire.ElementAt(y - 1).Arme;
+
+                    Console.SetCursorPosition(0, counteq);
+                    Console.Write($"║ Et Vous Equippez l'Arme : ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{Arme.NomObjet} !");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(50, counteq);
+                    Console.Write("║");
+
+                    Inventaire.RemoveAt(y - 1);
+
+                    ++counteq;
+
+                    happenned = true;
+                }
             }
-
-            if (Inventaire.ElementAt(y - 1).Armure != null & !happenned)
-            {
-                Inventaire.Add(new ObjInventaire(Armure));
-
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Vous Retirez l'Armure : ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{Armure.NomObjet} !");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Et vous la mettez dans votre Inventaire !");
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ ");
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-
-                Armure = Inventaire.ElementAt(y - 1).Armure;
-
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Et Vous Equippez l'Armure : ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{Armure.NomObjet} !");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-
-                Inventaire.RemoveAt(y - 1);
-                ++counteq;
-
-                happenned = true;
-            }
-
-            if (Inventaire.ElementAt(y - 1).Arme != null & !happenned)
-            {
-                Inventaire.Add(new ObjInventaire(Arme));
-
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Vous Retirez l'Arme : ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{Arme.NomObjet} !");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Et vous la mettez dans votre Inventaire !");
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ ");
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-                ++counteq;
-
-                Arme = Inventaire.ElementAt(y - 1).Arme;
-
-                Console.SetCursorPosition(0, counteq);
-                Console.Write($"║ Et Vous Equippez l'Arme : ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{Arme.NomObjet} !");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(50, counteq);
-                Console.Write("║");
-
-                Inventaire.RemoveAt(y - 1);
-
-                ++counteq;
-
-                happenned = true;
-            }
-          
 
 
             Console.SetCursorPosition(0, counteq);
