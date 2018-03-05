@@ -25,8 +25,6 @@ namespace ProjetFinalProgModulaire
 
         public void Init()
         {
-           
-
             LoadAllContent();
             //Create Random Char ATM
             NewCharacter();
@@ -39,14 +37,18 @@ namespace ProjetFinalProgModulaire
             DepartDuJeu();
             FinaleDuJeu();
             Rejouer();
+        }
 
+        private void Rejouer()
+        {
+            Console.WriteLine("Voulez-vous jouer à nouveau ?");
+            var rejouer = int.Parse(Console.ReadLine());
         }
 
 
         private void FinaleDuJeu()
         {
             Console.WriteLine("Voici maintenant la fin bla bla bla bla ");
-
         }
 
         private void IntroDuJeu()

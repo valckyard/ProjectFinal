@@ -45,7 +45,7 @@ namespace Game.Library.Classes
                 Console.WriteLine(CombatString+"\n");
                 Methodes.MethodeCombat.AttaquePersonnage(ref personnage, ref baddie);
             }
-
+            
             Console.WriteLine("\n"+Intitule + "\n");
         }
 
