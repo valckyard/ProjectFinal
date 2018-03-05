@@ -56,8 +56,8 @@ namespace Game.Library.Classes.EntiteClasses
             sort = ChoixSort();
             else
             sort = itemSort;
-            
 
+            Console.WriteLine("");
 
             if (sort != null)
                 if (MpActuel >= sort.CoutMp)
