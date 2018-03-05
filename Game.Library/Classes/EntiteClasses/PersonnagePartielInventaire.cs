@@ -162,22 +162,38 @@ namespace Game.Library.Classes.EntiteClasses
 
         public void EquiperArmeArmure()
         {
+            Console.Clear();
             int count = 1;
+            int counta = 0;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"╔═════════════════════════════════════════════════╗\n");
+            ++counta;
             foreach (var objet in Inventaire)
             {
                 if (objet.Armure != null)
                 {
-                    Console.WriteLine($"||{count}\t-- {objet.Armure.NomObjet}\t||");
+                    Console.SetCursorPosition(0, counta);
+                    Console.Write($"║ {count} -- {objet.Armure.NomObjet}");
+                    Console.SetCursorPosition(50, counta);
+                    Console.Write("║");
+                    ++counta;
                 }
 
                 if (objet.Arme != null)
                 {
-                    Console.WriteLine($"||{count}\t-- {objet.Arme.NomObjet}\t||");
+                    Console.SetCursorPosition(0, counta);
+                    Console.Write($"║ {count} -- {objet.Arme.NomObjet}");
+                    Console.SetCursorPosition(50, counta);
+                    Console.Write("║");
+                    ++counta;
                 }
 
                 ++count;
             }
-
+            Console.SetCursorPosition(0, counta);
+            Console.Write("╚═════════════════════════════════════════════════╝\n");
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write($"Que voulez vous faire ?\n" +
                           $"     1 -- Equipper \n"+
                           $"     2 -- Retour a l'Inventaire\n" +
@@ -206,41 +222,74 @@ namespace Game.Library.Classes.EntiteClasses
                         {
                             EquiperArmeArmure();
                         }
-                        Console.Clear();
 
-                        if (Inventaire.ElementAt(y - 1).Armure != null)
-                        {
-                            Inventaire.Add(new ObjInventaire(Armure));
-                            Armure = Inventaire.ElementAt(y - 1).Armure;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"\nVous Equippez l'Armure : {Armure.NomObjet} !\n");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Inventaire.RemoveAt(y - 1);
-                        }
 
-                        if (Inventaire.ElementAt(y - 1).Arme != null)
-                        {
-                            Inventaire.Add(new ObjInventaire(Arme));
-                            Arme = Inventaire.ElementAt(y - 1).Arme;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"\nVous Equippez l'Arme : {Arme.NomObjet} !\n");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Inventaire.RemoveAt(y - 1);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Choix Invalide\n");
-                        }
-                        Console.WriteLine("Appuyez sur Entree pour retourner au menu !");
-                        Console.ReadLine();
-
-                        MenuInventaire();
+                        AfficheEquipedNew(y);
 
                         break;
                     case 2:
                         MenuInventaire();
                         break;
                 }
+        }
+
+        private void AfficheEquipedNew(int y)
+        {
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"╔═════════════════════════════════════════════════╗\n");
+            int counteq = 1;
+
+
+
+
+            if(Inventaire.ElementAt(y - 1).Armure == null && Inventaire.ElementAt(y - 1).Arme == null)
+            {
+                Console.SetCursorPosition(0, counteq);
+                Console.Write($"║ Choix Invalide !");
+                Console.SetCursorPosition(50, counteq);
+                Console.Write("║");
+                ++counteq;
+            }
+
+            if (Inventaire.ElementAt(y - 1).Armure != null)
+            {
+                Inventaire.Add(new ObjInventaire(Armure));
+                Armure = Inventaire.ElementAt(y - 1).Armure;
+                Console.SetCursorPosition(0, counteq);
+                Console.Write($"║ Vous Equippez l'Armure : {Armure.NomObjet} !");
+                Console.SetCursorPosition(50, counteq);
+                Console.Write("║");
+                Inventaire.RemoveAt(y - 1);
+                ++counteq;
+            }
+
+            if (Inventaire.ElementAt(y - 1).Arme != null)
+            {
+                Inventaire.Add(new ObjInventaire(Arme));
+                Arme = Inventaire.ElementAt(y - 1).Arme;
+                Console.SetCursorPosition(0, counteq);
+                Console.Write($"║ Vous Equippez l'Arme : {Arme.NomObjet} !");
+                Console.SetCursorPosition(50, counteq);
+                Console.Write("║");
+                Inventaire.RemoveAt(y - 1);
+                ++counteq;
+            }
+          
+
+
+            Console.SetCursorPosition(0, counteq);
+            Console.Write("╚═════════════════════════════════════════════════╝\n");
+            counteq += 2;
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+
+            Console.SetCursorPosition(0, counteq);
+            Console.WriteLine("Appuyez sur Entree pour retourner au menu !");
+            Console.ReadLine();
+
+            MenuInventaire();
         }
 
         private void AfficherInventaire()

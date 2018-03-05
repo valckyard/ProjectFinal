@@ -1,21 +1,10 @@
 ﻿Alex
 	
-	finaliser combat de base
-		
-		-Loot											// done
-		-equip											// done
-		-ajout a inventaire								 // done
-
-		-Ennemi Rstats + mod lvl
-		-persoE Randomstats + mod lvl
-
+ajouter le loot
+ajouter les stats
 
 	
-		-Max value stats (for speed / power spells etc)        // meh pas important atm
-		-condition potion / parchemin in spells					//done
-		-menu inventaire									    // done
-		-rest continue menu stats								// done
-	
+
 	attaque
 		-crit
 		-miss
