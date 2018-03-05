@@ -61,6 +61,29 @@ namespace ProjetFinalProgModulaire
 
         public static Dictionary<string, Noeud> LoadingNoeuds()
         {
+            var ennemi1 = new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2);
+            var ennemi2 = new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 2);
+            var ennemi3 = new Ennemi("Zoreye", TypeEnnemi.Lievre, 90, TypeElement.Terre, 20, 12, 2, 2, 2);
+            var ennemi4 = new Ennemi("Suzie", TypeEnnemi.Perdrix, 90, TypeElement.Air, 20, 12, 2, 2, 2);
+            var ennemi5 = new Ennemi("Xamien", TypeEnnemi.Chien, 90, TypeElement.Etheral, 20, 12, 2, 2, 2);
+            var ennemi6 = new Ennemi("Raster", TypeEnnemi.Lievre, 90, TypeElement.Lumiere, 20, 12, 2, 2, 2);
+            var ennemi7 = new Ennemi("Fraprix", TypeEnnemi.Perdrix, 90, TypeElement.Feu, 20, 12, 2, 2, 2);
+
+
+
+            //PersonnageRace race, PersonnageClasse classe, string nom, int pvMax, int mpMax, int puissance,
+            //int puissanceMagique, int defense, int vitesse)
+            var perso1 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Barbare, "Normare", 100, 20, 25, 9,15, 4 );
+            var perso2 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Magicelfe", 100, 20, 25, 9, 15, 4);
+            var perso3 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Barbare, "Nornain", 100, 20, 25, 9, 15, 4);
+            var perso4 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Guerrier, "Hubier", 100, 20, 25, 9, 15, 4);
+            var perso5 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Magicien, "Momien", 100, 20, 25, 9, 15, 4);
+            var perso6 = new Personnage(PersonnageRace.Nain, PersonnageClasse.Guerrier, "Naguerre", 100, 20, 25, 9, 15, 4);
+            var perso7 = new Personnage(PersonnageRace.Humain, PersonnageClasse.Magicien, "Hogick", 100, 20, 25, 9, 15, 4);
+            var perso8 = new Personnage(PersonnageRace.Elfe, PersonnageClasse.Barbare, "Elsbar", 100, 20, 25, 9, 15, 4);
+
+
+
             var dicnoeud = new Dictionary<string, Noeud>()
             {
                 //Apres introduction histoire voici la premiere question --- TAXI OU SENTIER
@@ -81,8 +104,7 @@ namespace ProjetFinalProgModulaire
                 {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez dans" +
                                    "le taxi. Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
                                    " la ville et ainsi arriver derrière votre objectif ou vous préférez tenter passer\n" +
-                                   " directement dans la Ville par la rue Racine." , new Ennemi("Gonzo2", TypeEnnemi.PerchaudeEnchantee, 90,
-                                     TypeElement.Air, 20, 12, 2, 2, 2), null, false,
+                                   " directement dans la Ville par la rue Racine." ,null, null, false,
                                     new Dictionary<int, string>()
                                     {
                                         { 1,"Racine"},
@@ -153,7 +175,7 @@ namespace ProjetFinalProgModulaire
                                             "tranquillement sur le terrain en direction de votre objectif final\n" +
                                             "qui se trouve tout en haut au sommet du haut de la ville. Vous apercez des escaliers" +
                                             "devant vous que vous vous empressez d'atteindre.\n\n",
-                                            null, null, true,
+                                            ennemi1, null, true,
                         new Dictionary<int, string>()
                         {
                             {1,"Escalier"},
@@ -167,7 +189,7 @@ namespace ProjetFinalProgModulaire
                 
                 //#08 -- Combat
                 {"Arrêter", new Noeud("Vous sortez du taxi et vous vous avancer vers l'homme d'un pas très prudent. Arrivé à" +
-                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.", null, null, true,
+                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.", ennemi2, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"A pied"},
@@ -190,7 +212,7 @@ namespace ProjetFinalProgModulaire
                     )
                 },
                 //#10 Combat
-                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, null, false,
+                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, perso6, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vous tentez de redemarrer le taxi"},
@@ -202,7 +224,7 @@ namespace ProjetFinalProgModulaire
                 
                 //#11  
                 {"Escalier", new Noeud("Vous traversez le terrain vague sans être répérer. Vous apercevez un escalier en très mauvaise" +
-                                       "état qui mène au haut de la colline", null, null, true,
+                                       "état qui mène au haut de la colline", null, perso1, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathédrale"},
@@ -215,7 +237,7 @@ namespace ProjetFinalProgModulaire
                 //#12
                 {"La Marjolaine", new Noeud("Vous sautez à bord du bateau, et après quelques recherches, vous rendez compte\n" +
                                             "que c'était le vent qui a fait rouler une bouteile sur le pont. Vous retournez\n" +
-                                            "vers la sortie.", null, null, true,
+                                            "vers la sortie.", null, perso2, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Derive"},
@@ -266,7 +288,7 @@ namespace ProjetFinalProgModulaire
                 
                 //#16  
                 {"A pied", new Noeud("N'ayant pas de temps à perdre vous continuez votre route en direction de votre objectif sur la rue" +
-                                     "racine", null, null, true,
+                                     "racine", null, perso3, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathedrale"},
@@ -283,7 +305,7 @@ namespace ProjetFinalProgModulaire
                                     "un couloir qui semble très dangereux avec ses nombreuses portes. Vous courrez tout de même le risque" +
                                     "et vous tente de rejoindre la porte arrière ou vous tentez de passer à l'étage par l'escalier " +
                                     "afin d'avoir une meilleure vision. Avant même d'avoir pris votre décision, vous sortez du vestibule" +
-                                    "en faisant quelques pas.  ", null, null, false,
+                                    "en faisant quelques pas.  ", ennemi3, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Etage"},
@@ -304,7 +326,7 @@ namespace ProjetFinalProgModulaire
                 },
 
                 //#19
-                {"Porte de derrière", new Noeud("Après avoir traversé le halle de l'hotel, vous arrivez au couloir. ", null, null, true,
+                {"Porte de derrière", new Noeud("Après avoir traversé le halle de l'hotel, vous arrivez au couloir. ", null,perso4, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Cour de l'hotel"},
@@ -318,7 +340,7 @@ namespace ProjetFinalProgModulaire
 
                 //#20  
                 {"Cour de l'hotel", new Noeud("Vous ouvrez la porte de l'hotel et vous voilà tout prêt de votre objectif. Vous vous rendez tout" +
-                                              "près de la clôture en bordure de la rue, ", null, null, true,
+                                              "près de la clôture en bordure de la rue, ", ennemi5, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Traversez la rue"},
@@ -348,7 +370,7 @@ namespace ProjetFinalProgModulaire
                                                         "disponible, les 2 grandes portes centrales. Une fois à l'intérieur, vous devez" +
                                                         "faire vite et atteindre l'objectif, qui se trouve sous le plancher derrière" +
                                                         "l'hotel de l'église. Vous y arrivez rapidement et ouvrez la trappe sous le plancher." +
-                                                        "Un portable vous y attend.", null, null, true, //valider si true/false
+                                                        "Un portable vous y attend.", null, perso5, true, //valider si true/false
                         new Dictionary<int, string>()
                         {
                             { 1,"FIN"}
