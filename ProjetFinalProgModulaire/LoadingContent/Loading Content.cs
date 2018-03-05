@@ -58,7 +58,7 @@ namespace ProjetFinalProgModulaire
 
         public static Dictionary<string, Noeud> LoadingNoeuds()
         {
-            var ennemi1 = new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2);
+                new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2){ValeurExp = 200};
             var ennemi2 = new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 2);
             var ennemi3 = new Ennemi("Zoreye", TypeEnnemi.Lievre, 90, TypeElement.Terre, 20, 12, 2, 2, 2);
             var ennemi4 = new Ennemi("Suzie", TypeEnnemi.Perdrix, 90, TypeElement.Air, 20, 12, 2, 2, 2);
