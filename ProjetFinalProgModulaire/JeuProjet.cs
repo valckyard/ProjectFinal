@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -33,8 +34,32 @@ namespace ProjetFinalProgModulaire
             //start after char creation
             PlayerInterfaceSender();
 
+            IntroDuJeu();
             //Init The Game Loop
             DepartDuJeu();
+            FinaleDuJeu();
+            Rejouer();
+
+        }
+
+
+        private void FinaleDuJeu()
+        {
+            Console.WriteLine("Voici maintenant la fin bla bla bla bla ");
+
+        }
+
+        private void IntroDuJeu()
+        {
+            Console.WriteLine("Le chef du clan Codeum a eu vent que leurs ennemis de toujours, les ScrIkID, ont en leur possession" +
+                              "une bombe qui a pour objectif de faire sauter son quartier général. Les informations, provenant " +
+                              "d'une source très fiable, précise que la bombe est dissimulé dans le quartier général de ces" +
+                              "derniers.La bombe qui est déjà activé et qui est contrôlé à distance par un laptop, sera envoyé" +
+                              "tôt demain. Vous avez été engagé pour le clan Codeum afin d'accéder au portable qui lui est" +
+                              "dissimulé derrière l'hotel de la Cathdrale dans un trappe sous le plancher.Vous n'avez qu'à changer" +
+                              "le code pour que la détonation se fasse quelques secondes après votre départ. Vous acceptez" +
+                              "la mission et vous vous mettez en route immédiatement en direction du pont qui traverse la rivière" +
+                              "afin de vous rejoindre votre objectif situé sur l'autre rive.");
         }
 
         private void DepartDuJeu()

@@ -108,7 +108,7 @@ namespace TestConsoleJeu
             // |
             // V
             //Combat module
-
+            
 
             //loop
         }
