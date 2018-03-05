@@ -41,6 +41,9 @@ namespace Game.Library.Classes.EntiteClasses
         //inventaire
         public List<ObjInventaire> Inventaire { get; set; }
 
+        //EnnemiPersonnage
+        public int LootChances { get; set; }
+        public ClasseLootTable LootTable { get; set; }
 
         public Personnage(PersonnageRace race, PersonnageClasse classe, string nom, int pvMax, int mpMax, int puissance,
             int puissanceMagique, int defense, int vitesse)
@@ -205,6 +208,33 @@ namespace Game.Library.Classes.EntiteClasses
             return false;
         }
 
-       
+        public void Loot(ref Personnage joueur)
+        {
+            ObjInventaire loot = null;
+            var rand = new Random();
+            var chances = rand.Next(0, 101);
+            if (chances > LootChances)
+            {
+                loot = LootTable.Table[rand.Next(0, LootTable.Table.Count)];
+            }
+
+            if (loot != null)
+            {
+                joueur.Inventaire.Add(loot);
+                if (loot.Arme != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Arme} !\nIl a ete ajoute a votre Inventaire !");
+                if (loot.Armure != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Armure} !\nIl a ete ajoute a votre Inventaire !");
+                if (loot.ObjetCons != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.ObjetCons} !\nIl a ete ajoute a votre Inventaire !");
+                else
+                {
+                    Console.WriteLine("L'ennemi n'avais aucun objet de valeur!");
+                }
+            }
+
+
+
+        }
     }
 }

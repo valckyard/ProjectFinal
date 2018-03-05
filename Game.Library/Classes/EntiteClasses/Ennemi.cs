@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Game.Library.Classes.ObjClasses;
 using Game.Library.Enums;
 
@@ -15,10 +15,14 @@ namespace Game.Library.Classes.EntiteClasses
         public int Vitesse { get; set; }
         public int ValeurExp { get; set; }
         public int LootChances { get; set; }
+        public ClasseLootTable LootTable { get; set; }
 
-        public Ennemi(){}
 
-        public Ennemi(string name,TypeEnnemi typeEnnemi,int hp, TypeElement typeElement, int puissance, int defense,
+        public Ennemi()
+        {
+        }
+
+        public Ennemi(string name, TypeEnnemi typeEnnemi, int hp, TypeElement typeElement, int puissance, int defense,
             int vitesse, int valeurExp, int lootChances)
         {
             Name = name;
@@ -32,5 +36,31 @@ namespace Game.Library.Classes.EntiteClasses
             LootChances = lootChances;
         }
 
-     }
+        public void Loot(ref Personnage joueur)
+        {
+            ObjInventaire loot = null;
+            var rand = new Random();
+            var chances = rand.Next(0, 101);
+            if (chances > LootChances)
+            {
+                loot = LootTable.Table[rand.Next(0, LootTable.Table.Count)];
+            }
+
+            if (loot != null)
+            {
+                joueur.Inventaire.Add(loot);
+                if (loot.Arme != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Arme} !\nIl a ete ajoute a votre Inventaire !");
+                if (loot.Armure != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Armure} !\nIl a ete ajoute a votre Inventaire !");
+                if (loot.ObjetCons != null)
+                    Console.WriteLine($"\nL'ennemi possedait {loot.ObjetCons} !\nIl a ete ajoute a votre Inventaire !");
+                else
+                {
+                    Console.WriteLine("L'ennemi n'avais aucun objet de valeur!");
+                }
+            }
+
+        }
+    }
 }
