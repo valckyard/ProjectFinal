@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="AffichageManager\AffichageMngr.cs" />
     <Compile Include="JeuProjet.cs" />
-    <Compile Include="LoadingContent\Loading Content.cs" />
+    <Compile Include="LoadingContent\Loading-Content.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
