@@ -85,9 +85,9 @@ namespace ProjetFinalProgModulaire
             {
                 //Apres introduction histoire voici la premiere question --- TAXI OU SENTIER
                 //#01
-                { "Pont", new Noeud("Vous avez traversé la riviere et vous arrivez au bout du pont.\n" +
+                { "Pont", new Noeud("Vous avez traversé la rivière et vous arrivez au bout du pont.\n" +
                                     "Devant vous,vous avez un boulevard où vous pourriez appeler un taxi ou\n" +
-                                    "vous preferez prendre le sentier plus discret sur votre gauche qui longe\n" +
+                                    "vous préférez prendre le sentier, plus discret sur votre gauche qui longe\n" +
                                     " la rivière.", null, null, false,
                                     new Dictionary<int, string>()
                                     {
@@ -98,9 +98,9 @@ namespace ProjetFinalProgModulaire
                 },
 
                 //#02 Vous avez décidé de prendre le taxi                --  RACINE OU Boul. Univ
-                {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez dans" +
-                                   "le taxi. Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
-                                   " la ville et ainsi arriver derrière votre objectif ou vous préférez tenter passer\n" +
+                {"Taxi", new Noeud("Vous avancez jusqu'au boulevard et vous appelez un taxi !!. En vitesse, vous embarquez. le taxi." +
+                                   " Vous decidez de passer par le boul.Université qui vous permettrait de contourner\n" +
+                                   " la ville et ainsi arriver derrière votre objectif ou vous préférez passer\n" +
                                    " directement dans la Ville par la rue Racine." ,null, null, false,
                                     new Dictionary<int, string>()
                                     {
@@ -366,8 +366,8 @@ namespace ProjetFinalProgModulaire
                 {"Entrez dans la Cathedrale", new Noeud("Vous arrivez devant la Cathédrale et vous entrer par la seule issue encore" +
                                                         "disponible, les 2 grandes portes centrales. Une fois à l'intérieur, vous devez" +
                                                         "faire vite et atteindre l'objectif, qui se trouve sous le plancher derrière" +
-                                                        "l'hotel de l'église. Vous y arrivez rapidement et ouvrez la trappe sous le plancher." +
-                                                        "Un portable vous y attend.", null, perso5, true, //valider si true/false
+                                                        "l'hotel de l'église. Vous avancez vers l'hotel prudemment."
+                                                        , null, perso5, true, //valider si true/false
                         new Dictionary<int, string>()
                         {
                             { 1,"FIN"}
