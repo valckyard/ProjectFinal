@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EntiteClasses\PersonnagePartielInventaire.cs" />
     <Compile Include="Enums\AttaqueCondition.cs" />
     <Compile Include="Enums\AttaqueChoisie.cs" />
     <Compile Include="Classes\TypeAttaque.cs" />
