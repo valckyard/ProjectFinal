@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -61,12 +62,17 @@ namespace ProjetFinalProgModulaire
                               "dissimulé derrière l'hotel de la Cathdrale dans un trappe sous le plancher.Vous n'avez qu'à changer" +
                               "le code pour que la détonation se fasse quelques secondes après votre départ. Vous acceptez" +
                               "la mission et vous vous mettez en route immédiatement en direction du pont qui traverse la rivière" +
-                              "afin de vous rejoindre votre objectif situé sur l'autre rive.");
+                              "afin de vous rejoindre votre objectif situé sur l'autre rive.\n\n");
+
+
+            Console.WriteLine("Appuyez sur une touche pour continuer");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         private void DepartDuJeu()
         {
-            string depart = "Pont";
+            string depart = "La Marjolaine";
             OnRouleDesNoeuds(depart);
         }
 

@@ -313,6 +313,7 @@ namespace Game.Library.Methodes
                                "·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀     ▀ ");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine($"\n\nPress Any Key to Exit......");
+            Console.ReadKey();
             Environment.Exit(1);
         }
     }
