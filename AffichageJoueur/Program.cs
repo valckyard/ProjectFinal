@@ -1,28 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using Lidgren.Network;
-using static AffichageJoueur.ServerAffichage;
 
 namespace AffichageJoueur
 {
-    class Program
+    public partial class Program
     {
-        private static Thread _affichage;
-        private static Thread _ReadMess;
+
+        public static Thread Affichage;
+        public static Thread ReadMess;
 
         static void Main(string[] args)
         {
+            Start();
+        }
+
+        private static void Start()
+        {
+            PositionWindow();
+            Console.SetWindowSize(27, 5);
+            Console.CursorVisible = false;
             var server = new ServerAffichage();
             server.Run();
-            _affichage = new Thread(server.AffichageStats);
-            _ReadMess = new Thread(server.ReadMessages);
-            _ReadMess.Start();
-            _affichage.Start();
+            Affichage = new Thread(server.AffichageStats);
+            ReadMess = new Thread(server.ReadMessages);
+            ReadMess.Start();
+            Affichage.Start();
         }
     }
-
 }

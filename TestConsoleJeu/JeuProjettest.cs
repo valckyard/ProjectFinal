@@ -62,11 +62,9 @@ namespace TestConsoleJeu
 
             var Client = new AffichageManager.AffichageManagerTest();
             Client.Init();
-            //Client.SendLoop();
-
             Affichage = new Thread(Client.SendLoop);
             Affichage.Start();
-                Thread.Sleep(300);
+            Thread.Sleep(300);
    
             
            Player2 = new Personnage(PersonnageRace.Humain,PersonnageClasse.Magicien,"Pablo",100,5,5,5,5,5);

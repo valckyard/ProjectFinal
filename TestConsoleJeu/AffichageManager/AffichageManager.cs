@@ -18,8 +18,6 @@ namespace TestConsoleJeu.AffichageManager
             mOut.Write(JeuProjetTest.Player.MpActuel);
             mOut.Write(JeuProjetTest.Player.PvMax);
             mOut.Write(JeuProjetTest.Player.PvActuels);
-
-          
             Client.Connect("localhost", 14242,mOut);
             Client.FlushSendQueue();
         }
@@ -46,27 +44,29 @@ namespace TestConsoleJeu.AffichageManager
                                 mOut.Write(JeuProjetTest.Player.MpActuel);
                                 mOut.Write(JeuProjetTest.Player.PvMax);
                                 mOut.Write(JeuProjetTest.Player.PvActuels);
+                                mOut.Write(JeuProjetTest.Player.Arme.NomObjet);
+                                mOut.Write(JeuProjetTest.Player.Armure.NomObjet);
                                 Client.SendMessage(mOut, Client.ServerConnection, NetDeliveryMethod.ReliableOrdered);
                                 Client.FlushSendQueue();
                             }
 
                             break;
                         case NetIncomingMessageType.DebugMessage:
-                            Console.WriteLine(message.ReadString());
+                          //  Console.WriteLine(message.ReadString());
                             break;
                         case NetIncomingMessageType.StatusChanged:
                             Console.WriteLine(message.SenderConnection.Status);
                             if (message.SenderConnection.Status == NetConnectionStatus.Connected)
                             {
 
-                                Console.WriteLine("{0} has connected.",
-                                    message.SenderConnection.Peer.Configuration.LocalAddress);
+                            //    Console.WriteLine("{0} has connected.",
+                                  //  message.SenderConnection.Peer.Configuration.LocalAddress);
                             }
 
                             if (message.SenderConnection.Status == NetConnectionStatus.Disconnected)
                             {
-                                Console.WriteLine("{0} has disconnected.",
-                                    message.SenderConnection.Peer.Configuration.LocalAddress);
+                              //  Console.WriteLine("{0} has disconnected.",
+                                //    message.SenderConnection.Peer.Configuration.LocalAddress);
                             }
 
                             break;
