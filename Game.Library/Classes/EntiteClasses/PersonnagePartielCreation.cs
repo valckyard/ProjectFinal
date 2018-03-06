@@ -17,8 +17,8 @@ namespace Game.Library.Classes.EntiteClasses
             Classe = (PersonnageClasse) Rand.Next(0, 3);
             Race = (PersonnageRace) Rand.Next(0,3);
 
-            var tPuissanceMagique = Rand.Next(10, 21);
-            var tPtsAttaque = Rand.Next(10, 21);
+            var tPuissanceMagique = Rand.Next(20, 31);
+            var tPtsAttaque = Rand.Next(30, 38);
             var tPtsVieMax = 100;
             var tPointsMagieMax = 50;
             var tPtsVitesse = Rand.Next(10, 20);
