@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using Game.Library.Classes.EntiteClasses;
 using Game.Library.Methodes;
 
@@ -79,7 +81,7 @@ namespace Game.Library.Classes
             {
                 if (ChoixReponses.Count == 1)
                 {
-                    return ChoixReponses.Values.ToString();
+                    return ChoixReponses.ElementAt(0).Value;
                 }
                 else
                 {

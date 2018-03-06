@@ -349,11 +349,11 @@ namespace ProjetFinalProgModulaire
                 //#12
                 {"La Marjolaine", new Noeud("Vous sautez à bord du bateau, et après quelques recherches, vous rendez compte\n" +
                                             "que c'était le vent qui a fait rouler une bouteile sur le pont. Vous retournez\n" +
-                                            "vers la sortie.", null, perso2, true,
+                                            "vers la sortie.", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Derive"},
-                            { 2,"Vers La Cathedrale"}
+                            //{ 2,"Vers La Cathedrale"}
                         }
                     )
                 },
