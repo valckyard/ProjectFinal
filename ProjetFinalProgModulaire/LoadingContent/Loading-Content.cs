@@ -285,7 +285,7 @@ namespace ProjetFinalProgModulaire
                                             "tranquillement sur le terrain en direction de votre objectif final\n" +
                                             "qui se trouve tout en haut au sommet du haut de la ville. Vous apercez des escaliers" +
                                             "devant vous que vous vous empressez d'atteindre.\n\n",
-                                            ennemi1, null, true,
+                                            null, null, true,
                         new Dictionary<int, string>()
                         {
                             {1,"Escalier"},
@@ -300,7 +300,7 @@ namespace ProjetFinalProgModulaire
                 //#08 -- Combat
                 {"Arrêter", new Noeud("Vous sortez du taxi et vous vous avancer vers l'homme d'un pas très prudent. Arrivé à" +
                                       "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.",
-                                      ennemi2, null, true,
+                                      null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"A pied"},
@@ -323,7 +323,7 @@ namespace ProjetFinalProgModulaire
                     )
                 },
                 //#10 Combat
-                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, perso6, true,
+                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vous tentez de redemarrer le taxi"},
@@ -335,7 +335,7 @@ namespace ProjetFinalProgModulaire
                 
                 //#11  
                 {"Escalier", new Noeud("Vous traversez le terrain vague sans être répérer. Vous apercevez un escalier en très mauvaise" +
-                                       "état qui mène au haut de la colline", null, perso1, true,
+                                       "état qui mène au haut de la colline", null, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vers La Cathédrale"},
