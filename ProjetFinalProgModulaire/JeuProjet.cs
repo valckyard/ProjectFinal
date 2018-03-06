@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
+using Game.Library.Methodes;
 using ProjetFinalProgModulaire.AffichageManager;
 using Personnage = Game.Library.Classes.EntiteClasses.Personnage;
 
@@ -72,8 +73,12 @@ namespace ProjetFinalProgModulaire
 
         private void DepartDuJeu()
         {
-            string depart = "La Marjolaine";
-            OnRouleDesNoeuds(depart);
+            string depart = "Pont";
+            var fin = OnRouleDesNoeuds(depart);
+            if (fin == "FIN")
+            {
+                FinaleDuJeu();
+            }
         }
 
         private static void NewCharacter()
@@ -124,7 +129,17 @@ namespace ProjetFinalProgModulaire
 
         public static string OnRouleDesNoeuds(string monnoeud)
         {
+            if (monnoeud == "FIN")
+            {
+                return monnoeud;
+            }
+
+            if (monnoeud == "MORT")
+            {
+                MethodeCombat.GameOver();
+            }
             string newnoeud = null;
+            
             foreach (var kvNoeud in DicStory)
             {
                 if (kvNoeud.Key == monnoeud)

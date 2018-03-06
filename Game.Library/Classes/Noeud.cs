@@ -77,6 +77,7 @@ namespace Game.Library.Classes
         public string ChoixJoueur(ref Personnage personnage)
         {
             Random rand = new Random();
+            
             if (MortOuRandom)
             {
                 if (ChoixReponses.Count == 1)

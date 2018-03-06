@@ -299,7 +299,8 @@ namespace ProjetFinalProgModulaire
                 
                 //#08 -- Combat
                 {"Arrêter", new Noeud("Vous sortez du taxi et vous vous avancer vers l'homme d'un pas très prudent. Arrivé à" +
-                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.", ennemi2, null, true,
+                                      "sa hauteur vous lui marcher sur le pied et d'un seul coup il se relève devant vous.",
+                                      ennemi2, null, true,
                         new Dictionary<int, string>()
                         {
                             { 1,"A pied"},
@@ -351,7 +352,7 @@ namespace ProjetFinalProgModulaire
                         new Dictionary<int, string>()
                         {
                             { 1,"Derive"},
-                            //{ 2,"Vers La Cathedrale"}
+                            { 2,"Vers La Cathedrale"}
                         }
                     )
                 },
@@ -480,7 +481,7 @@ namespace ProjetFinalProgModulaire
                                                         "disponible, les 2 grandes portes centrales. Une fois à l'intérieur, vous devez" +
                                                         "faire vite et atteindre l'objectif, qui se trouve sous le plancher derrière" +
                                                         "l'hotel de l'église. Vous avancez vers l'hotel prudemment."
-                                                        , null, perso5, true, //valider si true/false
+                                                        ,null, null, true, //valider si true/false
                         new Dictionary<int, string>()
                         {
                             { 1,"FIN"}
