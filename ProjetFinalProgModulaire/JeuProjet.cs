@@ -146,6 +146,8 @@ namespace ProjetFinalProgModulaire
                 return OnRouleDesNoeuds(newnoeud);
             }
 
+
+
             if (monnoeud == "Mort")
             {
                 MethodeCombat.GameOver();

@@ -91,7 +91,6 @@ namespace Game.Library.Classes
                     if (z == ChoixReponses.Count)
                     {
                         Console.WriteLine(ChoixReponses.ElementAt(1).Value);
-                        Console.ReadLine();
                         return "Mort";
                     }
                     foreach (var reponse in ChoixReponses)
