@@ -336,6 +336,7 @@ namespace Game.Library.Methodes
 
         public static void GameOver()
         {
+            Thread.Sleep(4000);
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine($"  ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .          ▌ ▐·▄▄▄ .▄▄▄      ▄▄\n " +
                                " ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·   ▪     ▪█·█▌▀▄.▀·▀▄ █·    ██▌\n"+
