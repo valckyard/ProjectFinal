@@ -229,15 +229,13 @@ namespace Game.Library.Classes.EntiteClasses
             {
                 joueur.Inventaire.Add(loot);
                 if (loot.Arme != null)
-                    Console.WriteLine($"\nL'ennemi possedait {loot.Arme} !\nIl a ete ajoute a votre Inventaire !");
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Arme.NomObjet} !\nIl a ete ajoute a votre Inventaire !");
                 if (loot.Armure != null)
-                    Console.WriteLine($"\nL'ennemi possedait {loot.Armure} !\nIl a ete ajoute a votre Inventaire !");
+                    Console.WriteLine($"\nL'ennemi possedait {loot.Armure.NomObjet} !\nIl a ete ajoute a votre Inventaire !");
                 if (loot.ObjetCons != null)
-                    Console.WriteLine($"\nL'ennemi possedait {loot.ObjetCons} !\nIl a ete ajoute a votre Inventaire !");
-                else
-                {
+                    Console.WriteLine($"\nL'ennemi possedait {loot.ObjetCons.NomObjet} !\nIl a ete ajoute a votre Inventaire !");
+                if (loot.Arme != null & loot.Armure != null & loot.ObjetCons != null)
                     Console.WriteLine("L'ennemi n'avais aucun objet de valeur!");
-                }
             }
         }
     }
