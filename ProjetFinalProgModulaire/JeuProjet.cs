@@ -51,7 +51,8 @@ namespace ProjetFinalProgModulaire
 
         private void FinaleDuJeu()
         {
-            Console.WriteLine("Voici maintenant la fin bla bla bla bla ");
+            Console.WriteLine("Apres avoir sorti de la cathedrale BOOOOOOOMMMMMMM votre mission est accomplie \n" +
+                              "Felicitation. \n Merci pour la Session! ");
         }
 
         private void IntroDuJeu()

@@ -93,13 +93,9 @@ namespace Game.Library.Classes
                         Console.WriteLine(ChoixReponses.ElementAt(1).Value);
                         return "Mort";
                     }
-                    foreach (var reponse in ChoixReponses)
+                    else
                     {
-                        if(z== reponse.Key)
-                        {
-                        
-                            return reponse.Value;
-                        }
+                        return ChoixReponses.ElementAt(0).Value;
                     }
                 }
             }

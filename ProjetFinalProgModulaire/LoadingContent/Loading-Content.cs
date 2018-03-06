@@ -318,12 +318,12 @@ namespace ProjetFinalProgModulaire
                                         "le mur de brique de l'immeuble devant vous.", null, perso1, true,
                         new Dictionary<int, string>()
                         {
-                            { 1,"MORT"}
+                            { 1,"Mort"}
                         }
                     )
                 },
                 //#10 Combat
-                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", ennemi1, null, true,
+                {"Argumente", new Noeud("Vous sortez tous les deux du taxi et vous lui criez qu'il n'est qu'un imbécile!!!", null, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Vous tentez de redemarrer le taxi"},
@@ -352,7 +352,6 @@ namespace ProjetFinalProgModulaire
                         new Dictionary<int, string>()
                         {
                             { 1,"Derive"},
-                            { 2,"Vers La Cathedrale"}
                         }
                     )
                 },
@@ -388,10 +387,10 @@ namespace ProjetFinalProgModulaire
                 //#15   
                 {"Vous tentez de redemarrer le taxi", new Noeud("Vous tentez de redémarrer le taxi par vous même. Lorsque vous apercevez le chauffeur" +
                                               "s'éloigner à pleine jambe du taxi, vous comprenez ce qui se passe. Une déflagration" +
-                                              "se fait attendre et s'en fait du taxi et de tout ce qui s'y trouve. ", null, null, false,
+                                              "se fait attendre et s'en fait du taxi et de tout ce qui s'y trouve. ", null, null,true,
                         new Dictionary<int, string>()
                         {
-                            { 1,"MORT"},
+                            { 1,"Mort"},
                         }
                     )
                 },
@@ -416,7 +415,7 @@ namespace ProjetFinalProgModulaire
                                     "un couloir qui semble très dangereux avec ses nombreuses portes. Vous courrez tout de même le risque" +
                                     "et vous tente de rejoindre la porte arrière ou vous tentez de passer à l'étage par l'escalier " +
                                     "afin d'avoir une meilleure vision. Avant même d'avoir pris votre décision, vous sortez du vestibule" +
-                                    "en faisant quelques pas.  ", ennemi3, null, true,
+                                    "en faisant quelques pas.  ", ennemi3, null, false,
                         new Dictionary<int, string>()
                         {
                             { 1,"Etage"},
@@ -428,10 +427,10 @@ namespace ProjetFinalProgModulaire
                 //#18
                 {"Etage", new Noeud("Vous montez à l'étage par l'escalier. Malheureusement pour vous, on vous y attendait" +
                                     "Les deux guerriers que vous aviez vu entrer et le reste de la bande vous saute dessus, et vous" +
-                                    "acheve et vous éclate la tronche !!!!", null, null, false,
+                                    "acheve et vous éclate la tronche !!!!", null, null, true,
                         new Dictionary<int, string>()
                         {
-                            { 1,"MORT"},
+                            { 1,"Mort"},
                         }
                     )
                 },
@@ -457,7 +456,7 @@ namespace ProjetFinalProgModulaire
                             { 1,"Traversez la rue"},
 
                             { 2,"La vue de votre objectif à quelques mètres, vous a fait perdre votre vigilence et vous 'avez pas remarquer les" +
-                                "$$$$$$$$$ qui vous attendaient à l'étage. Leur $$$$$$$ vous réduisent à bouillis. "}
+                                "Les Jumeaux Cousyn qui vous attendaient à l'étage. Charles Cousyn vous réduisent à bouillis. "}
                         }
                     )
                 },
@@ -465,7 +464,7 @@ namespace ProjetFinalProgModulaire
 
                 //#21  
                 {"Traversez la rue", new Noeud("Vous attendez que la rue soit déserte, et vous vous lancez en direction de la " +
-                                                 "Cathédrale.", null, null, false,
+                                                 "Cathédrale.", null, null, true,
                     new Dictionary<int, string>()
                     {
                         { 1,"Entrez dans la Cathedrale"},
