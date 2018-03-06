@@ -220,12 +220,20 @@ namespace Game.Library.Classes.EntiteClasses
 
                     var mulDmgAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
                     dmg = ((Puissance + Arme.Puissance) - ennemi.Defense) * mulDmgAtt;
+                    if (dmg <= 1)
+                    {
+                        dmg = rand.Next(2, 7);
+                    }
                     dmg = dmg + (dmg * chance);
                     return dmg;
 
                 case AttaqueCondition.Defense:
                     var mulDmgDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
                     dmg = (ennemi.Puissance - (Defense + Armure.Defense)) * mulDmgDef;
+                    if (dmg <= 1 )
+                    {
+                        dmg = rand.Next(2, 7);
+                    }
                     dmg = dmg + (dmg * chance);
                     return dmg;
             }
@@ -246,12 +254,20 @@ namespace Game.Library.Classes.EntiteClasses
                     var mulDmgAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
                     dmg = ((Puissance + Arme.Puissance) - personnageE.Defense + personnageE.Armure.Defense) *
                           mulDmgAtt;
+                    if (dmg <= 1)
+                    {
+                        dmg = rand.Next(2, 7);
+                    }
                     dmg = dmg + (dmg * chance);
                     return dmg;
 
                 case AttaqueCondition.Defense:
                     var mulDmgDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
                     dmg = (personnageE.Puissance - (Defense + Armure.Defense)) * mulDmgDef;
+                    if (dmg <= 1)
+                    {
+                        dmg = rand.Next(2, 7);
+                    }
                     dmg = dmg + (dmg * chance);
                     return dmg;
                 default:
@@ -268,6 +284,10 @@ namespace Game.Library.Classes.EntiteClasses
 
             var mulDmgAtt = MethodeCombat.Dommage(sort.TypeElement, defenseur.Armure.TypeElement);
             var dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.Defense + defenseur.Armure.Defense)) * mulDmgAtt;
+            if (dmg <= 1)
+            {
+                dmg = rand.Next(2, 7);
+            }
             dmg = dmg + (dmg * chance);
             return dmg;
         }
@@ -279,6 +299,10 @@ namespace Game.Library.Classes.EntiteClasses
 
             var mulDmgAtt = MethodeCombat.Dommage(sort.TypeElement, baddie.TypeElement);
             var dmg = ((PuissanceMagique * sort.Puissance) - (baddie.Defense)) * mulDmgAtt;
+            if (dmg <= 1)
+            {
+                dmg = rand.Next(2, 7);
+            }
             dmg = dmg + (dmg * chance);
             return dmg;
         }

@@ -102,7 +102,7 @@ namespace Game.Library.Classes.EntiteClasses
                 ++count;
 
                 Console.SetCursorPosition(0, count);
-                Console.Write($"║ Nom        : {choisi.Arme.NomObjet}");
+                Console.Write($"║ Nom       : {choisi.Arme.NomObjet}");
                 Console.SetCursorPosition(50, count);
                 Console.Write("║");
                 ++count;
@@ -129,7 +129,7 @@ namespace Game.Library.Classes.EntiteClasses
                 ++count;
 
                 Console.SetCursorPosition(0, count);
-                Console.Write($"║ Nom      : {choisi.ObjetCons.NomObjet}");
+                Console.Write($"║ Nom       : {choisi.ObjetCons.NomObjet}");
                 Console.SetCursorPosition(50, count);
                 Console.Write("║");
                 ++count;

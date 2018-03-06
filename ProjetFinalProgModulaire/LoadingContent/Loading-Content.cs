@@ -60,18 +60,16 @@ namespace ProjetFinalProgModulaire
         public static Dictionary<string, Noeud> LoadingNoeuds()
         {
             var ennemi1 =
-                new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 2)
+                new Ennemi("Gourdée", TypeEnnemi.PerchaudeEnchantee, 90, TypeElement.Eau, 20, 12, 2, 2, 10)
                 {
                     ValeurExp = 200,
-                    LootChances = 10,
                     LootTable = JeuProjet.LootTable
                 };
 
             var ennemi2 = 
-                new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 2)
+                new Ennemi("Damien", TypeEnnemi.Chien, 90, TypeElement.Physique, 20, 12, 2, 2, 90)
                 {
                     ValeurExp = 200,
-                    LootChances = 10,
                     LootTable = JeuProjet.LootTable
 
                 };

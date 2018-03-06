@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -77,7 +78,9 @@ namespace ProjetFinalProgModulaire
 
         private static void NewCharacter()
         {
-            Player = CreationPersonnage();
+            var rand = new Random();
+            Player = new Personnage();
+            Player.CharacterCreation();
             foreach (var arme in ListeArmes)
             {
                 if (arme.NomObjet == "Mains Nues")
@@ -86,6 +89,7 @@ namespace ProjetFinalProgModulaire
                 }
             }
 
+
             foreach (var armure in ListeArmures)
             {
                 if (armure.NomObjet == "Vetements")
@@ -93,6 +97,19 @@ namespace ProjetFinalProgModulaire
                     Player.Armure = armure;
                 }
             }
+            // 2 item random free
+            var itemrandom = rand.Next(0, LootTable.Table.Count);
+            Player.Inventaire.Add(LootTable.Table[itemrandom]);
+            itemrandom = rand.Next(0, LootTable.Table.Count);
+            Player.Inventaire.Add(LootTable.Table[itemrandom]);
+            //Add tout les sorts
+            Player.ListeSorts = ListeSorts;
+            //add a few redbull
+            for (int i = 0; i < 5; i++)
+                Player.Inventaire.Add(new ObjInventaire(ListeConsumables.ElementAt(0)));
+
+
+
         }
 
         private void PlayerInterfaceSender()
@@ -127,36 +144,12 @@ namespace ProjetFinalProgModulaire
             ListeSorts = LoadingContent.LoadingSpells();
             ListeArmures = LoadingContent.LoadingArmures();
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
-            DicStory = LoadingContent.LoadingNoeuds();
             LootTable = new ClasseLootTable(ListeArmes, ListeArmures, ListeConsumables);
+            DicStory = LoadingContent.LoadingNoeuds();
 
         }
 
-        private static Personnage CreationPersonnage()
-        {
-            Player = new Personnage();
-            //demander infos//
-            Player.CharacterCreation();
-            foreach (var arme in ListeArmes)
-            {
-                if (arme.NomObjet == "Mains Nues")
-                {
-                    Player.Arme = arme;
-                    break;
-                }
-            }
 
-            foreach (var armure in ListeArmures)
-            {
-                if (armure.NomObjet == "Vetements")
-                {
-                    Player.Armure = armure;
-                    break;
-                }
-            }
-
-            return Player;
-        }
 
     }
 }
