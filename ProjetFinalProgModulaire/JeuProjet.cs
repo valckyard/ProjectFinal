@@ -23,7 +23,8 @@ namespace ProjetFinalProgModulaire
         private Thread _infoSender;
 
         public JeuProjet()
-        { }
+        {
+        }
 
         public void Init()
         {
@@ -55,15 +56,16 @@ namespace ProjetFinalProgModulaire
 
         private void IntroDuJeu()
         {
-            Console.WriteLine("Le chef du clan Codeum a eu vent que leurs ennemis de toujours, les ScrIkID, ont en leur possession" +
-                              "une bombe qui a pour objectif de faire sauter son quartier général. Les informations, provenant " +
-                              "d'une source très fiable, précise que la bombe est dissimulé dans le quartier général de ces" +
-                              "derniers.La bombe qui est déjà activé et qui est contrôlé à distance par un laptop, sera envoyé" +
-                              "tôt demain. Vous avez été engagé pour le clan Codeum afin d'accéder au portable qui lui est" +
-                              "dissimulé derrière l'hotel de la Cathdrale dans un trappe sous le plancher.Vous n'avez qu'à changer" +
-                              "le code pour que la détonation se fasse quelques secondes après votre départ. Vous acceptez" +
-                              "la mission et vous vous mettez en route immédiatement en direction du pont qui traverse la rivière" +
-                              "afin de vous rejoindre votre objectif situé sur l'autre rive.\n\n");
+            Console.WriteLine(
+                "Le chef du clan Codeum a eu vent que leurs ennemis de toujours, les ScrIkID, ont en leur possession" +
+                "une bombe qui a pour objectif de faire sauter son quartier général. Les informations, provenant " +
+                "d'une source très fiable, précise que la bombe est dissimulé dans le quartier général de ces" +
+                "derniers.La bombe qui est déjà activé et qui est contrôlé à distance par un laptop, sera envoyé" +
+                "tôt demain. Vous avez été engagé pour le clan Codeum afin d'accéder au portable qui lui est" +
+                "dissimulé derrière l'hotel de la Cathdrale dans un trappe sous le plancher.Vous n'avez qu'à changer" +
+                "le code pour que la détonation se fasse quelques secondes après votre départ. Vous acceptez" +
+                "la mission et vous vous mettez en route immédiatement en direction du pont qui traverse la rivière" +
+                "afin de vous rejoindre votre objectif situé sur l'autre rive.\n\n");
 
 
             Console.WriteLine("Appuyez sur une touche pour continuer");
@@ -102,6 +104,7 @@ namespace ProjetFinalProgModulaire
                     Player.Armure = armure;
                 }
             }
+
             // 2 item random free
             var itemrandom = rand.Next(0, LootTable.Table.Count);
             Player.Inventaire.Add(LootTable.Table[itemrandom]);
@@ -112,9 +115,6 @@ namespace ProjetFinalProgModulaire
             //add a few redbull
             for (int i = 0; i < 5; i++)
                 Player.Inventaire.Add(new ObjInventaire(ListeConsumables.ElementAt(0)));
-
-
-
         }
 
         private void PlayerInterfaceSender()
@@ -129,28 +129,29 @@ namespace ProjetFinalProgModulaire
 
         public static string OnRouleDesNoeuds(string monnoeud)
         {
-            if (monnoeud == "FIN")
+            if (monnoeud != "FIN" & monnoeud != "Mort")
             {
-                return monnoeud;
+                string newnoeud = null;
+
+                foreach (var kvNoeud in DicStory)
+                {
+                    if (kvNoeud.Key == monnoeud)
+                    {
+                        kvNoeud.Value.Init(ref Player);
+                        newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
+                        break;
+                    }
+                }
+
+                return OnRouleDesNoeuds(newnoeud);
             }
 
-            if (monnoeud == "MORT")
+            if (monnoeud == "Mort")
             {
                 MethodeCombat.GameOver();
             }
-            string newnoeud = null;
-            
-            foreach (var kvNoeud in DicStory)
-            {
-                if (kvNoeud.Key == monnoeud)
-                {
-                    kvNoeud.Value.Init(ref Player);
-                    newnoeud = kvNoeud.Value.ChoixJoueur(ref Player);
-                    break;
-                }
 
-            }
-            return OnRouleDesNoeuds(newnoeud);
+            return monnoeud;
         }
 
         private static void LoadAllContent()
@@ -161,12 +162,6 @@ namespace ProjetFinalProgModulaire
             ListeConsumables = LoadingContent.LoadingConsumableObjects();
             LootTable = new ClasseLootTable(ListeArmes, ListeArmures, ListeConsumables);
             DicStory = LoadingContent.LoadingNoeuds();
-
         }
-
-
-
     }
 }
-
-

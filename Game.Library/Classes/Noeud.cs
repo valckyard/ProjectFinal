@@ -23,7 +23,7 @@ namespace Game.Library.Classes
         public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, bool mortOuRandom,
             Dictionary<int, string> choixReponses)
         {
-           MortOuRandom = mortOuRandom; 
+            MortOuRandom = mortOuRandom; 
             Intitule = intitule;
             Ennemi = ennemi;
             EnnemiP = ennemiP;
@@ -65,7 +65,7 @@ namespace Game.Library.Classes
                     break;
                 }
 
-                if (cki.Key != ConsoleKey.O) continue;
+                if (cki.Key == ConsoleKey.O)
                 {
                     personnage.MenuInventaire();
                     Console.Clear();
@@ -88,17 +88,17 @@ namespace Game.Library.Classes
                 {
                     int z = rand.Next(1, ChoixReponses.Count + 1);
 
+                    if (z == ChoixReponses.Count)
+                    {
+                        Console.WriteLine(ChoixReponses.ElementAt(1).Value);
+                        Console.ReadLine();
+                        return "Mort";
+                    }
                     foreach (var reponse in ChoixReponses)
                     {
-                        if (z == ChoixReponses.Count)
+                        if(z== reponse.Key)
                         {
-                            Console.WriteLine(reponse.Value);
-                            Console.WriteLine("\nAppuyez sur une touche pour continuer\n");
-                            Console.ReadKey();
-                            return "Mort";
-                        }
-                        else
-                        {
+                        
                             return reponse.Value;
                         }
                     }
