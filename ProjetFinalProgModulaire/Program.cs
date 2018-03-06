@@ -3,7 +3,7 @@ namespace ProjetFinalProgModulaire
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var jeu = new JeuProjet();
                 jeu.Init();

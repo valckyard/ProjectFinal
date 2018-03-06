@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Game.Library.Enums;
 using Game.Library.Methodes;
 
@@ -213,22 +212,22 @@ namespace Game.Library.Classes.EntiteClasses
         public double DammageCalculatorEnnemi(Ennemi ennemi, AttaqueCondition condition)
         {
             var rand = new Random();
-            double Dmg = 0;
-            double chance = (rand.Next(-30, 31) / 100);
+            double dmg;
+            var chance = ((double)rand.Next(-30, 31) / 100);
             switch (condition)
             {
                 case AttaqueCondition.Attaque:
 
-                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
-                    Dmg = ((Puissance + Arme.Puissance) - ennemi.Defense) * mulDMGAtt;
-                    Dmg = Dmg + (Dmg * chance);
-                    return Dmg;
+                    var mulDmgAtt = MethodeCombat.Dommage(Arme.TypeElement, ennemi.TypeElement);
+                    dmg = ((Puissance + Arme.Puissance) - ennemi.Defense) * mulDmgAtt;
+                    dmg = dmg + (dmg * chance);
+                    return dmg;
 
                 case AttaqueCondition.Defense:
-                    double mulDMGDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
-                    Dmg = (ennemi.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
-                    Dmg = Dmg + (Dmg * chance);
-                    return Dmg;
+                    var mulDmgDef = MethodeCombat.Dommage(ennemi.TypeElement, Arme.TypeElement);
+                    dmg = (ennemi.Puissance - (Defense + Armure.Defense)) * mulDmgDef;
+                    dmg = dmg + (dmg * chance);
+                    return dmg;
             }
 
             return 0;
@@ -237,52 +236,51 @@ namespace Game.Library.Classes.EntiteClasses
         public double DammageCalculatorPerso(Personnage personnageE, AttaqueCondition condition)
         {
             var rand = new Random();
-            double Dmg = 0;
-            double chance = (rand.Next(-30, 31) / 100);
+            double dmg;
+            var chance = ((double)rand.Next(-30, 31) / 100);
 
             switch (condition)
             {
                 case AttaqueCondition.Attaque:
 
-                    double mulDMGAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
-                    Dmg = ((Puissance + Arme.Puissance) - personnageE.Defense + personnageE.Armure.Defense) *
-                          mulDMGAtt;
-                    Dmg = Dmg + (Dmg * chance);
-                    return Dmg;
+                    var mulDmgAtt = MethodeCombat.Dommage(Arme.TypeElement, personnageE.Armure.TypeElement);
+                    dmg = ((Puissance + Arme.Puissance) - personnageE.Defense + personnageE.Armure.Defense) *
+                          mulDmgAtt;
+                    dmg = dmg + (dmg * chance);
+                    return dmg;
 
                 case AttaqueCondition.Defense:
-                    double mulDMGDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
-                    Dmg = (personnageE.Puissance - (Defense + Armure.Defense)) * mulDMGDef;
-                    Dmg = Dmg + (Dmg * chance);
-                    return Dmg;
+                    var mulDmgDef = MethodeCombat.Dommage(personnageE.Arme.TypeElement, Armure.TypeElement);
+                    dmg = (personnageE.Puissance - (Defense + Armure.Defense)) * mulDmgDef;
+                    dmg = dmg + (dmg * chance);
+                    return dmg;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(condition), condition, null);
             }
 
-            return 0;
         }
 
 
         public double DammageCalculatorMagicPerso(Personnage defenseur, Sort sort)
         {
             var rand = new Random();
-            double Dmg = 0;
-            double chance = (rand.Next(-30, 31) / 100);
+            var chance = ((double)rand.Next(-30, 31) / 100);
 
-            double mulDMGAtt = MethodeCombat.Dommage(sort.TypeElement, defenseur.Armure.TypeElement);
-            Dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.Defense + defenseur.Armure.Defense)) * mulDMGAtt;
-            Dmg = Dmg + (Dmg * chance);
-            return Dmg;
+            var mulDmgAtt = MethodeCombat.Dommage(sort.TypeElement, defenseur.Armure.TypeElement);
+            var dmg = ((PuissanceMagique * sort.Puissance) - (defenseur.Defense + defenseur.Armure.Defense)) * mulDmgAtt;
+            dmg = dmg + (dmg * chance);
+            return dmg;
         }
 
         public double DammageCalculatorMagicEnnemi(Ennemi baddie, Sort sort)
         {
             var rand = new Random();
-            double Dmg = 0;
-            double chance = (rand.Next(-30, 31) / 100);
+            var chance = (double)rand.Next(-30, 31) / 100;
 
-            double mulDMGAtt = MethodeCombat.Dommage(sort.TypeElement, baddie.TypeElement);
-            Dmg = ((PuissanceMagique * sort.Puissance) - (baddie.Defense)) * mulDMGAtt;
-            Dmg = Dmg + (Dmg * chance);
-            return Dmg;
+            var mulDmgAtt = MethodeCombat.Dommage(sort.TypeElement, baddie.TypeElement);
+            var dmg = ((PuissanceMagique * sort.Puissance) - (baddie.Defense)) * mulDmgAtt;
+            dmg = dmg + (dmg * chance);
+            return dmg;
         }
     }
 }

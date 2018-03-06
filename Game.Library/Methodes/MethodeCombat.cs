@@ -289,9 +289,12 @@ namespace Game.Library.Methodes
                 else
                 {
                     win = true;
-      
-                    Console.WriteLine($"{persJ.Nom} a Vaincu {baddie.Name} !!!!!\nVous avez Gagne !");
-                    Console.WriteLine("\nAppuyez sur une touche pour continuer....!");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"\n\n            ~~~~~~~~~~~~~~~VICTOIRE!!!~~~~~~~~~~~~~~~" +
+                                      $"\n                 {persJ.Nom} a Vaincu {baddie.Name} !!!!!\n" +
+                                      $"                        Vous avez Gagne !");
+                    Console.WriteLine("            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n" +
+                                      "\n        ---> Appuyez sur une touche pour continuer....! <---");
                     Console.ReadLine();
                     Console.Clear();
                 }

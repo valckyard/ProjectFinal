@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading;
 using Game.Library.Classes;
 using Game.Library.Classes.ObjClasses;
@@ -43,7 +42,7 @@ namespace ProjetFinalProgModulaire
         private void Rejouer()
         {
             Console.WriteLine("Voulez-vous jouer à nouveau ?");
-            var rejouer = int.Parse(Console.ReadLine());
+            var rejouer = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
         }
 
 

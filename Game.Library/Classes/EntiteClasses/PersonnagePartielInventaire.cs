@@ -47,7 +47,7 @@ namespace Game.Library.Classes.EntiteClasses
         {
             Console.Clear();
             AfficherInventaire();
-            Console.Write($"Quel Objet ?\n     Choix : ");
+            Console.Write($"     Quel Objet ?\n     Choix : ");
             int y = 0;
             while (int.TryParse(Console.ReadLine(), out y) == false)
             {
@@ -211,8 +211,8 @@ namespace Game.Library.Classes.EntiteClasses
                 switch (x)
                 {
                     case 1:
-                        Console.Write($"Quelle Arme ou Armure ? \n" +
-                                      $"Choix : ");
+                        Console.Write($"\n     Quelle Arme ou Armure ? \n" +
+                                      $"     Choix : ");
                         int y = 0;
                         while (int.TryParse(Console.ReadLine(), out y) == false)
                         {

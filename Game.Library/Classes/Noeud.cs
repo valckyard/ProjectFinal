@@ -21,6 +21,7 @@ namespace Game.Library.Classes
         public Noeud(string intitule, Ennemi ennemi, Personnage ennemiP, bool mortOuRandom,
             Dictionary<int, string> choixReponses)
         {
+           MortOuRandom = mortOuRandom; 
             Intitule = intitule;
             Ennemi = ennemi;
             EnnemiP = ennemiP;
@@ -36,16 +37,16 @@ namespace Game.Library.Classes
             {
                 var baddie = Ennemi;
                 Console.WriteLine("\n"+CombatString+"\n");
-                Methodes.MethodeCombat.AttaqueEnnemi(ref personnage, ref baddie);
+                MethodeCombat.AttaqueEnnemi(ref personnage, ref baddie);
             }
 
             if (EnnemiP != null)
             {
                 var baddie = EnnemiP;
                 Console.WriteLine(CombatString+"\n");
-                Methodes.MethodeCombat.CombatPersonnage(ref personnage, ref baddie);
+                MethodeCombat.CombatPersonnage(ref personnage, ref baddie);
             }
-            
+            Console.Clear();
             Console.WriteLine("\n"+Intitule + "\n");
         }
 
@@ -53,7 +54,7 @@ namespace Game.Library.Classes
         {
             do
             {
-                Console.Write($"\n\nVoulez-Vous Acceder a l'Inventaire ? O/N ");
+                Console.Write($"\nVoulez-Vous Acceder a l'Inventaire ? O/N ");
                 var cki = Console.ReadKey();
 
                 if (cki.Key == ConsoleKey.N)
