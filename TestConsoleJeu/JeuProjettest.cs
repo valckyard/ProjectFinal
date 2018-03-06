@@ -24,14 +24,17 @@ namespace TestConsoleJeu
         public static Personnage Player;
         public static Personnage Player2;
         public static Thread Affichage;
+        public static ClasseLootTable Table;
 
         public JeuProjetTest()
         { }
 
         public void Init()
         {
-            LoadAllContent();
 
+
+            LoadAllContent();
+            Table = new ClasseLootTable(ListeArmes,ListeArmures,ListeConsumables);
             
 
 
@@ -57,8 +60,9 @@ namespace TestConsoleJeu
                 Player.Inventaire.Add(new ObjInventaire(listeArme));
             }
 
-            var suif = new Ennemi("Vache Enrage", TypeEnnemi.PerchaudeEnchantee, 30, TypeElement.Eau, 10, 10, 10, 200,
-                2);
+            var suif = new Ennemi("Vache Enrage", TypeEnnemi.PerchaudeEnchantee, 30, TypeElement.Eau, 10, 10, 10, 3000,
+                90);
+            suif.LootTable = Table;
 
             var Client = new AffichageManager.AffichageManagerTest();
             Client.Init();
@@ -69,8 +73,10 @@ namespace TestConsoleJeu
             
            Player2 = new Personnage(PersonnageRace.Humain,PersonnageClasse.Magicien,"Pablo",100,5,5,5,5,5);
             Player2.Arme = new ObjArme("PabStick", TypeElement.Air, 2);
-            Player2.ValeurExp = 300;
+            Player2.ValeurExp = 3000;
             Player2.Armure = new ObjArmure("Pab String",TypeElement.Air,2);
+            Player2.LootTable = Table;
+            Player2.LootChances = 90;
             Console.WriteLine("Nom "+Player.Nom);
             Console.WriteLine(Player.Classe);
             Console.WriteLine(Player.Race);
@@ -94,14 +100,14 @@ namespace TestConsoleJeu
             Player.MenuInventaire();
 
 
-
+            MethodeCombat.CombatPersonnage(ref Player, ref Player2);
+            Console.ReadLine();
             MethodeCombat.AttaqueEnnemi(ref Player, ref suif);
 
 
 
             Onrouledesnoeuds("Taxi");
 
-           MethodeCombat.CombatPersonnage(ref Player, ref Player2);
            Affichage.Abort();
             //Histoire modules
             //SWITCH Decision /Hotel/Arena/Rencontre/Aventure#Quetes

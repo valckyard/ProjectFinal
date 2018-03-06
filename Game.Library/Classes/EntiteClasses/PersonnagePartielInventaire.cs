@@ -36,6 +36,7 @@ namespace Game.Library.Classes.EntiteClasses
                     AfficherStatsMenu();
                     break;
                 case 3:
+                    Console.Clear();
                     break;
                 default:
                     MenuInventaire();

@@ -145,6 +145,7 @@ namespace Game.Library.Methodes
                 switch (cond)
                 {
                     case AttaqueCondition.Attaque:
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\n{persJoueur.Nom} Attaque !");
                         Console.ForegroundColor = ConsoleColor.White;
                         Attaque(persJoueur, ref persEnnemi);
@@ -170,8 +171,14 @@ namespace Game.Library.Methodes
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"\n\n            ~~~~~~~~~~~~~~~VICTOIRE!!!~~~~~~~~~~~~~~~" +
+                                      $"\n                 {persJoueur.Nom} a Vaincu {persEnnemi.Nom} !!!!!\n" +
+                                      $"                        Vous avez Gagne !");
+                    Console.WriteLine("            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n" +
+                                      "\n        ---> Appuyez sur une touche pour continuer....! <---");
+                    Console.ReadLine();
                     Console.Clear();
-                    Console.WriteLine($"{persJoueur.Nom} a Vaincu {persEnnemi.Nom} !!!!!\nVous avez Gagne !\n");
                     win = true;
                 }
             }
